@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Mars_Scout</string>
+    <string name="choose_map_element">Choose map block:</string>
+    <string name="generate_map">Generate Map</string>
+    <string name="ground_block">Ground block</string>
+</resources>

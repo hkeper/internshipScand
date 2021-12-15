@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.scand.internship.mars_scout.MapEditorViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.scand.internship.mars_scout.MainActivity">
+
+        <Button
+            android:id="@+id/generate_map"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_medium"
+            android:backgroundTint="?colorSecondaryVariant"
+            android:text="@string/generate_map"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/map"
+            android:layout_width="@dimen/map_size"
+            android:layout_height="@dimen/map_size"
+            app:layout_constraintBottom_toTopOf="@+id/lower_guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/generate_map">
+
+            <ImageView
+                android:layout_width="@dimen/block_size"
+                android:layout_height="@dimen/block_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/lower_guideline"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <TextView
+            android:id="@+id/choose_block_text"
+            android:layout_width="0dp"
+            android:layout_height="?actionBarSize"
+            android:background="?colorSecondaryVariant"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/default_padding"
+            android:paddingEnd="@dimen/default_padding"
+            android:singleLine="true"
+            android:text="@string/choose_map_element"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lower_guideline" />
+
+        <ImageView
+            android:id="@+id/ground_block_img"
+            android:layout_width="@dimen/block_size"
+            android:layout_height="@dimen/block_size"
+            android:src="@drawable/ground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/choose_block_text" />
+
+        <TextView
+            android:id="@+id/ground_block_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ground_block"
+            app:layout_constraintStart_toEndOf="@+id/ground_block_img"
+            app:layout_constraintTop_toBottomOf="@+id/choose_block_text" />
+
+        <ImageView
+            android:id="@+id/sand_block_img"
+            android:layout_width="@dimen/block_size"
+            android:layout_height="@dimen/block_size"
+            android:src="@drawable/sand"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ground_block_desc"
+            app:layout_constraintTop_toBottomOf="@+id/choose_block_text" />
+
+        <TextView
+            android:id="@+id/sand_block_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ground_block"
+            app:layout_constraintStart_toEndOf="@+id/sand_block_img"
+            app:layout_constraintTop_toBottomOf="@+id/choose_block_text" />
+
+        <ImageView
+            android:id="@+id/pit_block_img"
+            android:layout_width="@dimen/block_size"
+            android:layout_height="@dimen/block_size"
+            android:src="@drawable/pit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/pit_block_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ground_block"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/pit_block_img" />
+
+        <ImageView
+            android:id="@+id/hill_block_img"
+            android:layout_width="@dimen/block_size"
+            android:layout_height="@dimen/block_size"
+            android:src="@drawable/hill"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ground_block_desc" />
+
+        <TextView
+            android:id="@+id/hill_block_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ground_block"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/hill_block_img" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
