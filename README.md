@@ -1,1 +1,1 @@
-# internshipScand
+## Project Mars Scout for internship in Scand
