@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.scand.internship.mars_scout.MapEditorViewModel" />
+            type="com.scand.internship.mars_scout.mapeditor.MapEditorViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,23 +27,1136 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/map"
             android:layout_width="@dimen/map_size"
             android:layout_height="@dimen/map_size"
+            android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/lower_guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/generate_map">
 
-            <ImageView
-                android:layout_width="@dimen/block_size"
-                android:layout_height="@dimen/block_size"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+            </LinearLayout>
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/lower_guideline"
@@ -63,77 +1176,98 @@
             android:singleLine="true"
             android:text="@string/choose_map_element"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_medium"
+            android:textSize="@dimen/text_size_large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lower_guideline" />
 
         <ImageView
             android:id="@+id/ground_block_img"
-            android:layout_width="@dimen/block_size"
-            android:layout_height="@dimen/block_size"
+            android:layout_width="@dimen/block_choose_size"
+            android:layout_height="@dimen/block_choose_size"
             android:src="@drawable/ground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/choose_block_text" />
+            app:layout_constraintTop_toBottomOf="@+id/choose_block_text"
+            app:layout_constraintVertical_bias="0.21" />
 
         <TextView
             android:id="@+id/ground_block_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_padding"
             android:text="@string/ground_block"
+            android:textSize="@dimen/text_size_normal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ground_block_img"
-            app:layout_constraintTop_toBottomOf="@+id/choose_block_text" />
+            app:layout_constraintTop_toBottomOf="@+id/choose_block_text"
+            app:layout_constraintVertical_bias="0.23" />
 
         <ImageView
             android:id="@+id/sand_block_img"
-            android:layout_width="@dimen/block_size"
-            android:layout_height="@dimen/block_size"
+            android:layout_width="@dimen/block_choose_size"
+            android:layout_height="@dimen/block_choose_size"
             android:src="@drawable/sand"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ground_block_desc"
-            app:layout_constraintTop_toBottomOf="@+id/choose_block_text" />
+            app:layout_constraintStart_toEndOf="@+id/ground_block_img"
+            app:layout_constraintTop_toBottomOf="@+id/choose_block_text"
+            app:layout_constraintVertical_bias="0.21" />
 
         <TextView
             android:id="@+id/sand_block_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ground_block"
-            app:layout_constraintStart_toEndOf="@+id/sand_block_img"
-            app:layout_constraintTop_toBottomOf="@+id/choose_block_text" />
+            android:text="@string/sand_block"
+            android:textSize="@dimen/text_size_normal"
+            android:layout_marginStart="@dimen/default_padding"
+            app:layout_constraintBaseline_toBaselineOf="@+id/ground_block_desc"
+            app:layout_constraintStart_toEndOf="@+id/sand_block_img" />
 
         <ImageView
             android:id="@+id/pit_block_img"
-            android:layout_width="@dimen/block_size"
-            android:layout_height="@dimen/block_size"
+            android:layout_width="@dimen/block_choose_size"
+            android:layout_height="@dimen/block_choose_size"
             android:src="@drawable/pit"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ground_block_img" />
 
         <TextView
             android:id="@+id/pit_block_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ground_block"
+            android:text="@string/pit_block"
+            android:textSize="@dimen/text_size_normal"
+            android:layout_marginTop="@dimen/padding_small"
+            android:layout_marginStart="@dimen/default_padding"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/pit_block_img" />
+            app:layout_constraintStart_toEndOf="@+id/pit_block_img"
+            app:layout_constraintTop_toBottomOf="@+id/ground_block_desc" />
 
         <ImageView
             android:id="@+id/hill_block_img"
-            android:layout_width="@dimen/block_size"
-            android:layout_height="@dimen/block_size"
+            android:layout_width="@dimen/block_choose_size"
+            android:layout_height="@dimen/block_choose_size"
             android:src="@drawable/hill"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ground_block_desc" />
+            app:layout_constraintStart_toEndOf="@+id/pit_block_img"
+            app:layout_constraintTop_toBottomOf="@+id/sand_block_img" />
 
         <TextView
             android:id="@+id/hill_block_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ground_block"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/hill_block"
+            android:textSize="@dimen/text_size_normal"
+            android:layout_marginStart="@dimen/default_padding"
+            app:layout_constraintBaseline_toBaselineOf="@+id/pit_block_desc"
             app:layout_constraintStart_toEndOf="@+id/hill_block_img" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

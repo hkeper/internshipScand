@@ -1,1 +1,5 @@
-## Project Mars Scout for internship in Scand
+## Mars Scout
+
+Mars Scout is example app for internship in Scand
+
+

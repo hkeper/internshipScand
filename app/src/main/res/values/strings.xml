@@ -3,4 +3,7 @@
     <string name="choose_map_element">Choose map block:</string>
     <string name="generate_map">Generate Map</string>
     <string name="ground_block">Ground block</string>
+    <string name="pit_block">Pit block</string>
+    <string name="sand_block">Sand block</string>
+    <string name="hill_block">Hill block</string>
 </resources>
