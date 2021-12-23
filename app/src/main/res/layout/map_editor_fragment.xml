@@ -29,88 +29,20 @@
 
         <LinearLayout
             android:id="@+id/map"
-            android:layout_width="@dimen/map_size"
-            android:layout_height="@dimen/map_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/lower_guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/generate_map">
+            app:layout_constraintTop_toBottomOf="@+id/generate_map"
+            android:gravity="center">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal" >
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -180,7 +112,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -250,7 +183,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -320,7 +254,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -390,7 +325,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -460,7 +396,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -530,7 +467,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -600,7 +538,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -670,7 +609,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -740,7 +680,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -810,7 +751,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -880,7 +822,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -950,7 +893,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -1020,7 +964,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -1090,7 +1035,79 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -1163,7 +1180,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.65" />
+            app:layout_constraintGuide_percent="0.75" />
 
         <TextView
             android:id="@+id/choose_block_text"

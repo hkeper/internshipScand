@@ -8,5 +8,5 @@ data class MapBlock(
     val id: String,
     val name: String,
     val type: BlockType = BlockType.GROUND,
-    val coordinates: String? = null
+    val coordinates: Pair<Int, Int>
 ) : Parcelable
