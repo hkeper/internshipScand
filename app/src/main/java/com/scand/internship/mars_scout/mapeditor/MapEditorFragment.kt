@@ -1,5 +1,8 @@
 package com.scand.internship.mars_scout.mapeditor
 
+import android.R.attr
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -15,6 +18,9 @@ import com.scand.internship.mars_scout.R
 import com.scand.internship.mars_scout.databinding.MapEditorFragmentBinding
 import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.MapBlock
+import android.R.attr.button
+import androidx.core.content.ContextCompat
+
 
 class MapEditorFragment : Fragment() {
 
@@ -36,7 +42,52 @@ class MapEditorFragment : Fragment() {
         binding.viewModel = viewModel
 
         binding.generateMap.setOnClickListener {
-            setImageBlocks(Size(10,10))
+            setImageBlocks(Size(16,16))
+        }
+
+        binding.groundBlockImg.setOnClickListener {
+            val colorBackground = (it.background as ColorDrawable).color
+
+            if(colorBackground == ContextCompat.getColor(requireActivity(), R.color.green_chosen)){
+                it.setBackgroundResource(R.color.white)
+                viewModel.onBlockNotChosen()
+            }else {
+                it.setBackgroundResource(R.color.green_chosen)
+                viewModel.onBlockChosen(BlockType.GROUND)
+            }
+        }
+        binding.pitBlockImg.setOnClickListener {
+            val colorBackground = (it.background as ColorDrawable).color
+
+            if(colorBackground == ContextCompat.getColor(requireActivity(), R.color.green_chosen)){
+                it.setBackgroundResource(R.color.white)
+                viewModel.onBlockNotChosen()
+            }else {
+                it.setBackgroundResource(R.color.green_chosen)
+                viewModel.onBlockChosen(BlockType.PIT)
+            }
+        }
+        binding.sandBlockImg.setOnClickListener {
+            val colorBackground = (it.background as ColorDrawable).color
+
+            if(colorBackground == ContextCompat.getColor(requireActivity(), R.color.green_chosen)){
+                it.setBackgroundResource(R.color.white)
+                viewModel.onBlockNotChosen()
+            }else {
+                it.setBackgroundResource(R.color.green_chosen)
+                viewModel.onBlockChosen(BlockType.SAND)
+            }
+        }
+        binding.hillBlockImg.setOnClickListener {
+            val colorBackground = (it.background as ColorDrawable).color
+
+            if(colorBackground == ContextCompat.getColor(requireActivity(), R.color.green_chosen)){
+                it.setBackgroundResource(R.color.white)
+                viewModel.onBlockNotChosen()
+            }else {
+                it.setBackgroundResource(R.color.green_chosen)
+                viewModel.onBlockChosen(BlockType.HILL)
+            }
         }
 
         return binding.root
@@ -64,7 +115,7 @@ class MapEditorFragment : Fragment() {
                         if (subSubView is ImageView) {
                             val imageView: ImageView = subSubView
 
-                            imageView.id = mapBlocksSplit[y][x].id.toInt()
+                            imageView.id = mapBlocksSplit[y][x].id
 
                             val img: Drawable? = when (mapBlocksSplit[y][x].type) {
                                 BlockType.GROUND -> ResourcesCompat.getDrawable(
@@ -95,6 +146,19 @@ class MapEditorFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun setWhiteBackground(){
+        val layout = binding.chooseBockSection
+
+        for (i in 0 until layout.childCount) {
+            val subView: View = layout.getChildAt(i)
+
+            if (subView is ImageView) {
+                subView.setBackgroundResource(R.color.white)
+            }
+        }
+
     }
 
 

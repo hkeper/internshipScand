@@ -5,8 +5,11 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class MapBlock(
-    val id: String,
+    val id: Int,
     val name: String,
-    val type: BlockType = BlockType.GROUND,
+    val type: BlockType,
     val coordinates: Pair<Int, Int>
-) : Parcelable
+) : Parcelable {
+    constructor(id: Int, name: String) :
+            this(id, name, BlockType.GROUND, Pair(0,0))
+}

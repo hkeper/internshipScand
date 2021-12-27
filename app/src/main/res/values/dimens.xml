@@ -7,12 +7,14 @@
     <dimen name="text_size_large">20sp</dimen>
     <dimen name="padding_normal">15dp</dimen>
     <dimen name="padding_small">5dp</dimen>
+    <dimen name="padding_smallest">3dp</dimen>
     <dimen name="padding_medium">10dp</dimen>
     <dimen name="padding_large">20dp</dimen>
     <dimen name="margin_normal">16dp</dimen>
     <dimen name="block_size">20dp</dimen>
-    <dimen name="block_choose_size">35dp</dimen>
+    <dimen name="block_choose_size">38dp</dimen>
     <dimen name="map_size">400dp</dimen>
     <dimen name="margin_42">42dp</dimen>
+    <dimen name="default_map_size">16</dimen>
 
 </resources>
