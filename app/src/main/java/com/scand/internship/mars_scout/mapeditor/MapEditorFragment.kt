@@ -26,6 +26,8 @@ class MapEditorFragment : Fragment() {
 
 //    private lateinit var viewModel: MapEditorViewModel
 
+    private var listMapBlocks: MutableList<MutableList<ImageView>> = mutableListOf()
+
     private val viewModel: MapEditorViewModel by lazy {
         ViewModelProvider(this)[MapEditorViewModel::class.java]
     }
@@ -41,10 +43,42 @@ class MapEditorFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-        binding.generateMap.setOnClickListener {
-            setImageBlocks(Size(16,16))
+        getImageViewMapBlocks()
+
+        binding.groundBlockImg.setOnTouchListener { v, event ->
+            val action = event.action
+            when(action){
+
+                MotionEvent.ACTION_DOWN -> {
+                    pDownX= event.x.toInt()
+                    pDownY= event.y.toInt()
+                }
+
+
+                MotionEvent.ACTION_MOVE -> { }
+
+                MotionEvent.ACTION_UP -> {
+                    pUpX= event.x.toInt()
+                    pUpY= event.y.toInt()
+                }
+
+                MotionEvent.ACTION_CANCEL -> {
+
+                }
+
+                else ->{
+
+                }
+            }
+            return@OnTouchListener true
         }
 
+
+        binding.generateMap.setOnClickListener {
+            setImageBlocks(Size(R.dimen.default_map_size_x,R.dimen.default_map_size_y))
+        }
+
+        //TODO Make with one function using child
         binding.groundBlockImg.setOnClickListener {
             val colorBackground = (it.background as ColorDrawable).color
 
@@ -90,61 +124,92 @@ class MapEditorFragment : Fragment() {
             }
         }
 
+        for (y in 0 until listMapBlocks.size) {
+
+            for (x in 0 until listMapBlocks[y].size) {
+
+                listMapBlocks[y][x].setOnClickListener {
+
+                    if(viewModel.isBlockChosen.value == true){
+                        (it as ImageView).setImageDrawable(setImageAccordingToType(
+                            viewModel.typeChosenMapBlock.value))
+                    }
+
+                }
+
+            }
+        }
+
         return binding.root
     }
 
     private fun setImageBlocks(mapSize: Size) {
 
-        val mapLayout = binding.map
         val mapBlocks = viewModel.generateMap(mapSize)?.blocks
 
-        //Timber.d("!!! ${yourLayout.childCount}")
         if (mapBlocks != null) {
 
             val mapBlocksSplit: List<List<MapBlock>> = mapBlocks.chunked(mapSize.width)
 
             for (y in 0 until mapSize.height) {
 
-                val subView: View = mapLayout.getChildAt(y)
-
-                if (subView is LinearLayout) {
-
-                    for (x in 0 until mapSize.width) {
-                        val subSubView: View = subView.getChildAt(x)
-
-                        if (subSubView is ImageView) {
-                            val imageView: ImageView = subSubView
-
-                            imageView.id = mapBlocksSplit[y][x].id
-
-                            val img: Drawable? = when (mapBlocksSplit[y][x].type) {
-                                BlockType.GROUND -> ResourcesCompat.getDrawable(
-                                    resources,
-                                    R.drawable.ground,
-                                    null
-                                )
-                                BlockType.HILL -> ResourcesCompat.getDrawable(
-                                    resources,
-                                    R.drawable.hill,
-                                    null
-                                )
-                                BlockType.PIT -> ResourcesCompat.getDrawable(
-                                    resources,
-                                    R.drawable.pit,
-                                    null
-                                )
-                                else -> ResourcesCompat.getDrawable(
-                                    resources,
-                                    R.drawable.sand,
-                                    null
-                                )
-                            }
-
-                            imageView.setImageDrawable(img)
-                        }
-                    }
+                for (x in 0 until mapSize.width) {
+                    listMapBlocks[y][x].id = mapBlocksSplit[y][x].id
+                    val img: Drawable? = setImageAccordingToType(mapBlocksSplit[y][x].type)
+                    listMapBlocks[y][x].setImageDrawable(img)
                 }
             }
+        }
+    }
+
+    private fun getImageViewMapBlocks() {
+
+        val mapLayout = binding.map
+
+        for (y in 0 until mapLayout.childCount) {
+
+            val subView: View = mapLayout.getChildAt(y)
+            val lineBlocksList: MutableList<ImageView> = mutableListOf()
+
+            if (subView is LinearLayout) {
+
+                for (x in 0 until subView.childCount) {
+
+                    val subSubView: View = subView.getChildAt(x)
+
+                    if (subSubView is ImageView) {
+                        val imageView: ImageView = subSubView
+                        lineBlocksList.add(imageView)
+                    }
+                }
+                listMapBlocks.add(lineBlocksList)
+            }
+        }
+
+    }
+
+    private fun setImageAccordingToType(type: BlockType?): Drawable?{
+        return when (type) {
+            BlockType.SAND -> ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.sand,
+                null
+            )
+            BlockType.HILL -> ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.hill,
+                null
+            )
+            BlockType.PIT -> ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.pit,
+                null
+            )
+            else -> ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.ground,
+                null
+            )
         }
     }
 
