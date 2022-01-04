@@ -1439,7 +1439,7 @@
             app:layout_constraintGuide_percent="0.75" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/choose_bock_section"
+            android:id="@+id/choose_block_section"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"

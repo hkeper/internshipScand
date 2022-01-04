@@ -19,6 +19,7 @@ import com.scand.internship.mars_scout.databinding.MapEditorFragmentBinding
 import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.MapBlock
 import android.R.attr.button
+import android.view.MotionEvent
 import androidx.core.content.ContextCompat
 
 
@@ -27,6 +28,7 @@ class MapEditorFragment : Fragment() {
 //    private lateinit var viewModel: MapEditorViewModel
 
     private var listMapBlocks: MutableList<MutableList<ImageView>> = mutableListOf()
+    private var listChooseMapBlockTypes: MutableList<ImageView> = mutableListOf()
 
     private val viewModel: MapEditorViewModel by lazy {
         ViewModelProvider(this)[MapEditorViewModel::class.java]
@@ -44,84 +46,34 @@ class MapEditorFragment : Fragment() {
         binding.viewModel = viewModel
 
         getImageViewMapBlocks()
+        getChooseMapBlockTypes()
 
-        binding.groundBlockImg.setOnTouchListener { v, event ->
-            val action = event.action
-            when(action){
-
-                MotionEvent.ACTION_DOWN -> {
-                    pDownX= event.x.toInt()
-                    pDownY= event.y.toInt()
+        binding.groundBlockImg.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                when (event?.action) {
+                    MotionEvent.ACTION_DOWN -> //Do Something
                 }
 
-
-                MotionEvent.ACTION_MOVE -> { }
-
-                MotionEvent.ACTION_UP -> {
-                    pUpX= event.x.toInt()
-                    pUpY= event.y.toInt()
-                }
-
-                MotionEvent.ACTION_CANCEL -> {
-
-                }
-
-                else ->{
-
-                }
+                return v?.onTouchEvent(event) ?: true
             }
-            return@OnTouchListener true
-        }
+        })
 
 
         binding.generateMap.setOnClickListener {
             setImageBlocks(Size(R.dimen.default_map_size_x,R.dimen.default_map_size_y))
         }
 
-        //TODO Make with one function using child
         binding.groundBlockImg.setOnClickListener {
-            val colorBackground = (it.background as ColorDrawable).color
-
-            if(colorBackground == ContextCompat.getColor(requireActivity(), R.color.green_chosen)){
-                it.setBackgroundResource(R.color.white)
-                viewModel.onBlockNotChosen()
-            }else {
-                it.setBackgroundResource(R.color.green_chosen)
-                viewModel.onBlockChosen(BlockType.GROUND)
-            }
+            choseBlockType(it, BlockType.GROUND)
         }
         binding.pitBlockImg.setOnClickListener {
-            val colorBackground = (it.background as ColorDrawable).color
-
-            if(colorBackground == ContextCompat.getColor(requireActivity(), R.color.green_chosen)){
-                it.setBackgroundResource(R.color.white)
-                viewModel.onBlockNotChosen()
-            }else {
-                it.setBackgroundResource(R.color.green_chosen)
-                viewModel.onBlockChosen(BlockType.PIT)
-            }
+            choseBlockType(it, BlockType.PIT)
         }
         binding.sandBlockImg.setOnClickListener {
-            val colorBackground = (it.background as ColorDrawable).color
-
-            if(colorBackground == ContextCompat.getColor(requireActivity(), R.color.green_chosen)){
-                it.setBackgroundResource(R.color.white)
-                viewModel.onBlockNotChosen()
-            }else {
-                it.setBackgroundResource(R.color.green_chosen)
-                viewModel.onBlockChosen(BlockType.SAND)
-            }
+            choseBlockType(it, BlockType.SAND)
         }
         binding.hillBlockImg.setOnClickListener {
-            val colorBackground = (it.background as ColorDrawable).color
-
-            if(colorBackground == ContextCompat.getColor(requireActivity(), R.color.green_chosen)){
-                it.setBackgroundResource(R.color.white)
-                viewModel.onBlockNotChosen()
-            }else {
-                it.setBackgroundResource(R.color.green_chosen)
-                viewModel.onBlockChosen(BlockType.HILL)
-            }
+            choseBlockType(it, BlockType.HILL)
         }
 
         for (y in 0 until listMapBlocks.size) {
@@ -213,8 +165,38 @@ class MapEditorFragment : Fragment() {
         }
     }
 
+    private fun getChooseMapBlockTypes() {
+        val chooseBlock = binding.chooseBlockSection
+
+        for (i in 0 until chooseBlock.childCount) {
+
+            val subView: View = chooseBlock.getChildAt(i)
+
+            if (subView is ImageView) {
+
+                listChooseMapBlockTypes.add(subView)
+
+            }
+        }
+    }
+
+    private fun choseBlockType(view: View, type: BlockType){
+        val colorBackground = (view.background as ColorDrawable).color
+
+        if(colorBackground == ContextCompat.getColor(requireActivity(), R.color.green_chosen)){
+            view.setBackgroundResource(R.color.white)
+            viewModel.onBlockNotChosen()
+        }else {
+            for (i in 0 until listChooseMapBlockTypes.size){
+                listChooseMapBlockTypes[i].setBackgroundResource(R.color.white)
+            }
+            view.setBackgroundResource(R.color.green_chosen)
+            viewModel.onBlockChosen(type)
+        }
+    }
+
     private fun setWhiteBackground(){
-        val layout = binding.chooseBockSection
+        val layout = binding.chooseBlockSection
 
         for (i in 0 until layout.childCount) {
             val subView: View = layout.getChildAt(i)
