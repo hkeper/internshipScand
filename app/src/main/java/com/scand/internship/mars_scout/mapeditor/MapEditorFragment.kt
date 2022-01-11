@@ -240,16 +240,17 @@ class MapEditorFragment : Fragment() {
         val mapView = binding.map
 //        val subView = binding.groundBlockDesc
 
-        for (y in 0 until mapView.childCount) {
+//        for (y in 0 until mapView.childCount) {
             // OnTouchListener on the Screen
-            mapView.getChildAt(y).setOnTouchListener { v, event ->
+//            mapView.getChildAt(y).setOnTouchListener { v, event ->
+            mapView.setOnTouchListener { v, event ->
                 if (viewModel.isBlockChosen.value == true) {
 
                     return@setOnTouchListener when (event?.action) {
                         MotionEvent.ACTION_DOWN -> {
 
                             val bt = viewModel.typeChosenMapBlock.value
-                            val b = getViewMapBlockThatInsideMap(event, y)
+                            val b = getViewMapBlockThatInsideMap(event)
 
                             b.setImageDrawable(
                                 setImageAccordingToType(viewModel.typeChosenMapBlock.value)
@@ -259,7 +260,7 @@ class MapEditorFragment : Fragment() {
                         }
                         MotionEvent.ACTION_MOVE -> {
 
-                            getViewMapBlockThatInsideMap(event, y).setImageDrawable(
+                            getViewMapBlockThatInsideMap(event).setImageDrawable(
                                 setImageAccordingToType(viewModel.typeChosenMapBlock.value)
                             )
 
@@ -271,7 +272,7 @@ class MapEditorFragment : Fragment() {
                 }
                 v?.onTouchEvent(event) ?: true
             }
-        }
+//        }
 
     }
 
@@ -279,20 +280,29 @@ class MapEditorFragment : Fragment() {
     // This functions confirms the dimensions of the view (subView in out program)
     private fun isInside(v: View, e: MotionEvent): Boolean {
 
-        val viewBoundaries = Rect(v.left, v.top, v.right, v.bottom)
+//        val viewBoundaries = Rect(v.left, v.top, v.right, v.bottom)
 
-        val x = e.x
-        val y = e.y
+        val viewCoordinates = IntArray(2)
+        val vp = v.getLocationOnScreen(viewCoordinates)
 
-        return viewBoundaries.contains(x.toInt(), y.toInt())
+        val x = e.rawX
+        val y = e.rawY
+
+//        return viewBoundaries.contains(x.toInt(), y.toInt())
+        var inside = false
+
+        inside = (x >= viewCoordinates[0]) && (x <= (viewCoordinates[0] + v.width)) &&
+                (y >= viewCoordinates[1]) && (y <= (viewCoordinates[1] + v.height))
+
+        return inside
     }
 
-    private fun getViewMapBlockThatInsideMap(e: MotionEvent, y: Int): ImageView {
+    private fun getViewMapBlockThatInsideMap(e: MotionEvent): ImageView {
 
         val viewBoundaries1 = Rect(listMapBlocks[0][0].left, listMapBlocks[0][0].top, listMapBlocks[0][0].right, listMapBlocks[0][0].bottom)
         val viewBoundaries2 = Rect(listMapBlocks[1][0].left, listMapBlocks[1][0].top, listMapBlocks[1][0].right, listMapBlocks[1][0].bottom)
 
-//        for (y in 0 until listMapBlocks.size) {
+        for (y in 0 until listMapBlocks.size) {
 
             for (x in 0 until listMapBlocks[y].size) {
 
@@ -302,7 +312,7 @@ class MapEditorFragment : Fragment() {
 
                 }
             }
-//        }
+        }
         return ImageView(context)
     }
 
