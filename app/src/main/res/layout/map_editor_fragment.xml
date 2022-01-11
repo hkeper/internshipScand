@@ -39,6 +39,7 @@
             android:gravity="center">
 
             <LinearLayout
+                android:id="@+id/line0"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:orientation="horizontal"
@@ -46,83 +47,259 @@
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
                     android:background="@drawable/border"/>
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
             </LinearLayout>
 
             <LinearLayout
@@ -133,83 +310,83 @@
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
             </LinearLayout>
 
             <LinearLayout
@@ -220,83 +397,83 @@
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
             </LinearLayout>
 
             <LinearLayout
@@ -307,83 +484,83 @@
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
             </LinearLayout>
 
             <LinearLayout
@@ -394,83 +571,83 @@
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
             </LinearLayout>
 
             <LinearLayout
@@ -481,83 +658,83 @@
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
             </LinearLayout>
 
             <LinearLayout
@@ -568,83 +745,83 @@
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
             </LinearLayout>
 
             <LinearLayout
@@ -655,83 +832,83 @@
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
             </LinearLayout>
 
             <LinearLayout
@@ -742,83 +919,83 @@
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
             </LinearLayout>
 
             <LinearLayout
@@ -829,83 +1006,83 @@
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
             </LinearLayout>
 
             <LinearLayout
@@ -916,83 +1093,83 @@
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
             </LinearLayout>
 
             <LinearLayout
@@ -1003,83 +1180,83 @@
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
             </LinearLayout>
 
             <LinearLayout
@@ -1090,83 +1267,83 @@
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
             </LinearLayout>
 
             <LinearLayout
@@ -1177,257 +1354,83 @@
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                     android:layout_height="@dimen/block_size"
- android:background="@drawable/border" />
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
             </LinearLayout>
         </LinearLayout>
 

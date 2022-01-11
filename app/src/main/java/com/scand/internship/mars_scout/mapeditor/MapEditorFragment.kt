@@ -1,7 +1,7 @@
 package com.scand.internship.mars_scout.mapeditor
 
-import android.R.attr
-import android.graphics.Color
+import android.annotation.SuppressLint
+import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import androidx.lifecycle.ViewModelProvider
@@ -18,8 +18,8 @@ import com.scand.internship.mars_scout.R
 import com.scand.internship.mars_scout.databinding.MapEditorFragmentBinding
 import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.MapBlock
-import android.R.attr.button
 import android.view.MotionEvent
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 
 
@@ -48,19 +48,58 @@ class MapEditorFragment : Fragment() {
         getImageViewMapBlocks()
         getChooseMapBlockTypes()
 
-        binding.groundBlockImg.setOnTouchListener(object : View.OnTouchListener {
-            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-                when (event?.action) {
-                    MotionEvent.ACTION_DOWN -> //Do Something
-                }
+        setTouchOnView()
 
-                return v?.onTouchEvent(event) ?: true
-            }
-        })
+//        listMapBlocks[0][0].setOnTouchListener(object : View.OnTouchListener {
+//            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+//                when (event?.action) {
+//                    MotionEvent.ACTION_DOWN -> {
+//                        Toast.makeText(activity, "Down1!!!", Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//                return v?.onTouchEvent(event) ?: true
+//            }
+//        })
 
+//        listMapBlocks[0][0].setOnTouchListener { v, event ->
+//            when (event?.action) {
+//                MotionEvent.ACTION_DOWN -> {
+//                    Toast.makeText(activity, "Down1!!!", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//            v?.onTouchEvent(event) ?: true
+//        }
+
+//        listMapBlocks[0][1].setOnTouchListener { v, event ->
+//            when (event?.action) {
+//                MotionEvent.ACTION_DOWN -> {
+//                    Toast.makeText(activity, "Down2!!!", Toast.LENGTH_SHORT).show()
+//                }
+//                MotionEvent.ACTION_HOVER_ENTER -> {
+//                    Toast.makeText(activity, "Hover Enter2!!!", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//            v?.onTouchEvent(event) ?: true
+//        }
+
+
+//        binding.groundBlockImg.setOnTouchListener { v, event ->
+//            when (event?.action) {
+//                MotionEvent.ACTION_HOVER_ENTER -> {
+//                    Toast.makeText(activity, "Down!!!", Toast.LENGTH_SHORT).show()
+//                }MotionEvent.ACTION_HOVER_MOVE -> {
+//                Toast.makeText(activity, "Move!!!", Toast.LENGTH_SHORT).show()
+//            }MotionEvent.ACTION_HOVER_EXIT -> {
+//                Toast.makeText(activity, "Up!!!", Toast.LENGTH_SHORT).show()
+//            }
+//            }
+//
+//            v?.onTouchEvent(event) ?: true
+//        }
 
         binding.generateMap.setOnClickListener {
-            setImageBlocks(Size(R.dimen.default_map_size_x,R.dimen.default_map_size_y))
+            // Doesn't work resources.getDimension(R.dimen.default_map_size_x).toInt()
+            setImageBlocks(Size(16,16))
         }
 
         binding.groundBlockImg.setOnClickListener {
@@ -76,21 +115,21 @@ class MapEditorFragment : Fragment() {
             choseBlockType(it, BlockType.HILL)
         }
 
-        for (y in 0 until listMapBlocks.size) {
-
-            for (x in 0 until listMapBlocks[y].size) {
-
-                listMapBlocks[y][x].setOnClickListener {
-
-                    if(viewModel.isBlockChosen.value == true){
-                        (it as ImageView).setImageDrawable(setImageAccordingToType(
-                            viewModel.typeChosenMapBlock.value))
-                    }
-
-                }
-
-            }
-        }
+//        for (y in 0 until listMapBlocks.size) {
+//
+//            for (x in 0 until listMapBlocks[y].size) {
+//
+//                listMapBlocks[y][x].setOnClickListener {
+//
+//                    if(viewModel.isBlockChosen.value == true){
+//                        (it as ImageView).setImageDrawable(setImageAccordingToType(
+//                            viewModel.typeChosenMapBlock.value))
+//                    }
+//
+//                }
+//
+//            }
+//        }
 
         return binding.root
     }
@@ -193,6 +232,78 @@ class MapEditorFragment : Fragment() {
             view.setBackgroundResource(R.color.green_chosen)
             viewModel.onBlockChosen(type)
         }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setTouchOnView(){
+
+        val mapView = binding.map
+//        val subView = binding.groundBlockDesc
+
+        for (y in 0 until mapView.childCount) {
+            // OnTouchListener on the Screen
+            mapView.getChildAt(y).setOnTouchListener { v, event ->
+                if (viewModel.isBlockChosen.value == true) {
+
+                    return@setOnTouchListener when (event?.action) {
+                        MotionEvent.ACTION_DOWN -> {
+
+                            val bt = viewModel.typeChosenMapBlock.value
+                            val b = getViewMapBlockThatInsideMap(event, y)
+
+                            b.setImageDrawable(
+                                setImageAccordingToType(viewModel.typeChosenMapBlock.value)
+                            )
+
+                            true
+                        }
+                        MotionEvent.ACTION_MOVE -> {
+
+                            getViewMapBlockThatInsideMap(event, y).setImageDrawable(
+                                setImageAccordingToType(viewModel.typeChosenMapBlock.value)
+                            )
+
+                            true
+                        }
+                        else -> false
+                    }
+
+                }
+                v?.onTouchEvent(event) ?: true
+            }
+        }
+
+    }
+
+    // V shall be the subclass i.e. the subView declared in onCreate function
+    // This functions confirms the dimensions of the view (subView in out program)
+    private fun isInside(v: View, e: MotionEvent): Boolean {
+
+        val viewBoundaries = Rect(v.left, v.top, v.right, v.bottom)
+
+        val x = e.x
+        val y = e.y
+
+        return viewBoundaries.contains(x.toInt(), y.toInt())
+    }
+
+    private fun getViewMapBlockThatInsideMap(e: MotionEvent, y: Int): ImageView {
+
+        val viewBoundaries1 = Rect(listMapBlocks[0][0].left, listMapBlocks[0][0].top, listMapBlocks[0][0].right, listMapBlocks[0][0].bottom)
+        val viewBoundaries2 = Rect(listMapBlocks[1][0].left, listMapBlocks[1][0].top, listMapBlocks[1][0].right, listMapBlocks[1][0].bottom)
+
+//        for (y in 0 until listMapBlocks.size) {
+
+            for (x in 0 until listMapBlocks[y].size) {
+
+                if (isInside(listMapBlocks[y][x], e)) {
+//                                    Toast.makeText(context, "Inside", Toast.LENGTH_SHORT).show()
+                    return listMapBlocks[y][x]
+
+                }
+            }
+//        }
+        return ImageView(context)
     }
 
     private fun setWhiteBackground(){
