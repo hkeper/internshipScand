@@ -64,6 +64,9 @@ dependencies {
     // Logging
     implementation "com.jakewharton.timber:timber:$version_timber"
 
+    //Fragments
+    implementation "androidx.fragment:fragment-ktx:$version_fragment"
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'

@@ -1,7 +1,6 @@
 package com.scand.internship.mars_scout.mapeditor
 
 import android.annotation.SuppressLint
-import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import androidx.lifecycle.ViewModelProvider
@@ -19,16 +18,16 @@ import com.scand.internship.mars_scout.databinding.MapEditorFragmentBinding
 import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.MapBlock
 import android.view.MotionEvent
-import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.scand.internship.mars_scout.models.GameMap
+import java.util.*
 
 
 class MapEditorFragment : Fragment() {
 
-//    private lateinit var viewModel: MapEditorViewModel
-
-    private var listMapBlocks: MutableList<MutableList<ImageView>> = mutableListOf()
+    private var listUIMapBlocks: MutableList<MutableList<ImageView>> = mutableListOf()
     private var listChooseMapBlockTypes: MutableList<ImageView> = mutableListOf()
+    private lateinit var gameUIMap: GameMap
 
     private val viewModel: MapEditorViewModel by lazy {
         ViewModelProvider(this)[MapEditorViewModel::class.java]
@@ -48,58 +47,31 @@ class MapEditorFragment : Fragment() {
         getImageViewMapBlocks()
         getChooseMapBlockTypes()
 
-        setTouchOnView()
+        val id = UUID.randomUUID()
+        val blocks = mutableListOf(mutableListOf<MapBlock>())
+        gameUIMap = GameMap(id, id.toString(), Size(listUIMapBlocks[0].size, listUIMapBlocks.size), blocks)
 
-//        listMapBlocks[0][0].setOnTouchListener(object : View.OnTouchListener {
-//            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-//                when (event?.action) {
-//                    MotionEvent.ACTION_DOWN -> {
-//                        Toast.makeText(activity, "Down1!!!", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//                return v?.onTouchEvent(event) ?: true
-//            }
-//        })
+        viewModel.gameMap.observe(viewLifecycleOwner){
+            it?.let {
+                gameUIMap = it
+            }
+        }
 
-//        listMapBlocks[0][0].setOnTouchListener { v, event ->
-//            when (event?.action) {
-//                MotionEvent.ACTION_DOWN -> {
-//                    Toast.makeText(activity, "Down1!!!", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//            v?.onTouchEvent(event) ?: true
-//        }
-
-//        listMapBlocks[0][1].setOnTouchListener { v, event ->
-//            when (event?.action) {
-//                MotionEvent.ACTION_DOWN -> {
-//                    Toast.makeText(activity, "Down2!!!", Toast.LENGTH_SHORT).show()
-//                }
-//                MotionEvent.ACTION_HOVER_ENTER -> {
-//                    Toast.makeText(activity, "Hover Enter2!!!", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//            v?.onTouchEvent(event) ?: true
-//        }
-
-
-//        binding.groundBlockImg.setOnTouchListener { v, event ->
-//            when (event?.action) {
-//                MotionEvent.ACTION_HOVER_ENTER -> {
-//                    Toast.makeText(activity, "Down!!!", Toast.LENGTH_SHORT).show()
-//                }MotionEvent.ACTION_HOVER_MOVE -> {
-//                Toast.makeText(activity, "Move!!!", Toast.LENGTH_SHORT).show()
-//            }MotionEvent.ACTION_HOVER_EXIT -> {
-//                Toast.makeText(activity, "Up!!!", Toast.LENGTH_SHORT).show()
-//            }
-//            }
-//
-//            v?.onTouchEvent(event) ?: true
-//        }
+        setTouchOnMapView()
 
         binding.generateMap.setOnClickListener {
             // Doesn't work resources.getDimension(R.dimen.default_map_size_x).toInt()
-            setImageBlocks(Size(16,16))
+            setIDAndImagesForMapBlocks(Size(16,16))
+        }
+
+        binding.clearMap.setOnClickListener {
+            // Doesn't work resources.getDimension(R.dimen.default_map_size_x).toInt()
+            clearMapBlocks()
+        }
+
+        binding.saveMap.setOnClickListener {
+            // Doesn't work resources.getDimension(R.dimen.default_map_size_x).toInt()
+            saveMap()
         }
 
         binding.groundBlockImg.setOnClickListener {
@@ -115,39 +87,25 @@ class MapEditorFragment : Fragment() {
             choseBlockType(it, BlockType.HILL)
         }
 
-//        for (y in 0 until listMapBlocks.size) {
-//
-//            for (x in 0 until listMapBlocks[y].size) {
-//
-//                listMapBlocks[y][x].setOnClickListener {
-//
-//                    if(viewModel.isBlockChosen.value == true){
-//                        (it as ImageView).setImageDrawable(setImageAccordingToType(
-//                            viewModel.typeChosenMapBlock.value))
-//                    }
-//
-//                }
-//
-//            }
-//        }
-
         return binding.root
     }
 
-    private fun setImageBlocks(mapSize: Size) {
+    private fun setIDAndImagesForMapBlocks(mapSize: Size) {
 
-        val mapBlocks = viewModel.generateMap(mapSize)?.blocks
+        gameUIMap = viewModel.generateMap(mapSize)
+
+        val mapBlocks = gameUIMap.blocks
 
         if (mapBlocks != null) {
-
-            val mapBlocksSplit: List<List<MapBlock>> = mapBlocks.chunked(mapSize.width)
 
             for (y in 0 until mapSize.height) {
 
                 for (x in 0 until mapSize.width) {
-                    listMapBlocks[y][x].id = mapBlocksSplit[y][x].id
-                    val img: Drawable? = setImageAccordingToType(mapBlocksSplit[y][x].type)
-                    listMapBlocks[y][x].setImageDrawable(img)
+
+                    listUIMapBlocks[y][x].id = mapBlocks[y][x].id
+                    listUIMapBlocks[y][x].contentDescription = mapBlocks[y][x].type.toString()
+                    val img: Drawable? = setImageAccordingToType(mapBlocks[y][x].type)
+                    listUIMapBlocks[y][x].setImageDrawable(img)
                 }
             }
         }
@@ -173,7 +131,7 @@ class MapEditorFragment : Fragment() {
                         lineBlocksList.add(imageView)
                     }
                 }
-                listMapBlocks.add(lineBlocksList)
+                listUIMapBlocks.add(lineBlocksList)
             }
         }
 
@@ -235,98 +193,113 @@ class MapEditorFragment : Fragment() {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private fun setTouchOnView(){
+    private fun setTouchOnMapView(){
 
         val mapView = binding.map
-//        val subView = binding.groundBlockDesc
 
-//        for (y in 0 until mapView.childCount) {
-            // OnTouchListener on the Screen
-//            mapView.getChildAt(y).setOnTouchListener { v, event ->
-            mapView.setOnTouchListener { v, event ->
-                if (viewModel.isBlockChosen.value == true) {
-
-                    return@setOnTouchListener when (event?.action) {
-                        MotionEvent.ACTION_DOWN -> {
-
-                            val bt = viewModel.typeChosenMapBlock.value
-                            val b = getViewMapBlockThatInsideMap(event)
-
-                            b.setImageDrawable(
-                                setImageAccordingToType(viewModel.typeChosenMapBlock.value)
-                            )
-
-                            true
-                        }
-                        MotionEvent.ACTION_MOVE -> {
-
-                            getViewMapBlockThatInsideMap(event).setImageDrawable(
-                                setImageAccordingToType(viewModel.typeChosenMapBlock.value)
-                            )
-
-                            true
-                        }
-                        else -> false
+        mapView.setOnTouchListener { v, event ->
+            if (viewModel.isBlockChosen.value == true) {
+                return@setOnTouchListener when (event?.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        getImageViewMapBlockThatInsideMap(event, viewModel.typeChosenMapBlock.value).
+                        setImageDrawable(
+                            setImageAccordingToType(viewModel.typeChosenMapBlock.value))
+                        true
                     }
-
+                    MotionEvent.ACTION_MOVE -> {
+                        getImageViewMapBlockThatInsideMap(event, viewModel.typeChosenMapBlock.value).
+                        setImageDrawable(
+                            setImageAccordingToType(viewModel.typeChosenMapBlock.value))
+                        true
+                    }
+                    else -> false
                 }
-                v?.onTouchEvent(event) ?: true
             }
-//        }
-
+            v?.onTouchEvent(event) ?: true
+        }
     }
 
     // V shall be the subclass i.e. the subView declared in onCreate function
     // This functions confirms the dimensions of the view (subView in out program)
     private fun isInside(v: View, e: MotionEvent): Boolean {
 
-//        val viewBoundaries = Rect(v.left, v.top, v.right, v.bottom)
-
         val viewCoordinates = IntArray(2)
-        val vp = v.getLocationOnScreen(viewCoordinates)
-
+        v.getLocationOnScreen(viewCoordinates)
         val x = e.rawX
         val y = e.rawY
 
-//        return viewBoundaries.contains(x.toInt(), y.toInt())
-        var inside = false
-
-        inside = (x >= viewCoordinates[0]) && (x <= (viewCoordinates[0] + v.width)) &&
+        return (x >= viewCoordinates[0]) && (x <= (viewCoordinates[0] + v.width)) &&
                 (y >= viewCoordinates[1]) && (y <= (viewCoordinates[1] + v.height))
-
-        return inside
     }
 
-    private fun getViewMapBlockThatInsideMap(e: MotionEvent): ImageView {
+    private fun getImageViewMapBlockThatInsideMap(e: MotionEvent, type: BlockType?): ImageView {
 
-        val viewBoundaries1 = Rect(listMapBlocks[0][0].left, listMapBlocks[0][0].top, listMapBlocks[0][0].right, listMapBlocks[0][0].bottom)
-        val viewBoundaries2 = Rect(listMapBlocks[1][0].left, listMapBlocks[1][0].top, listMapBlocks[1][0].right, listMapBlocks[1][0].bottom)
+        for (y in 0 until listUIMapBlocks.size) {
 
-        for (y in 0 until listMapBlocks.size) {
+            for (x in 0 until listUIMapBlocks[y].size) {
 
-            for (x in 0 until listMapBlocks[y].size) {
-
-                if (isInside(listMapBlocks[y][x], e)) {
-//                                    Toast.makeText(context, "Inside", Toast.LENGTH_SHORT).show()
-                    return listMapBlocks[y][x]
-
+                if (isInside(listUIMapBlocks[y][x], e)) {
+                    listUIMapBlocks[y][x].id = ("" + x + y).toInt()
+                    listUIMapBlocks[y][x].contentDescription = type.toString()
+                    return listUIMapBlocks[y][x]
                 }
             }
         }
         return ImageView(context)
     }
 
-    private fun setWhiteBackground(){
-        val layout = binding.chooseBlockSection
+    private fun clearMapBlocks(){
 
-        for (i in 0 until layout.childCount) {
-            val subView: View = layout.getChildAt(i)
+        for (y in 0 until listUIMapBlocks.size) {
 
-            if (subView is ImageView) {
-                subView.setBackgroundResource(R.color.white)
+            for (x in 0 until listUIMapBlocks[y].size) {
+
+                listUIMapBlocks[y][x].setImageDrawable(null)
+                listUIMapBlocks[y][x].contentDescription = ""
+
             }
         }
+        viewModel.clearMap()
+    }
 
+    private fun saveMap(){
+        // TODO add check for empty blocks
+        val blocks : MutableList<MutableList<MapBlock>> = mutableListOf()
+
+        for (y in 0 until listUIMapBlocks.size) {
+
+            val blocksLine = mutableListOf<MapBlock>()
+
+            for (x in 0 until listUIMapBlocks[y].size) {
+
+                if(!listUIMapBlocks[y][x].contentDescription.isNullOrEmpty()) {
+                    blocksLine.add(
+                        MapBlock(
+                            listUIMapBlocks[y][x].id, (listUIMapBlocks[y][x].id.toString()),
+                            setMapBlockTypeAccordingToUIMapBlockDesc(listUIMapBlocks[y][x].contentDescription as String),
+                            Pair(x, y)
+                        )
+                    )
+                } else {
+                    blocksLine.add(
+                        MapBlock(("" + x + y).toInt(), ("" + x + y),null, Pair(x, y))
+                    )
+                }
+            }
+            blocks.add(blocksLine)
+        }
+
+        viewModel.saveMap(GameMap(gameUIMap.id, gameUIMap.name, gameUIMap.size, blocks))
+
+    }
+
+    private fun setMapBlockTypeAccordingToUIMapBlockDesc(type: String) : BlockType{
+        return when {
+            type.contains("SAND", true) -> BlockType.SAND
+            type.contains("HILL", true) -> BlockType.HILL
+            type.contains("PIT", true) -> BlockType.PIT
+            else -> BlockType.GROUND
+        }
     }
 
 

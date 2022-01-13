@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">Mars_Scout</string>
     <string name="choose_map_element">Choose map block:</string>
-    <string name="generate_map">Generate Map</string>
+    <string name="generate">Generate</string>
     <string name="ground_block">Ground block</string>
     <string name="pit_block">Pit block</string>
     <string name="sand_block">Sand block</string>
     <string name="hill_block">Hill block</string>
+    <string name="save">Save</string>
+    <string name="clear">Clear</string>
 </resources>

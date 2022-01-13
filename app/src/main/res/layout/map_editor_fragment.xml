@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.scand.internship.mars_scout.mapeditor.MapEditorViewModel" />
@@ -17,209 +16,59 @@
 
         <Button
             android:id="@+id/generate_map"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/padding_medium"
             android:backgroundTint="?colorSecondaryVariant"
-            android:text="@string/generate_map"
+            android:text="@string/generate"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/save_map"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/save_map"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_medium"
+            android:backgroundTint="?colorSecondaryVariant"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/clear_map"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/generate_map"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/clear_map"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_medium"
+            android:backgroundTint="?colorSecondaryVariant"
+            android:text="@string/clear"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/save_map"
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/map"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/lower_guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/generate_map"
-            android:gravity="center">
+            app:layout_constraintTop_toBottomOf="@+id/generate_map">
 
             <LinearLayout
-                android:id="@+id/line0"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal" >
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border"/>
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/line1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-
-                <ImageView
-                    android:layout_width="@dimen/block_size"
-                    android:layout_height="@dimen/block_size"
-                    android:background="@drawable/border" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/line2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -305,8 +154,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -392,8 +241,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -479,8 +328,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -566,8 +415,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -653,8 +502,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -740,8 +589,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -827,8 +676,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -914,8 +763,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -1001,8 +850,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -1088,8 +937,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -1175,8 +1024,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -1262,8 +1111,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -1349,8 +1198,182 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+
+                <ImageView
+                    android:layout_width="@dimen/block_size"
+                    android:layout_height="@dimen/block_size"
+                    android:background="@drawable/border" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/block_size"
@@ -1470,9 +1493,9 @@
                 android:id="@+id/ground_block_img"
                 android:layout_width="@dimen/block_choose_size"
                 android:layout_height="@dimen/block_choose_size"
+                android:background="@color/white"
                 android:padding="@dimen/padding_smallest"
                 android:src="@drawable/ground"
-                android:background="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.1"
@@ -1496,9 +1519,9 @@
                 android:id="@+id/sand_block_img"
                 android:layout_width="@dimen/block_choose_size"
                 android:layout_height="@dimen/block_choose_size"
+                android:background="@color/white"
                 android:padding="@dimen/padding_smallest"
                 android:src="@drawable/sand"
-                android:background="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ground_block_img"
@@ -1519,9 +1542,9 @@
                 android:id="@+id/pit_block_img"
                 android:layout_width="@dimen/block_choose_size"
                 android:layout_height="@dimen/block_choose_size"
+                android:background="@color/white"
                 android:padding="@dimen/padding_smallest"
                 android:src="@drawable/pit"
-                android:background="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.1"
@@ -1544,9 +1567,9 @@
                 android:id="@+id/hill_block_img"
                 android:layout_width="@dimen/block_choose_size"
                 android:layout_height="@dimen/block_choose_size"
+                android:background="@color/white"
                 android:padding="@dimen/padding_smallest"
                 android:src="@drawable/hill"
-                android:background="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/pit_block_img"

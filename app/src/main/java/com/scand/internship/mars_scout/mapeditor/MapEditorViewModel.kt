@@ -1,12 +1,14 @@
 package com.scand.internship.mars_scout.mapeditor
 
 import android.util.Size
+import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.scand.internship.mars_scout.models.GameMap
 import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.MapBlock
+import java.util.*
 import kotlin.random.Random
 
 class MapEditorViewModel : ViewModel() {
@@ -25,28 +27,31 @@ class MapEditorViewModel : ViewModel() {
             get() = _isBlockChosen
 
     init{
-        _gameMap.value = GameMap(1,"1", Size(0,0), null)
+        _gameMap.postValue(GameMap("default", null))
         _typeChosenMapBlock.value = null
         _isBlockChosen.value = false
     }
 
-    fun generateMap(mapSize: Size): GameMap? {
-        val blocks = mutableListOf<MapBlock>()
+    fun generateMap(mapSize: Size): GameMap {
+        val blocks : MutableList<MutableList<MapBlock>> = mutableListOf()
         var type : BlockType
+        val id = UUID.randomUUID()
 
-        for (x in 0 until mapSize.width){
-            for (y in 0 until mapSize.height){
+        for (y in 0 until mapSize.height){
+            val blocksLine = mutableListOf<MapBlock>()
+            for (x in 0 until mapSize.width){
                 type = when(Random.nextInt(0,4)){
                     0 -> BlockType.GROUND
                     1 -> BlockType.HILL
                     2 -> BlockType.PIT
                     else -> BlockType.SAND
                 }
-                blocks.add(MapBlock(("" + x + y).toInt(), ("" + x + y), type, Pair(x,y)))
+                blocksLine.add(MapBlock(("" + x + y).toInt(), ("" + x + y), type, Pair(x,y)))
             }
+            blocks.add(blocksLine)
         }
-        _gameMap.value = GameMap(1,"1", mapSize, blocks)
-        return _gameMap.value
+        _gameMap.value = GameMap(id, id.toString(), mapSize, blocks)
+        return _gameMap.value ?: GameMap(id, id.toString(), mapSize, blocks)
     }
 
     fun onBlockChosen(type: BlockType) {
@@ -57,6 +62,15 @@ class MapEditorViewModel : ViewModel() {
     fun onBlockNotChosen() {
         _typeChosenMapBlock.value = null
         _isBlockChosen.value = false
+    }
+
+    fun clearMap(){
+        _gameMap.value = GameMap(_gameMap.value?.id ?: UUID.randomUUID(), _gameMap.value?.name,
+            _gameMap.value?.size, mutableListOf())
+    }
+
+    fun saveMap(map: GameMap){
+        _gameMap.value = map
     }
 
 }

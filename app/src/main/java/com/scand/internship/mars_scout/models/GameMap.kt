@@ -4,14 +4,15 @@ import android.os.Parcelable
 import android.util.Size
 import com.scand.internship.mars_scout.models.MapBlock
 import kotlinx.parcelize.Parcelize
+import java.util.*
 
 @Parcelize
 data class GameMap(
-    val id: Int,
-    val name: String,
-    val size: Size,
-    val blocks: List<MapBlock>?
+    val id: UUID,
+    val name: String?,
+    val size: Size?,
+    val blocks: List<List<MapBlock>>?
 ) : Parcelable {
-    constructor(id: Int, name: String, blocks: List<MapBlock>?) :
-            this(id, name, Size(16, 16), blocks)
+    constructor(name: String, blocks: List<List<MapBlock>>?) :
+            this(UUID.randomUUID(), name, Size(16, 16), blocks)
 }
