@@ -263,7 +263,7 @@ class MapEditorFragment : Fragment() {
     }
 
     private fun saveMap(){
-        // TODO add check for empty blocks
+
         val blocks : MutableList<MutableList<MapBlock>> = mutableListOf()
 
         for (y in 0 until listUIMapBlocks.size) {
