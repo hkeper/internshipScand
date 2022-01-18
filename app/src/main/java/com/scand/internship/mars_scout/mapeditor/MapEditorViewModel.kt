@@ -73,4 +73,9 @@ class MapEditorViewModel : ViewModel() {
         _gameMap.value = map
     }
 
+    fun setMapName(name: String){
+        _gameMap.value = GameMap(_gameMap.value?.id ?: UUID.randomUUID(), name,
+            _gameMap.value?.size, _gameMap.value?.blocks)
+    }
+
 }

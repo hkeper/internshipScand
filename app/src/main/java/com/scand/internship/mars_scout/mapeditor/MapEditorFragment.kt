@@ -19,15 +19,19 @@ import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.MapBlock
 import android.view.MotionEvent
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import com.scand.internship.mars_scout.models.GameMap
 import java.util.*
 
 
-class MapEditorFragment : Fragment() {
+class MapEditorFragment : Fragment(){
 
     private var listUIMapBlocks: MutableList<MutableList<ImageView>> = mutableListOf()
     private var listChooseMapBlockTypes: MutableList<ImageView> = mutableListOf()
     private lateinit var gameUIMap: GameMap
+    private val dialog = SaveMapDialog()
 
     private val viewModel: MapEditorViewModel by lazy {
         ViewModelProvider(this)[MapEditorViewModel::class.java]
@@ -41,7 +45,6 @@ class MapEditorFragment : Fragment() {
     ): View {
 
         binding = MapEditorFragmentBinding.inflate(inflater)
-
         binding.viewModel = viewModel
 
         getImageViewMapBlocks()
@@ -70,7 +73,7 @@ class MapEditorFragment : Fragment() {
         }
 
         binding.saveMap.setOnClickListener {
-            // Doesn't work resources.getDimension(R.dimen.default_map_size_x).toInt()
+            dialog.show(requireActivity().supportFragmentManager, "Save Map dialog")
             saveMap()
         }
 

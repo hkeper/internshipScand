@@ -8,4 +8,7 @@
     <string name="hill_block">Hill block</string>
     <string name="save">Save</string>
     <string name="clear">Clear</string>
+    <string name="cancel">Cancel</string>
+    <string name="save_dialog_message">To save Map, please enter name:</string>
+    <string name="map_name">Map Name</string>
 </resources>
