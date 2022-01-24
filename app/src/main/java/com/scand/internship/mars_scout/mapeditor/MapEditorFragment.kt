@@ -19,9 +19,7 @@ import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.MapBlock
 import android.view.MotionEvent
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.viewModels
 import com.scand.internship.mars_scout.models.GameMap
 import java.util.*
 
@@ -33,9 +31,7 @@ class MapEditorFragment : Fragment(){
     private lateinit var gameUIMap: GameMap
     private val dialog = SaveMapDialog()
 
-    private val viewModel: MapEditorViewModel by lazy {
-        ViewModelProvider(this)[MapEditorViewModel::class.java]
-    }
+    private val viewModel: MapEditorViewModel by viewModels()
 
     private lateinit var binding: MapEditorFragmentBinding
 

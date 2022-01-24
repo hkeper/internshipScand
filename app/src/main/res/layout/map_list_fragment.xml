@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.scand.internship.mars_scout.maplist.MapListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.scand.internship.mars_scout.MainActivity">
+
+        <Button
+            android:id="@+id/synchronize_maps"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_medium"
+            android:backgroundTint="?colorSecondaryVariant"
+            android:text="@string/synchronize"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/create_map"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/create_map"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_medium"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="?colorSecondaryVariant"
+            android:text="@string/create"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/synchronize_maps"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/map_list_header"
+            android:layout_width="0dp"
+            android:layout_height="?actionBarSize"
+            android:background="@color/teal_700"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/padding_medium"
+            android:paddingStart="@dimen/default_padding"
+            android:paddingEnd="@dimen/default_padding"
+            android:singleLine="true"
+            android:textSize="@dimen/text_size_medium"
+            android:text="@string/created_maps"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/synchronize_maps"
+            tools:text="@tools:sample/lorem[31]" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/map_list_refresh"
+            refreshing="@{viewModel.dataLoading}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/map_list_header">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/maps_recycler"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/generate_map"
+                tools:listitem="@layout/viewholder_map_list"/>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

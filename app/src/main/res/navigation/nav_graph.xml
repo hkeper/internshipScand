@@ -3,13 +3,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mapEditorFragment">
+    app:startDestination="@id/launchFragment">
+
+    <fragment
+        android:id="@+id/launchFragment"
+        android:name="com.scand.internship.mars_scout.launch.LaunchFragment"
+        android:label="LaunchFragment"
+        tools:layout="@layout/launch_fragment" >
+        <action
+            android:id="@+id/action_launchFragment_to_mapEditorFragment"
+            app:destination="@id/mapEditorFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_launchFragment_to_mapListFragment"
+            app:destination="@id/mapListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/mapEditorFragment"
         android:name="com.scand.internship.mars_scout.mapeditor.MapEditorFragment"
         android:label="MapEditorFragment"
-        tools:layout="@layout/map_editor_fragment" />
+        tools:layout="@layout/map_editor_fragment" >
+        <argument
+            android:name="map"
+            app:argType="com.scand.internship.mars_scout.models.GameMap" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/mapListFragment"
+        android:name="com.scand.internship.mars_scout.maplist.MapListFragment"
+        android:label="MapListFragment"
+        tools:layout="@layout/map_list_fragment">
+        <action
+            android:id="@+id/action_mapListFragment_to_mapEditorFragment"
+            app:destination="@id/mapEditorFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 
 </navigation>

@@ -1,20 +1,36 @@
 package com.scand.internship.mars_scout.launch
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.scand.internship.mars_scout.R
+import androidx.navigation.fragment.findNavController
+import com.scand.internship.mars_scout.databinding.LaunchFragmentBinding
+import com.scand.internship.mars_scout.models.GameMap
 
 class LaunchFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.launch_fragment, container, false)
+    ): View {
+
+        val binding = LaunchFragmentBinding.inflate(inflater)
+
+        binding.editorButton.setOnClickListener {
+            this.findNavController().navigate(
+                LaunchFragmentDirections.actionLaunchFragmentToMapEditorFragment(
+                    GameMap("test", null)
+                ))
+        }
+
+        binding.listButton.setOnClickListener {
+            this.findNavController().navigate(
+                LaunchFragmentDirections.actionLaunchFragmentToMapListFragment())
+        }
+
+        return binding.root
     }
 
 

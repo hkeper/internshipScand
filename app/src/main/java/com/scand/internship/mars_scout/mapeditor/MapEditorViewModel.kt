@@ -4,6 +4,7 @@ import android.util.Size
 import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.scand.internship.mars_scout.models.GameMap
 import com.scand.internship.mars_scout.models.BlockType
@@ -11,7 +12,7 @@ import com.scand.internship.mars_scout.models.MapBlock
 import java.util.*
 import kotlin.random.Random
 
-class MapEditorViewModel : ViewModel() {
+class MapEditorViewModel(state: SavedStateHandle) : ViewModel() {
 
     private val _mapGenerating = MutableLiveData(false)
     val mapGenerating: LiveData<Boolean> = _mapGenerating
@@ -27,7 +28,7 @@ class MapEditorViewModel : ViewModel() {
             get() = _isBlockChosen
 
     init{
-        _gameMap.postValue(GameMap("default", null))
+        _gameMap.value = state.get<GameMap>("map")
         _typeChosenMapBlock.value = null
         _isBlockChosen.value = false
     }

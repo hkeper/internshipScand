@@ -2,6 +2,9 @@
     <string name="app_name">Mars_Scout</string>
     <string name="choose_map_element">Choose map block:</string>
     <string name="generate">Generate</string>
+    <string name="synchronize">Synchronize</string>
+    <string name="create">Create Map</string>
+    <string name="created_maps">Created Maps:</string>
     <string name="ground_block">Ground block</string>
     <string name="pit_block">Pit block</string>
     <string name="sand_block">Sand block</string>
@@ -11,4 +14,11 @@
     <string name="cancel">Cancel</string>
     <string name="save_dialog_message">To save Map, please enter name:</string>
     <string name="map_name">Map Name</string>
+    <string name="launch_logo_description">Home screen logo</string>
+    <string name="edit_map">Edit Map</string>
+    <string name="chose_map">Chose Map</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="maps_name">%s</string>
+    <string name="map_id_label">Map ID:</string>
+    <string name="size_label">Size:</string>
 </resources>
