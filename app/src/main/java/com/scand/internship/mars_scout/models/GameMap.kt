@@ -11,8 +11,8 @@ data class GameMap(
     val id: UUID,
     val name: String?,
     val size: Size?,
-    val blocks: List<List<MapBlock>>?
+    val blocks: MutableList<MutableList<MapBlock>>?
 ) : Parcelable {
-    constructor(name: String, blocks: List<List<MapBlock>>?) :
+    constructor(name: String, blocks: MutableList<MutableList<MapBlock>>?) :
             this(UUID.randomUUID(), name, Size(16, 16), blocks)
 }

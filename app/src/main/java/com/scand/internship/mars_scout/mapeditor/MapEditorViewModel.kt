@@ -28,6 +28,7 @@ class MapEditorViewModel(state: SavedStateHandle) : ViewModel() {
             get() = _isBlockChosen
 
     init{
+        val g = state.get<GameMap>("map")
         _gameMap.value = state.get<GameMap>("map")
         _typeChosenMapBlock.value = null
         _isBlockChosen.value = false
@@ -76,7 +77,7 @@ class MapEditorViewModel(state: SavedStateHandle) : ViewModel() {
 
     fun setMapName(name: String){
         _gameMap.value = GameMap(_gameMap.value?.id ?: UUID.randomUUID(), name,
-            _gameMap.value?.size, _gameMap.value?.blocks)
+            _gameMap.value?.size, _gameMap.value?.blocks ?: mutableListOf())
     }
 
 }

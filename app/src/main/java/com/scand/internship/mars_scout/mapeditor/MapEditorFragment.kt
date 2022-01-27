@@ -47,8 +47,8 @@ class MapEditorFragment : Fragment(){
         getChooseMapBlockTypes()
 
         val id = UUID.randomUUID()
-        val blocks = mutableListOf(mutableListOf<MapBlock>())
-        gameUIMap = GameMap(id, id.toString(), Size(listUIMapBlocks[0].size, listUIMapBlocks.size), blocks)
+        gameUIMap = viewModel.gameMap.value ?:
+                GameMap(id, id.toString(), Size(listUIMapBlocks[0].size, listUIMapBlocks.size), null)
 
         viewModel.gameMap.observe(viewLifecycleOwner){
             it?.let {
@@ -56,11 +56,13 @@ class MapEditorFragment : Fragment(){
             }
         }
 
+        setIDAndImagesForMapBlocks(gameUIMap)
         setTouchOnMapView()
 
         binding.generateMap.setOnClickListener {
             // Doesn't work resources.getDimension(R.dimen.default_map_size_x).toInt()
-            setIDAndImagesForMapBlocks(Size(16,16))
+            val map = viewModel.generateMap(Size(16,16))
+            setIDAndImagesForMapBlocks(map)
         }
 
         binding.clearMap.setOnClickListener {
@@ -89,22 +91,23 @@ class MapEditorFragment : Fragment(){
         return binding.root
     }
 
-    private fun setIDAndImagesForMapBlocks(mapSize: Size) {
+    private fun setIDAndImagesForMapBlocks(map: GameMap) {
 
-        gameUIMap = viewModel.generateMap(mapSize)
+        val mapBlocks = map.blocks
 
-        val mapBlocks = gameUIMap.blocks
+        if(!mapBlocks.isNullOrEmpty()) {
 
-        if (mapBlocks != null) {
+            for (y in 0 until mapBlocks.size) {
 
-            for (y in 0 until mapSize.height) {
+                for (x in 0 until mapBlocks[y].size) {
+                    val b = mapBlocks[y][x]
+                    val bX = b.coordinates.first
+                    val bY = b.coordinates.second
 
-                for (x in 0 until mapSize.width) {
-
-                    listUIMapBlocks[y][x].id = mapBlocks[y][x].id
-                    listUIMapBlocks[y][x].contentDescription = mapBlocks[y][x].type.toString()
-                    val img: Drawable? = setImageAccordingToType(mapBlocks[y][x].type)
-                    listUIMapBlocks[y][x].setImageDrawable(img)
+                    listUIMapBlocks[bX][bY].id = b.id
+                    listUIMapBlocks[bX][bY].contentDescription = b.type.toString()
+                    val img: Drawable? = setImageAccordingToType(b.type)
+                    listUIMapBlocks[bX][bY].setImageDrawable(img)
                 }
             }
         }

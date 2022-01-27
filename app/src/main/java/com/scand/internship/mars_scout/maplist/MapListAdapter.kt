@@ -9,7 +9,8 @@ import com.scand.internship.mars_scout.databinding.ViewholderMapListBinding
 import com.scand.internship.mars_scout.models.GameMap
 
 
-class MapListAdapter(private val clickListener: MapListListener) : ListAdapter<GameMap, MapListAdapter.MapListViewHolder>(MapListDiffCallback) {
+class MapListAdapter() : ListAdapter<GameMap,
+        MapListAdapter.MapListViewHolder>(MapListDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MapListViewHolder {
         return MapListViewHolder.from(parent)
@@ -17,7 +18,7 @@ class MapListAdapter(private val clickListener: MapListListener) : ListAdapter<G
 
     override fun onBindViewHolder(holder: MapListViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item, clickListener)
+        holder.bind(item)
     }
 
     companion object MapListDiffCallback : DiffUtil.ItemCallback<GameMap>() {
@@ -46,9 +47,8 @@ class MapListAdapter(private val clickListener: MapListListener) : ListAdapter<G
             )
         }
 
-        fun bind(map: GameMap, listener: MapListListener) {
+        fun bind(map: GameMap) {
             binding.map = map
-            binding.listener = listener
             binding.executePendingBindings()
         }
     }
