@@ -2,7 +2,7 @@ package com.scand.internship.mars_scout.models
 
 import android.os.Parcelable
 import android.util.Size
-import com.scand.internship.mars_scout.models.MapBlock
+import io.realm.RealmObject
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
@@ -12,7 +12,7 @@ data class GameMap(
     val name: String?,
     val size: Size?,
     val blocks: MutableList<MutableList<MapBlock>>?
-) : Parcelable {
+) : Parcelable, RealmObject() {
     constructor(name: String, blocks: MutableList<MutableList<MapBlock>>?) :
             this(UUID.randomUUID(), name, Size(16, 16), blocks)
 }

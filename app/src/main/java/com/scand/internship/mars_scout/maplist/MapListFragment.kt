@@ -31,6 +31,9 @@ class MapListFragment : Fragment() {
 
         binding = MapListFragmentBinding.inflate(inflater)
         val recyclerView = binding.mapsRecycler
+        adapter = MapListAdapter()
+        recyclerView.adapter = adapter
+        val swipeLayout = binding.mapListRefresh
 
         binding.createMap.setOnClickListener {
             this.findNavController().navigate(
@@ -39,19 +42,11 @@ class MapListFragment : Fragment() {
                 ))
         }
 
-        adapter = MapListAdapter()
-
-        recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
-
-        recyclerView.adapter = adapter
-
         viewModel.maps.observe(viewLifecycleOwner, {
             it?.let {
                 adapter.submitList(it)
             }
         })
-
-        val swipeLayout = binding.mapListRefresh
 
         swipeLayout.setOnRefreshListener {
             viewModel.setLoadingToFalse()

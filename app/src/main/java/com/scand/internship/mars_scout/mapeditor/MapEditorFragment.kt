@@ -3,7 +3,6 @@ package com.scand.internship.mars_scout.mapeditor
 import android.annotation.SuppressLint
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Size
 import androidx.fragment.app.Fragment
@@ -61,8 +60,8 @@ class MapEditorFragment : Fragment(){
 
         binding.generateMap.setOnClickListener {
             // Doesn't work resources.getDimension(R.dimen.default_map_size_x).toInt()
-            val map = viewModel.generateMap(Size(16,16))
-            setIDAndImagesForMapBlocks(map)
+            viewModel.generateMap(Size(16,16))
+            setIDAndImagesForMapBlocks(gameUIMap)
         }
 
         binding.clearMap.setOnClickListener {
@@ -103,7 +102,6 @@ class MapEditorFragment : Fragment(){
                     val b = mapBlocks[y][x]
                     val bX = b.coordinates.first
                     val bY = b.coordinates.second
-
                     listUIMapBlocks[bX][bY].id = b.id
                     listUIMapBlocks[bX][bY].contentDescription = b.type.toString()
                     val img: Drawable? = setImageAccordingToType(b.type)

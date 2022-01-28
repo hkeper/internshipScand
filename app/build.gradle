@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs'
+    id 'realm-android'
 }
 
 android {
@@ -67,6 +68,9 @@ dependencies {
 
     //Fragments
     implementation "androidx.fragment:fragment-ktx:$version_fragment"
+
+    //Realm
+    implementation "io.realm:android-adapters:4.0.0"
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

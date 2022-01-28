@@ -2,13 +2,11 @@ package com.scand.internship.mars_scout.mapeditor
 
 import android.util.Size
 import android.widget.ImageView
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.scand.internship.mars_scout.models.GameMap
 import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.MapBlock
+import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.random.Random
 
@@ -34,26 +32,27 @@ class MapEditorViewModel(state: SavedStateHandle) : ViewModel() {
         _isBlockChosen.value = false
     }
 
-    fun generateMap(mapSize: Size): GameMap {
-        val blocks : MutableList<MutableList<MapBlock>> = mutableListOf()
-        var type : BlockType
-        val id = UUID.randomUUID()
+    fun generateMap(mapSize: Size) {
+        viewModelScope.launch {
+            val blocks: MutableList<MutableList<MapBlock>> = mutableListOf()
+            var type: BlockType
+            val id = UUID.randomUUID()
 
-        for (y in 0 until mapSize.height){
-            val blocksLine = mutableListOf<MapBlock>()
-            for (x in 0 until mapSize.width){
-                type = when(Random.nextInt(0,4)){
-                    0 -> BlockType.GROUND
-                    1 -> BlockType.HILL
-                    2 -> BlockType.PIT
-                    else -> BlockType.SAND
+            for (y in 0 until mapSize.height) {
+                val blocksLine = mutableListOf<MapBlock>()
+                for (x in 0 until mapSize.width) {
+                    type = when (Random.nextInt(0, 4)) {
+                        0 -> BlockType.GROUND
+                        1 -> BlockType.HILL
+                        2 -> BlockType.PIT
+                        else -> BlockType.SAND
+                    }
+                    blocksLine.add(MapBlock(("" + x + y).toInt(), ("" + x + y), type, Pair(x, y)))
                 }
-                blocksLine.add(MapBlock(("" + x + y).toInt(), ("" + x + y), type, Pair(x,y)))
+                blocks.add(blocksLine)
             }
-            blocks.add(blocksLine)
+            _gameMap.value = GameMap(id, id.toString(), mapSize, blocks)
         }
-        _gameMap.value = GameMap(id, id.toString(), mapSize, blocks)
-        return _gameMap.value ?: GameMap(id, id.toString(), mapSize, blocks)
     }
 
     fun onBlockChosen(type: BlockType) {
