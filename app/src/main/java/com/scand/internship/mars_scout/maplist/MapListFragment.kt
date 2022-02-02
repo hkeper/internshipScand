@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.scand.internship.mars_scout.R
@@ -38,7 +37,7 @@ class MapListFragment : Fragment() {
         binding.createMap.setOnClickListener {
             this.findNavController().navigate(
                 MapListFragmentDirections.actionMapListFragmentToMapEditorFragment(
-                    GameMap("", null)
+                    GameMap("")
                 ))
         }
 
@@ -98,7 +97,7 @@ class MapListFragment : Fragment() {
                     ))
                     } else {
                         findNavController().navigate(MapListFragmentDirections.actionMapListFragmentToMapEditorFragment(
-                            GameMap("", mutableListOf())
+                            GameMap("")
                         ))
                     }
 

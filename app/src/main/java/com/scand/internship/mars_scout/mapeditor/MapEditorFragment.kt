@@ -275,14 +275,14 @@ class MapEditorFragment : Fragment(){
                 if(!listUIMapBlocks[y][x].contentDescription.isNullOrEmpty()) {
                     blocksLine.add(
                         MapBlock(
-                            listUIMapBlocks[y][x].id, (listUIMapBlocks[y][x].id.toString()),
+                            listUIMapBlocks[y][x].id,
                             setMapBlockTypeAccordingToUIMapBlockDesc(listUIMapBlocks[y][x].contentDescription as String),
                             Pair(x, y)
                         )
                     )
                 } else {
                     blocksLine.add(
-                        MapBlock(("" + x + y).toInt(), ("" + x + y),null, Pair(x, y))
+                        MapBlock(("" + x + y).toInt(), null, Pair(x, y))
                     )
                 }
             }

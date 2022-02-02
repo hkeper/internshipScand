@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
 import com.scand.internship.mars_scout.mapeditor.SaveMapDialog
+import io.realm.Realm
 import timber.log.Timber
 
 class MainActivity : FragmentActivity() {
@@ -13,5 +14,8 @@ class MainActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Timber.plant(Timber.DebugTree())
+
+        Realm.init(this)
+
     }
 }

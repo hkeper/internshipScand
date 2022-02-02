@@ -26,7 +26,6 @@ class MapEditorViewModel(state: SavedStateHandle) : ViewModel() {
             get() = _isBlockChosen
 
     init{
-        val g = state.get<GameMap>("map")
         _gameMap.value = state.get<GameMap>("map")
         _typeChosenMapBlock.value = null
         _isBlockChosen.value = false
@@ -47,7 +46,7 @@ class MapEditorViewModel(state: SavedStateHandle) : ViewModel() {
                         2 -> BlockType.PIT
                         else -> BlockType.SAND
                     }
-                    blocksLine.add(MapBlock(("" + x + y).toInt(), ("" + x + y), type, Pair(x, y)))
+                    blocksLine.add(MapBlock(("" + x + y).toInt(), type, Pair(x, y)))
                 }
                 blocks.add(blocksLine)
             }
@@ -66,7 +65,8 @@ class MapEditorViewModel(state: SavedStateHandle) : ViewModel() {
     }
 
     fun clearMap(){
-        _gameMap.value = GameMap(_gameMap.value?.id ?: UUID.randomUUID(), _gameMap.value?.name,
+        _gameMap.value = GameMap(_gameMap.value?.id ?: UUID.randomUUID(),
+            _gameMap.value?.name ?: UUID.randomUUID().toString(),
             _gameMap.value?.size, mutableListOf())
     }
 
