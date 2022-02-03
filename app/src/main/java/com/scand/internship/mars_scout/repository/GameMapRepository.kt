@@ -12,7 +12,7 @@ interface GameMapRepository {
 
     fun getMaps(): Flow<GameMapStatus>
 
-    fun updateMap(id: UUID, blocks: MutableList<MutableList<MapBlock>>): Flow<GameMapStatus>
+    fun updateMapBlocks(id: UUID, blocks: MutableList<MutableList<MapBlock>>): Flow<GameMapStatus>
 
     fun deleteMap(id: UUID): Flow<GameMapStatus>
 

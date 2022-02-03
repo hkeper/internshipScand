@@ -1,7 +1,7 @@
 package com.scand.internship.mars_scout.realm
 
-import android.util.Size
 import com.scand.internship.mars_scout.models.MapBlock
+import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import io.realm.annotations.Required
@@ -12,7 +12,7 @@ open class GameMapRealm(
     var id: UUID = UUID.randomUUID(),
     @Required
     var name: String = "",
-    var size: Size? = null,
-    var blocks: MutableList<MutableList<MapBlock>>? = null
+    var size: String? = null,
+    var blocks: RealmList<MapBlockRealm>? = null
 ): RealmObject()
 

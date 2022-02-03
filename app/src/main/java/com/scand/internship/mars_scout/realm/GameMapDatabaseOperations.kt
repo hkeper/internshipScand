@@ -1,9 +1,11 @@
 package com.scand.internship.mars_scout.realm
 
+import android.util.Size
 import com.scand.internship.mars_scout.models.GameMap
 import com.scand.internship.mars_scout.models.MapBlock
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import io.realm.RealmList
 import io.realm.Sort
 import io.realm.kotlin.executeTransactionAwait
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +22,7 @@ class GameMapDatabaseOperations(private val config: RealmConfiguration){
         }
     }
 
-    suspend fun updateMap(id: UUID, blocks: MutableList<MutableList<MapBlock>>) {
+    suspend fun updateMapBlocks(id: UUID, blocks: MutableList<MutableList<MapBlock>>) {
         val realm = Realm.getInstance(config)
 
         realm.executeTransactionAwait(Dispatchers.IO) { realmTransaction ->
@@ -33,7 +35,7 @@ class GameMapDatabaseOperations(private val config: RealmConfiguration){
         }
     }
 
-    suspend fun retrieveOwner(id: UUID): GameMap? {
+    suspend fun retrieveMap(id: UUID): GameMap? {
         val realm = Realm.getInstance(config)
         var gameMap: GameMap? = null
 
@@ -46,7 +48,7 @@ class GameMapDatabaseOperations(private val config: RealmConfiguration){
                 gameMap = GameMap(
                     id = map.id,
                     name = map.name,
-                    size = map.size,
+                    size = Size.parseSize(map.size),
                     blocks = map.blocks
                 )}
         }
@@ -66,7 +68,7 @@ class GameMapDatabaseOperations(private val config: RealmConfiguration){
                     GameMap(
                         id = map.id,
                         name = map.name,
-                        size = map.size,
+                        size = Size.parseSize(map.size),
                         blocks = map.blocks,
                     )
                 }
@@ -85,6 +87,14 @@ class GameMapDatabaseOperations(private val config: RealmConfiguration){
                 .findFirst()
             mapToRemove?.deleteFromRealm()
         }
+    }
+
+    private fun mapGameMapBlocksToRealm(gameBlocks: MutableList<MutableList<MapBlock>>){
+        !
+    }
+
+    private fun mapRealmMapBlocksToGame(realmBlocks: RealmList<MapBlockRealm>){
+        !
     }
 
 }

@@ -6,6 +6,8 @@ import androidx.lifecycle.*
 import com.scand.internship.mars_scout.models.GameMap
 import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.MapBlock
+import com.scand.internship.mars_scout.realm.GameMapDatabaseOperations
+import com.scand.internship.mars_scout.repository.GameMapRepository
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.random.Random
@@ -51,6 +53,12 @@ class MapEditorViewModel(state: SavedStateHandle) : ViewModel() {
                 blocks.add(blocksLine)
             }
             _gameMap.value = GameMap(id, id.toString(), mapSize, blocks)
+        }
+    }
+
+    fun addMap(name: String){
+        viewModelScope.launch {
+
         }
     }
 

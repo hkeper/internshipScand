@@ -21,7 +21,7 @@ class LaunchFragment : Fragment() {
         binding.editorButton.setOnClickListener {
             this.findNavController().navigate(
                 LaunchFragmentDirections.actionLaunchFragmentToMapEditorFragment(
-                    GameMap("test", null)
+                    GameMap("test")
                 ))
         }
 
