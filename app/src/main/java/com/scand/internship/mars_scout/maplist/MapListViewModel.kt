@@ -22,8 +22,8 @@ class MapListViewModel : ViewModel() {
     init{
         _maps.value = mutableListOf(GameMap("test1"),
             GameMap(UUID.randomUUID(),"test2", Size(16,16), mutableListOf(
-                mutableListOf(MapBlock(0, BlockType.GROUND, Pair(0,0)),
-                    MapBlock(1, BlockType.SAND, Pair(5,3))),
+                mutableListOf(MapBlock(0, BlockType.GROUND, mutableListOf(0,0)),
+                    MapBlock(1, BlockType.SAND, mutableListOf(5,3))),
             )))
         _dataLoading.value = false
     }

@@ -10,6 +10,7 @@ import io.realm.Sort
 import io.realm.kotlin.executeTransactionAwait
 import kotlinx.coroutines.Dispatchers
 import java.util.*
+import kotlin.random.Random
 
 class GameMapDatabaseOperations(private val config: RealmConfiguration){
 
@@ -31,7 +32,7 @@ class GameMapDatabaseOperations(private val config: RealmConfiguration){
                 .equalTo("id", id)
                 .findFirst()
 
-            map?.blocks = blocks
+            map?.blocks = mapGameMapBlocksToRealm(blocks)
         }
     }
 
@@ -49,7 +50,7 @@ class GameMapDatabaseOperations(private val config: RealmConfiguration){
                     id = map.id,
                     name = map.name,
                     size = Size.parseSize(map.size),
-                    blocks = map.blocks
+                    blocks = mapRealmMapBlocksToGame(map.blocks, Size.parseSize(map.size))
                 )}
         }
         return gameMap
@@ -69,7 +70,7 @@ class GameMapDatabaseOperations(private val config: RealmConfiguration){
                         id = map.id,
                         name = map.name,
                         size = Size.parseSize(map.size),
-                        blocks = map.blocks,
+                        blocks = mapRealmMapBlocksToGame(map.blocks, Size.parseSize(map.size)),
                     )
                 }
             )
@@ -89,12 +90,57 @@ class GameMapDatabaseOperations(private val config: RealmConfiguration){
         }
     }
 
-    private fun mapGameMapBlocksToRealm(gameBlocks: MutableList<MutableList<MapBlock>>){
-        !
+    private fun mapGameMapBlocksToRealm(gameBlocks: MutableList<MutableList<MapBlock>>
+    ): RealmList<MapBlockRealm> {
+        val realmList = RealmList<MapBlockRealm>()
+        var blockRealm: MapBlockRealm
+        val type = BlockTypeRealm()
+
+        if(!gameBlocks.isNullOrEmpty()) {
+
+            for (y in 0 until gameBlocks.size) {
+
+                for (x in 0 until gameBlocks[y].size) {
+                    type.enumField = gameBlocks[y][x].type
+                    blockRealm = MapBlockRealm(
+                        id = gameBlocks[y][x].id,
+                        type = type,
+                        coordinates = RealmList(gameBlocks[y][x].coordinates?.get(0),
+                            gameBlocks[y][x].coordinates?.get(1)
+                        )
+                    )
+                    realmList.add(blockRealm)
+                }
+            }
+        }
+        return realmList
     }
 
-    private fun mapRealmMapBlocksToGame(realmBlocks: RealmList<MapBlockRealm>){
-        !
+    private fun mapRealmMapBlocksToGame(realmBlocks: RealmList<MapBlockRealm>?, mapSize: Size):
+            MutableList<MutableList<MapBlock>>
+    {
+        val gameBlocks : MutableList<MutableList<MapBlock>> = mutableListOf()
+
+        if(!realmBlocks.isNullOrEmpty()) {
+            for (y in 0 until mapSize.height) {
+                val blocksLine = mutableListOf<MapBlock>()
+                for (x in 0 until mapSize.width) {
+                    val i = 0
+                    if (i < realmBlocks.size && realmBlocks[i] != null) {
+                        gameBlocks[y][x] = MapBlock(
+                            id = realmBlocks[i]?.id ?: Random.nextInt(),
+                            type = realmBlocks[i]?.type?.enumField,
+                            coordinates = realmBlocks[i]?.coordinates
+                        )
+                        i.inc()
+                    } else gameBlocks[y][x] = MapBlock()
+                    blocksLine.add(gameBlocks[y][x])
+                }
+                gameBlocks.add(blocksLine)
+            }
+        }
+
+        return gameBlocks
     }
 
 }

@@ -48,7 +48,7 @@ class MapEditorViewModel(state: SavedStateHandle) : ViewModel() {
                         2 -> BlockType.PIT
                         else -> BlockType.SAND
                     }
-                    blocksLine.add(MapBlock(("" + x + y).toInt(), type, Pair(x, y)))
+                    blocksLine.add(MapBlock(("" + x + y).toInt(), type, mutableListOf(x,y)))
                 }
                 blocks.add(blocksLine)
             }

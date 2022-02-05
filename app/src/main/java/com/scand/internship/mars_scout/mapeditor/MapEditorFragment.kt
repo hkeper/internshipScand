@@ -100,12 +100,14 @@ class MapEditorFragment : Fragment(){
 
                 for (x in 0 until mapBlocks[y].size) {
                     val b = mapBlocks[y][x]
-                    val bX = b.coordinates.first
-                    val bY = b.coordinates.second
-                    listUIMapBlocks[bX][bY].id = b.id
-                    listUIMapBlocks[bX][bY].contentDescription = b.type.toString()
-                    val img: Drawable? = setImageAccordingToType(b.type)
-                    listUIMapBlocks[bX][bY].setImageDrawable(img)
+                    if(b.coordinates != null) {
+                        val bX = b.coordinates[0]
+                        val bY = b.coordinates[1]
+                        listUIMapBlocks[bX][bY].id = b.id
+                        listUIMapBlocks[bX][bY].contentDescription = b.type.toString()
+                        val img: Drawable? = setImageAccordingToType(b.type)
+                        listUIMapBlocks[bX][bY].setImageDrawable(img)
+                    }
                 }
             }
         }
@@ -277,12 +279,12 @@ class MapEditorFragment : Fragment(){
                         MapBlock(
                             listUIMapBlocks[y][x].id,
                             setMapBlockTypeAccordingToUIMapBlockDesc(listUIMapBlocks[y][x].contentDescription as String),
-                            Pair(x, y)
+                            mutableListOf(x,y)
                         )
                     )
                 } else {
                     blocksLine.add(
-                        MapBlock(("" + x + y).toInt(), null, Pair(x, y))
+                        MapBlock(("" + x + y).toInt(), null, mutableListOf(x,y))
                     )
                 }
             }
