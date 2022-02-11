@@ -10,8 +10,8 @@ buildscript {
         version_lifecycle_extensions = '2.2.0'
         version_timber = "4.7.1"
         version_fragment = '1.4.0'
-        version_realm = '10.7.0'
-        version_dagger = '2.35.1'
+        version_realm = '10.10.1'
+        version_dagger = '2.40.5'
     }
 
     repositories {

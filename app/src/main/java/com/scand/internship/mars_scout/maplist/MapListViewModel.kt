@@ -8,16 +8,19 @@ import androidx.lifecycle.ViewModel
 import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.GameMap
 import com.scand.internship.mars_scout.models.MapBlock
+import com.scand.internship.mars_scout.repository.GameMapRepository
 import java.util.*
+import javax.inject.Inject
 
-class MapListViewModel : ViewModel() {
+class MapListViewModel @Inject constructor(
+    private val mapsRepository: GameMapRepository
+) : ViewModel() {
 
     private val _dataLoading = MutableLiveData(false)
     val dataLoading: LiveData<Boolean> = _dataLoading
 
     private val _maps = MutableLiveData<MutableList<GameMap>>()
     val maps: LiveData<MutableList<GameMap>> = _maps
-
 
     init{
         _maps.value = mutableListOf(GameMap("test1"),

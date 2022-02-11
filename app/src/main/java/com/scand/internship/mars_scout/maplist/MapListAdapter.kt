@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.scand.internship.mars_scout.databinding.ViewholderMapListBinding
 import com.scand.internship.mars_scout.models.GameMap
+import javax.inject.Inject
 
 
-class MapListAdapter() : ListAdapter<GameMap,
+class MapListAdapter @Inject constructor() : ListAdapter<GameMap,
         MapListAdapter.MapListViewHolder>(MapListDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MapListViewHolder {

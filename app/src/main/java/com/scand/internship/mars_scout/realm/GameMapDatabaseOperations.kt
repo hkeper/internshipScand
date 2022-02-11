@@ -10,9 +10,10 @@ import io.realm.Sort
 import io.realm.kotlin.executeTransactionAwait
 import kotlinx.coroutines.Dispatchers
 import java.util.*
+import javax.inject.Inject
 import kotlin.random.Random
 
-class GameMapDatabaseOperations(private val config: RealmConfiguration){
+class GameMapDatabaseOperations @Inject constructor(private val config: RealmConfiguration) {
 
     suspend fun insertMap(name: String) {
         val realm = Realm.getInstance(config)

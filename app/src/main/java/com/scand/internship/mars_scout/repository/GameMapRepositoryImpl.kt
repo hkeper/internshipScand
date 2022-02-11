@@ -7,8 +7,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import java.util.*
+import javax.inject.Inject
 
-class GameMapRepositoryImpl(
+class GameMapRepositoryImpl @Inject constructor(
     private val databaseOperations: GameMapDatabaseOperations
 ): GameMapRepository {
 

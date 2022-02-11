@@ -6,13 +6,25 @@ import android.os.Bundle
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.scand.internship.mars_scout.R
+import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 class SaveMapDialog: DialogFragment() {
 
-    private val viewModel: MapEditorViewModel by lazy {
-        ViewModelProvider(this)[MapEditorViewModel::class.java]
+//    private val viewModel: MapEditorViewModel by lazy {
+//        ViewModelProvider(this)[MapEditorViewModel::class.java]
+//    }
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel: MapEditorViewModel by viewModels { viewModelFactory }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidSupportInjection.inject(this)
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

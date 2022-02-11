@@ -19,20 +19,31 @@ import com.scand.internship.mars_scout.models.MapBlock
 import android.view.MotionEvent
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.scand.internship.mars_scout.models.GameMap
+import dagger.android.support.AndroidSupportInjection
 import java.util.*
-
+import javax.inject.Inject
 
 class MapEditorFragment : Fragment(){
+
+    //    private val viewModel: MapEditorViewModel by viewModels()
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private var listUIMapBlocks: MutableList<MutableList<ImageView>> = mutableListOf()
     private var listChooseMapBlockTypes: MutableList<ImageView> = mutableListOf()
     private lateinit var gameUIMap: GameMap
     private val dialog = SaveMapDialog()
-
-    private val viewModel: MapEditorViewModel by viewModels()
-
     private lateinit var binding: MapEditorFragmentBinding
+
+    private val viewModel: MapEditorViewModel by viewModels { viewModelFactory }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidSupportInjection.inject(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -290,7 +301,6 @@ class MapEditorFragment : Fragment(){
             }
             blocks.add(blocksLine)
         }
-
         viewModel.saveMap(GameMap(gameUIMap.id, gameUIMap.name, gameUIMap.size, blocks))
 
     }

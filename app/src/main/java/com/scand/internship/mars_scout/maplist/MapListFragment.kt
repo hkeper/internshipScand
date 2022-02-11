@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -12,16 +13,30 @@ import androidx.recyclerview.widget.RecyclerView
 import com.scand.internship.mars_scout.R
 import com.scand.internship.mars_scout.databinding.MapListFragmentBinding
 import com.scand.internship.mars_scout.models.GameMap
+import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 
 class MapListFragment : Fragment() {
 
-    private val viewModel: MapListViewModel by lazy {
-        ViewModelProvider(this)[MapListViewModel::class.java]
-    }
+    @Inject
+    lateinit var adapter: MapListAdapter
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+//    private val viewModel: MapListViewModel by lazy {
+//        ViewModelProvider(this)[MapListViewModel::class.java]
+//    }
+
+    private val viewModel: MapListViewModel by viewModels { viewModelFactory }
 
     private lateinit var binding: MapListFragmentBinding
-    private lateinit var adapter: MapListAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidSupportInjection.inject(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -92,9 +107,9 @@ class MapListFragment : Fragment() {
             object : SwipeHelper.UnderlayButtonClickListener {
                 override fun onClick() {
                     if(!viewModel.maps.value.isNullOrEmpty()){
-                    findNavController().navigate(MapListFragmentDirections.actionMapListFragmentToMapEditorFragment(
-                        viewModel.maps.value!![position]
-                    ))
+                        findNavController().navigate(MapListFragmentDirections.actionMapListFragmentToMapEditorFragment(
+                            viewModel.maps.value!![position]
+                        ))
                     } else {
                         findNavController().navigate(MapListFragmentDirections.actionMapListFragmentToMapEditorFragment(
                             GameMap("")

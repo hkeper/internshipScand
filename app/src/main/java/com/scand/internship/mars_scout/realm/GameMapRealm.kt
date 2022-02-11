@@ -1,6 +1,5 @@
 package com.scand.internship.mars_scout.realm
 
-import com.scand.internship.mars_scout.models.MapBlock
 import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey

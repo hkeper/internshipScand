@@ -1,18 +1,21 @@
 package com.scand.internship.mars_scout.mapeditor
 
 import android.util.Size
-import android.widget.ImageView
 import androidx.lifecycle.*
 import com.scand.internship.mars_scout.models.GameMap
 import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.MapBlock
-import com.scand.internship.mars_scout.realm.GameMapDatabaseOperations
 import com.scand.internship.mars_scout.repository.GameMapRepository
 import kotlinx.coroutines.launch
 import java.util.*
+import javax.inject.Inject
 import kotlin.random.Random
 
-class MapEditorViewModel(state: SavedStateHandle) : ViewModel() {
+
+class MapEditorViewModel @Inject constructor(
+    private val mapsRepository: GameMapRepository,
+    private val state: SavedStateHandle
+) : ViewModel() {
 
     private val _mapGenerating = MutableLiveData(false)
     val mapGenerating: LiveData<Boolean> = _mapGenerating
@@ -25,10 +28,10 @@ class MapEditorViewModel(state: SavedStateHandle) : ViewModel() {
 
     private val _isBlockChosen: MutableLiveData<Boolean> = MutableLiveData()
     val isBlockChosen: LiveData<Boolean>
-            get() = _isBlockChosen
+        get() = _isBlockChosen
 
     init{
-        _gameMap.value = state.get<GameMap>("map")
+//        _gameMap.value = state.get<GameMap>("map")
         _typeChosenMapBlock.value = null
         _isBlockChosen.value = false
     }
