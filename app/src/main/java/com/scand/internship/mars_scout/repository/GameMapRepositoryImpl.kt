@@ -1,5 +1,6 @@
 package com.scand.internship.mars_scout.repository
 
+import com.scand.internship.mars_scout.models.GameMap
 import com.scand.internship.mars_scout.models.MapBlock
 import com.scand.internship.mars_scout.realm.GameMapDatabaseOperations
 import kotlinx.coroutines.Dispatchers
@@ -19,11 +20,9 @@ class GameMapRepositoryImpl @Inject constructor(
         emit(GameMapStatus.Added)
     }.flowOn(Dispatchers.IO)
 
-    override fun getMap(id: UUID): Flow<GameMapStatus> = flow {
-        emit(GameMapStatus.Loading)
-        val map = databaseOperations.retrieveMap(id)
-        emit(GameMapStatus.MapRetrieved(map))
-    }.flowOn(Dispatchers.IO)
+    override suspend fun getMap(id: UUID): GameMap? {
+        return databaseOperations.retrieveMap(id)
+    }
 
     override fun getMaps(): Flow<GameMapStatus> = flow {
         emit(GameMapStatus.Loading)
@@ -45,5 +44,16 @@ class GameMapRepositoryImpl @Inject constructor(
         databaseOperations.removeMap(id)
         emit(GameMapStatus.Deleted)
     }.flowOn(Dispatchers.IO)
+
+    override suspend fun insertTransferredMapID(id: UUID) {
+
+        databaseOperations.clearTransferredMapID()
+        databaseOperations.insertTransferredMapID(id)
+
+    }
+
+    override suspend fun getTransferredMapID(): UUID? {
+        return databaseOperations.getTransferredMapID()
+    }
 }
 

@@ -1,11 +1,19 @@
 package com.scand.internship.mars_scout.mapeditor
 
+import android.os.Bundle
 import android.util.Size
+import androidx.activity.ComponentActivity
 import androidx.lifecycle.*
+import androidx.savedstate.SavedStateRegistryOwner
 import com.scand.internship.mars_scout.models.GameMap
 import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.MapBlock
 import com.scand.internship.mars_scout.repository.GameMapRepository
+import com.scand.internship.mars_scout.repository.GameMapRepositoryImpl
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -13,9 +21,12 @@ import kotlin.random.Random
 
 
 class MapEditorViewModel @Inject constructor(
-    private val mapsRepository: GameMapRepository,
-    private val state: SavedStateHandle
+    private val mapsRepository: GameMapRepository
+//    private val state: SavedStateHandle
 ) : ViewModel() {
+
+//    @AssistedFactory
+//    interface Factory : ViewModelAssistedFactory<MapEditorViewModel>
 
     private val _mapGenerating = MutableLiveData(false)
     val mapGenerating: LiveData<Boolean> = _mapGenerating
@@ -32,8 +43,23 @@ class MapEditorViewModel @Inject constructor(
 
     init{
 //        _gameMap.value = state.get<GameMap>("map")
+        getMapByID()
+//        _gameMap.value = mapsRepository.getMap(l)
+//        _gameMap.value = state.get<GameMap>("map")
+
+        val o = _gameMap.value?.id
         _typeChosenMapBlock.value = null
         _isBlockChosen.value = false
+    }
+
+    private fun getMapByID(){
+        var l: UUID? = null
+        viewModelScope.launch {
+            l = mapsRepository.getTransferredMapID()!!
+            val o = _gameMap.value?.id
+            _gameMap.value = l?.let { mapsRepository.getMap(it) }
+        }
+        l.toString()
     }
 
     fun generateMap(mapSize: Size) {
@@ -91,3 +117,4 @@ class MapEditorViewModel @Inject constructor(
     }
 
 }
+

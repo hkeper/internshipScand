@@ -144,5 +144,38 @@ class GameMapDatabaseOperations @Inject constructor(private val config: RealmCon
         return gameBlocks
     }
 
+    suspend fun insertTransferredMapID(gameMapID: UUID) {
+        val realm = Realm.getInstance(config)
+
+        realm.executeTransactionAwait(Dispatchers.IO) { realmTransaction ->
+            val realmMapID = TransferredGameMapIDRealm(
+                mapId = gameMapID
+            )
+            realmTransaction.insert(realmMapID)
+        }
+    }
+
+    suspend fun getTransferredMapID(): UUID? {
+        val realm = Realm.getInstance(config)
+        var id: UUID? = null
+        realm.executeTransactionAwait(Dispatchers.IO) { realmTransaction ->
+            id = realmTransaction
+                .where(TransferredGameMapIDRealm::class.java)
+                .findFirst()
+                ?.mapId
+        }
+        return id
+    }
+
+    suspend fun clearTransferredMapID() {
+        val realm = Realm.getInstance(config)
+        realm.executeTransactionAwait(Dispatchers.IO) { realmTransaction ->
+            realmTransaction
+                .where(TransferredGameMapIDRealm::class.java)
+                .realm
+                .deleteAll()
+        }
+    }
+
 }
 

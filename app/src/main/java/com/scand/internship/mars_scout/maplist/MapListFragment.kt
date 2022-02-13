@@ -110,6 +110,8 @@ class MapListFragment : Fragment() {
                         findNavController().navigate(MapListFragmentDirections.actionMapListFragmentToMapEditorFragment(
                             viewModel.maps.value!![position]
                         ))
+                        val i = viewModel.maps.value!![position].id
+                        viewModel.setEditedMapID(viewModel.maps.value!![position].id)
                     } else {
                         findNavController().navigate(MapListFragmentDirections.actionMapListFragmentToMapEditorFragment(
                             GameMap("")

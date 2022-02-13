@@ -17,28 +17,52 @@ import com.scand.internship.mars_scout.databinding.MapEditorFragmentBinding
 import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.MapBlock
 import android.view.MotionEvent
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.SavedStateViewModelFactory
 import androidx.lifecycle.ViewModelProvider
+import com.scand.internship.mars_scout.MarsScoutApp
 import com.scand.internship.mars_scout.models.GameMap
+import com.scand.internship.mars_scout.repository.GameMapRepository
+import com.scand.internship.mars_scout.repository.GameMapRepositoryImpl
 import dagger.android.support.AndroidSupportInjection
 import java.util.*
 import javax.inject.Inject
 
 class MapEditorFragment : Fragment(){
 
-    //    private val viewModel: MapEditorViewModel by viewModels()
+//    val viewModel: MapEditorViewModel by viewModels()
+
+//    @Inject
+//    lateinit var mapRepository: GameMapRepository
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel: MapEditorViewModel by viewModels { viewModelFactory }
+
+//    @Inject
+//    internal lateinit var viewModelFactory: MapEditorViewModelFactory
+//
+//    private val viewModel: MapEditorViewModel by viewModels {
+//        GenericSavedStateViewModelFactory(viewModelFactory, this)    }
+
+//    @Inject
+//    lateinit var mapRepository: GameMapRepository
+//
+//    private val viewModel: MapEditorViewModel by viewModels{
+//        MyViewModelFactory(
+//            this,
+//            mapRepository,
+//            requireActivity().intent.extras
+//        )
+//    }
 
     private var listUIMapBlocks: MutableList<MutableList<ImageView>> = mutableListOf()
     private var listChooseMapBlockTypes: MutableList<ImageView> = mutableListOf()
     private lateinit var gameUIMap: GameMap
     private val dialog = SaveMapDialog()
     private lateinit var binding: MapEditorFragmentBinding
-
-    private val viewModel: MapEditorViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)

@@ -1,14 +1,12 @@
 package com.scand.internship.mars_scout.maplist
 
 import android.util.Size
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.GameMap
 import com.scand.internship.mars_scout.models.MapBlock
 import com.scand.internship.mars_scout.repository.GameMapRepository
+import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
@@ -23,6 +21,7 @@ class MapListViewModel @Inject constructor(
     val maps: LiveData<MutableList<GameMap>> = _maps
 
     init{
+        val l = mapsRepository.getMaps()
         _maps.value = mutableListOf(GameMap("test1"),
             GameMap(UUID.randomUUID(),"test2", Size(16,16), mutableListOf(
                 mutableListOf(MapBlock(0, BlockType.GROUND, mutableListOf(0,0)),
@@ -37,6 +36,12 @@ class MapListViewModel @Inject constructor(
 
     fun removeMapAtPosition(position: Int){
         _maps.value?.removeAt(position)
+    }
+
+    fun setEditedMapID(id: UUID) {
+        viewModelScope.launch {
+            mapsRepository.insertTransferredMapID(id)
+        }
     }
 
 }

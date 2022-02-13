@@ -18,6 +18,11 @@ abstract class ViewModelsModule {
     @ViewModelKey(MapEditorViewModel::class)
     abstract fun bindMapEditorViewModel(mapEditorViewModel: MapEditorViewModel): ViewModel
 
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(MapEditorViewModel::class)
+//    abstract fun bindVMFactory(f: MapEditorViewModel.Factory): AssistedSavedStateViewModelFactory<out ViewModel>
+
     @Binds
     @IntoMap
     @ViewModelKey(MapListViewModel::class)

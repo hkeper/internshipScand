@@ -1,8 +1,10 @@
 package com.scand.internship.mars_scout
 
 import android.content.Context
+import androidx.fragment.app.Fragment
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
+import com.scand.internship.mars_scout.di.AppComponent
 import com.scand.internship.mars_scout.di.MapsModule
 import com.scand.internship.mars_scout.di.DaggerAppComponent
 import dagger.android.AndroidInjector
@@ -35,3 +37,4 @@ class MarsScoutApp : MultiDexApplication(), HasAndroidInjector {
     override fun androidInjector(): AndroidInjector<Any> = androidInjector
 
 }
+
