@@ -14,6 +14,12 @@ class MapListViewModel @Inject constructor(
     private val mapsRepository: GameMapRepository
 ) : ViewModel() {
 
+    val testMap1 = GameMap("test1")
+    val testMap2 = GameMap(UUID.randomUUID(),"test2", Size(16,16), mutableListOf(
+        mutableListOf(MapBlock(0, BlockType.GROUND, mutableListOf(0,0)),
+            MapBlock(1, BlockType.SAND, mutableListOf(5,3))),
+    ))
+
     private val _dataLoading = MutableLiveData(false)
     val dataLoading: LiveData<Boolean> = _dataLoading
 
@@ -21,13 +27,24 @@ class MapListViewModel @Inject constructor(
     val maps: LiveData<MutableList<GameMap>> = _maps
 
     init{
-        val l = mapsRepository.getMaps()
-        _maps.value = mutableListOf(GameMap("test1"),
-            GameMap(UUID.randomUUID(),"test2", Size(16,16), mutableListOf(
-                mutableListOf(MapBlock(0, BlockType.GROUND, mutableListOf(0,0)),
-                    MapBlock(1, BlockType.SAND, mutableListOf(5,3))),
-            )))
+//        val l = mapsRepository.getMaps()
+        clearDB()
+        setDemoData(testMap1)
+        setDemoData(testMap2)
+        _maps.value = mutableListOf(testMap1, testMap2)
         _dataLoading.value = false
+    }
+
+    fun setDemoData(map: GameMap){
+        viewModelScope.launch {
+            mapsRepository.addMap(map)
+        }
+    }
+
+    fun clearDB(){
+        viewModelScope.launch {
+            mapsRepository.clearDB()
+        }
     }
 
     fun setLoadingToFalse(){
@@ -38,10 +55,11 @@ class MapListViewModel @Inject constructor(
         _maps.value?.removeAt(position)
     }
 
-    fun setEditedMapID(id: UUID) {
-        viewModelScope.launch {
-            mapsRepository.insertTransferredMapID(id)
-        }
+    fun setEditedMapID(id: UUID?) {
+//        viewModelScope.launch {
+//            mapsRepository.insertTransferredMapID(id)
+//        }
+        mapsRepository.editedMapID = id
     }
 
 }

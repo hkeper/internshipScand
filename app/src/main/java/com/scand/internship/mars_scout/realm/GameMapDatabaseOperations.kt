@@ -15,11 +15,17 @@ import kotlin.random.Random
 
 class GameMapDatabaseOperations @Inject constructor(private val config: RealmConfiguration) {
 
-    suspend fun insertMap(name: String) {
+    suspend fun insertMap(gameMap: GameMap) {
         val realm = Realm.getInstance(config)
+        val blocksRealm = gameMap.blocks?.let { mapGameMapBlocksToRealm(it) }
 
         realm.executeTransactionAwait(Dispatchers.IO) { realmTransaction ->
-            val map = GameMapRealm(name = name)
+            val map = GameMapRealm(
+                id = gameMap.id,
+                name = gameMap.name,
+                size = gameMap.size.toString(),
+                blocks = blocksRealm
+            )
             realmTransaction.insert(map)
         }
     }
@@ -40,20 +46,28 @@ class GameMapDatabaseOperations @Inject constructor(private val config: RealmCon
     suspend fun retrieveMap(id: UUID): GameMap? {
         val realm = Realm.getInstance(config)
         var gameMap: GameMap? = null
+        var map: GameMapRealm? = null
 
         realm.executeTransactionAwait(Dispatchers.IO) { realmTransaction ->
-            val map = realmTransaction
+            map = realmTransaction
                 .where(GameMapRealm::class.java)
                 .equalTo("id", id)
                 .findFirst()
             if (map != null){
                 gameMap = GameMap(
-                    id = map.id,
-                    name = map.name,
-                    size = Size.parseSize(map.size),
-                    blocks = mapRealmMapBlocksToGame(map.blocks, Size.parseSize(map.size))
+                    id = map!!.id,
+                    name = map!!.name,
+                    size = Size.parseSize(map!!.size),
+                    blocks = mapRealmMapBlocksToGame(map!!.blocks, Size.parseSize(map!!.size))
                 )}
         }
+//        if (map != null){
+//            gameMap = GameMap(
+//                id = map!!.id,
+//                name = map!!.name,
+//                size = Size.parseSize(map!!.size),
+//                blocks = mapRealmMapBlocksToGame(map!!.blocks, Size.parseSize(map!!.size))
+//            )}
         return gameMap
     }
 
@@ -125,14 +139,15 @@ class GameMapDatabaseOperations @Inject constructor(private val config: RealmCon
         if(!realmBlocks.isNullOrEmpty()) {
             for (y in 0 until mapSize.height) {
                 val blocksLine = mutableListOf<MapBlock>()
+                gameBlocks.add(blocksLine)
                 for (x in 0 until mapSize.width) {
                     val i = 0
                     if (i < realmBlocks.size && realmBlocks[i] != null) {
-                        gameBlocks[y][x] = MapBlock(
+                        gameBlocks[y].add(MapBlock(
                             id = realmBlocks[i]?.id ?: Random.nextInt(),
                             type = realmBlocks[i]?.type?.enumField,
                             coordinates = realmBlocks[i]?.coordinates
-                        )
+                        ))
                         i.inc()
                     } else gameBlocks[y][x] = MapBlock()
                     blocksLine.add(gameBlocks[y][x])
@@ -167,13 +182,14 @@ class GameMapDatabaseOperations @Inject constructor(private val config: RealmCon
         return id
     }
 
-    suspend fun clearTransferredMapID() {
+    suspend fun clearDB() {
         val realm = Realm.getInstance(config)
         realm.executeTransactionAwait(Dispatchers.IO) { realmTransaction ->
             realmTransaction
-                .where(TransferredGameMapIDRealm::class.java)
-                .realm
                 .deleteAll()
+//                .where(GameMapRealm::class.java)
+//                .realm
+//                .deleteAll()
         }
     }
 

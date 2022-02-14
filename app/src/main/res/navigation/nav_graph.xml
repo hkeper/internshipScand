@@ -30,11 +30,7 @@
         android:id="@+id/mapEditorFragment"
         android:name="com.scand.internship.mars_scout.mapeditor.MapEditorFragment"
         android:label="MapEditorFragment"
-        tools:layout="@layout/map_editor_fragment" >
-        <argument
-            android:name="map"
-            app:argType="com.scand.internship.mars_scout.models.GameMap" />
-    </fragment>
+        tools:layout="@layout/map_editor_fragment" />
 
     <fragment
         android:id="@+id/mapListFragment"

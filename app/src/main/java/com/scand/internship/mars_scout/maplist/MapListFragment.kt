@@ -51,9 +51,7 @@ class MapListFragment : Fragment() {
 
         binding.createMap.setOnClickListener {
             this.findNavController().navigate(
-                MapListFragmentDirections.actionMapListFragmentToMapEditorFragment(
-                    GameMap("")
-                ))
+                MapListFragmentDirections.actionMapListFragmentToMapEditorFragment())
         }
 
         viewModel.maps.observe(viewLifecycleOwner, {
@@ -107,15 +105,10 @@ class MapListFragment : Fragment() {
             object : SwipeHelper.UnderlayButtonClickListener {
                 override fun onClick() {
                     if(!viewModel.maps.value.isNullOrEmpty()){
-                        findNavController().navigate(MapListFragmentDirections.actionMapListFragmentToMapEditorFragment(
-                            viewModel.maps.value!![position]
-                        ))
-                        val i = viewModel.maps.value!![position].id
                         viewModel.setEditedMapID(viewModel.maps.value!![position].id)
+                        findNavController().navigate(MapListFragmentDirections.actionMapListFragmentToMapEditorFragment())
                     } else {
-                        findNavController().navigate(MapListFragmentDirections.actionMapListFragmentToMapEditorFragment(
-                            GameMap("")
-                        ))
+                        findNavController().navigate(MapListFragmentDirections.actionMapListFragmentToMapEditorFragment())
                     }
 
                 }

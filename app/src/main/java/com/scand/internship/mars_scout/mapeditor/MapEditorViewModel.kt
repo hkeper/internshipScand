@@ -1,19 +1,11 @@
 package com.scand.internship.mars_scout.mapeditor
 
-import android.os.Bundle
 import android.util.Size
-import androidx.activity.ComponentActivity
 import androidx.lifecycle.*
-import androidx.savedstate.SavedStateRegistryOwner
 import com.scand.internship.mars_scout.models.GameMap
 import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.MapBlock
 import com.scand.internship.mars_scout.repository.GameMapRepository
-import com.scand.internship.mars_scout.repository.GameMapRepositoryImpl
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedFactory
-import dagger.assisted.AssistedInject
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -42,24 +34,22 @@ class MapEditorViewModel @Inject constructor(
         get() = _isBlockChosen
 
     init{
-//        _gameMap.value = state.get<GameMap>("map")
-        getMapByID()
-//        _gameMap.value = mapsRepository.getMap(l)
+        getEditedMapByID()
+
 //        _gameMap.value = state.get<GameMap>("map")
 
-        val o = _gameMap.value?.id
         _typeChosenMapBlock.value = null
         _isBlockChosen.value = false
     }
 
-    private fun getMapByID(){
-        var l: UUID? = null
+    private fun getEditedMapByID(){
+        val l: UUID? = mapsRepository.editedMapID
         viewModelScope.launch {
-            l = mapsRepository.getTransferredMapID()!!
-            val o = _gameMap.value?.id
+//            l = mapsRepository.getTransferredMapID()!!
+//            val o = _gameMap.value?.id
             _gameMap.value = l?.let { mapsRepository.getMap(it) }
         }
-        l.toString()
+        val t = _gameMap.value
     }
 
     fun generateMap(mapSize: Size) {

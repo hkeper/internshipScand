@@ -7,7 +7,9 @@ import java.util.*
 
 interface GameMapRepository {
 
-    fun addMap(name: String): Flow<GameMapStatus>
+    var editedMapID: UUID?
+
+    suspend fun addMap(gameMap: GameMap)
 
     suspend fun getMap(id: UUID): GameMap?
 
@@ -20,5 +22,7 @@ interface GameMapRepository {
     suspend fun insertTransferredMapID(id: UUID)
 
     suspend fun getTransferredMapID(): UUID?
+
+    suspend fun clearDB()
 
 }
