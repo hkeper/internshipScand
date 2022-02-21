@@ -11,7 +11,7 @@ interface GameMapRepository {
 
     suspend fun addMap(gameMap: GameMap)
 
-    suspend fun getMap(id: UUID): GameMap?
+    suspend fun getMap(id: UUID): Flow<GameMapStatus>
 
     fun getMaps(): Flow<GameMapStatus>
 

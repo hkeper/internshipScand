@@ -20,9 +20,15 @@ class GameMapRepositoryImpl @Inject constructor(
         databaseOperations.insertMap(gameMap)
     }
 
-    override suspend fun getMap(id: UUID): GameMap? {
-        return databaseOperations.retrieveMap(id)
-    }
+//    override suspend fun getMap(id: UUID): GameMap? {
+//        return databaseOperations.retrieveMap(id)
+//    }
+
+    override suspend fun getMap(id: UUID): Flow<GameMapStatus> = flow {
+        emit(GameMapStatus.Loading)
+        val gameMap = databaseOperations.retrieveMap(id)
+        emit(GameMapStatus.MapRetrieved(gameMap))
+    }.flowOn(Dispatchers.IO)
 
     override fun getMaps(): Flow<GameMapStatus> = flow {
         emit(GameMapStatus.Loading)

@@ -17,46 +17,21 @@ import com.scand.internship.mars_scout.databinding.MapEditorFragmentBinding
 import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.MapBlock
 import android.view.MotionEvent
-import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.SavedStateViewModelFactory
 import androidx.lifecycle.ViewModelProvider
-import com.scand.internship.mars_scout.MarsScoutApp
 import com.scand.internship.mars_scout.models.GameMap
-import com.scand.internship.mars_scout.repository.GameMapRepository
-import com.scand.internship.mars_scout.repository.GameMapRepositoryImpl
+import com.scand.internship.mars_scout.repository.GameMapStatus
 import dagger.android.support.AndroidSupportInjection
 import java.util.*
 import javax.inject.Inject
 
 class MapEditorFragment : Fragment(){
 
-//    val viewModel: MapEditorViewModel by viewModels()
-
-//    @Inject
-//    lateinit var mapRepository: GameMapRepository
-
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel: MapEditorViewModel by viewModels { viewModelFactory }
-
-//    @Inject
-//    internal lateinit var viewModelFactory: MapEditorViewModelFactory
-//
-//    private val viewModel: MapEditorViewModel by viewModels {
-//        GenericSavedStateViewModelFactory(viewModelFactory, this)    }
-
-//    @Inject
-//    lateinit var mapRepository: GameMapRepository
-//
-//    private val viewModel: MapEditorViewModel by viewModels{
-//        MyViewModelFactory(
-//            this,
-//            mapRepository,
-//            requireActivity().intent.extras
-//        )
-//    }
 
     private var listUIMapBlocks: MutableList<MutableList<ImageView>> = mutableListOf()
     private var listChooseMapBlockTypes: MutableList<ImageView> = mutableListOf()
@@ -87,11 +62,20 @@ class MapEditorFragment : Fragment(){
         viewModel.gameMap.observe(viewLifecycleOwner){
             it?.let {
                 gameUIMap = it
+                setIDAndImagesForMapBlocks(gameUIMap)
             }
         }
 
         setIDAndImagesForMapBlocks(gameUIMap)
         setTouchOnMapView()
+
+        viewModel.gameMapStatus.observe(viewLifecycleOwner) { status ->
+            binding.progress.isVisible = false
+            when (status) {
+                GameMapStatus.Loading -> binding.progress.isVisible = true
+                is GameMapStatus.MapRetrieved -> status.map?.let { viewModel.saveMap(it) }
+            }
+        }
 
         binding.generateMap.setOnClickListener {
             // Doesn't work resources.getDimension(R.dimen.default_map_size_x).toInt()
@@ -313,7 +297,8 @@ class MapEditorFragment : Fragment(){
                     blocksLine.add(
                         MapBlock(
                             listUIMapBlocks[y][x].id,
-                            setMapBlockTypeAccordingToUIMapBlockDesc(listUIMapBlocks[y][x].contentDescription as String),
+                            BlockType.setMapBlockTypeAccordingToUIMapBlockDesc(
+                                listUIMapBlocks[y][x].contentDescription as String),
                             mutableListOf(x,y)
                         )
                     )
@@ -326,17 +311,6 @@ class MapEditorFragment : Fragment(){
             blocks.add(blocksLine)
         }
         viewModel.saveMap(GameMap(gameUIMap.id, gameUIMap.name, gameUIMap.size, blocks))
-
     }
-
-    private fun setMapBlockTypeAccordingToUIMapBlockDesc(type: String) : BlockType{
-        return when {
-            type.contains("SAND", true) -> BlockType.SAND
-            type.contains("HILL", true) -> BlockType.HILL
-            type.contains("PIT", true) -> BlockType.PIT
-            else -> BlockType.GROUND
-        }
-    }
-
 
 }

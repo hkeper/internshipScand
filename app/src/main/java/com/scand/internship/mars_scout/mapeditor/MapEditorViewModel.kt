@@ -6,6 +6,8 @@ import com.scand.internship.mars_scout.models.GameMap
 import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.MapBlock
 import com.scand.internship.mars_scout.repository.GameMapRepository
+import com.scand.internship.mars_scout.repository.GameMapStatus
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -19,6 +21,12 @@ class MapEditorViewModel @Inject constructor(
 
 //    @AssistedFactory
 //    interface Factory : ViewModelAssistedFactory<MapEditorViewModel>
+
+    private val _gameMapStatus = MutableLiveData<GameMapStatus>()
+    val gameMapStatus: LiveData<GameMapStatus>
+        get() {
+            return _gameMapStatus
+        }
 
     private val _mapGenerating = MutableLiveData(false)
     val mapGenerating: LiveData<Boolean> = _mapGenerating
@@ -34,22 +42,21 @@ class MapEditorViewModel @Inject constructor(
         get() = _isBlockChosen
 
     init{
-        getEditedMapByID()
-
-//        _gameMap.value = state.get<GameMap>("map")
-
+        mapsRepository.editedMapID?.let { it ->
+            getEditedMapByID(it)
+//            (_gameMapStatus.value as GameMapStatus.MapRetrieved).map?.let { gmap -> _gameMap.value = gmap }
+        }
         _typeChosenMapBlock.value = null
         _isBlockChosen.value = false
+        val s = _gameMapStatus.value
     }
 
-    private fun getEditedMapByID(){
-        val l: UUID? = mapsRepository.editedMapID
+    private fun getEditedMapByID(id: UUID) {
         viewModelScope.launch {
-//            l = mapsRepository.getTransferredMapID()!!
-//            val o = _gameMap.value?.id
-            _gameMap.value = l?.let { mapsRepository.getMap(it) }
+            mapsRepository.getMap(id).collect {
+                _gameMapStatus.value = it
+            }
         }
-        val t = _gameMap.value
     }
 
     fun generateMap(mapSize: Size) {
