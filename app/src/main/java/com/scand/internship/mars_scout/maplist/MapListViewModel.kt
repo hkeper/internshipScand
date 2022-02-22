@@ -6,6 +6,8 @@ import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.GameMap
 import com.scand.internship.mars_scout.models.MapBlock
 import com.scand.internship.mars_scout.repository.GameMapRepository
+import com.scand.internship.mars_scout.repository.GameMapStatus
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -14,8 +16,14 @@ class MapListViewModel @Inject constructor(
     private val mapsRepository: GameMapRepository
 ) : ViewModel() {
 
+    private val _gameMapStatus = MutableLiveData<GameMapStatus>()
+    val gameMapStatus: LiveData<GameMapStatus>
+        get() {
+            return _gameMapStatus
+        }
+
     private val testMap1 = GameMap("test1")
-    val testMap2 = GameMap(UUID.randomUUID(),"test2", Size(16,16), mutableListOf(
+    private val testMap2 = GameMap(UUID.randomUUID(),"test2", Size(16,16), mutableListOf(
         mutableListOf(MapBlock(0, BlockType.GROUND, mutableListOf(0,0)),
             MapBlock(1, BlockType.SAND, mutableListOf(5,3))),
     ))
@@ -27,7 +35,6 @@ class MapListViewModel @Inject constructor(
     val maps: LiveData<MutableList<GameMap>> = _maps
 
     init{
-//        val l = mapsRepository.getMaps()
         clearDB()
         setDemoData(testMap1)
         setDemoData(testMap2)
@@ -37,13 +44,17 @@ class MapListViewModel @Inject constructor(
 
     private fun setDemoData(map: GameMap){
         viewModelScope.launch {
-            mapsRepository.addMap(map)
+            mapsRepository.addMap(map).collect{
+                _gameMapStatus.value = it
+            }
         }
     }
 
     private fun clearDB(){
         viewModelScope.launch {
-            mapsRepository.clearDB()
+            mapsRepository.clearDB().collect {
+                _gameMapStatus.value = it
+            }
         }
     }
 

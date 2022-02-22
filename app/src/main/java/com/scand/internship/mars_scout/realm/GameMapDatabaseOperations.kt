@@ -9,7 +9,6 @@ import io.realm.RealmList
 import io.realm.Sort
 import io.realm.kotlin.executeTransactionAwait
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import java.util.*
 import javax.inject.Inject
 import kotlin.random.Random
@@ -142,7 +141,7 @@ class GameMapDatabaseOperations @Inject constructor(private val config: RealmCon
                         blocksLine.add(MapBlock(
                             id = realmBlocks[i]?.id ?: Random.nextInt(),
                             type = realmBlocks[i]?.type?.enumField,
-                            coordinates = realmBlocks[i]?.coordinates
+                            coordinates = realmBlocks[i]?.coordinates?.toMutableList()
                         ))
                         i += 1
                     } else break
@@ -151,29 +150,6 @@ class GameMapDatabaseOperations @Inject constructor(private val config: RealmCon
             }
         }
         return gameBlocks
-    }
-
-    suspend fun insertTransferredMapID(gameMapID: UUID) {
-        val realm = Realm.getInstance(config)
-
-        realm.executeTransactionAwait(Dispatchers.IO) { realmTransaction ->
-            val realmMapID = TransferredGameMapIDRealm(
-                mapId = gameMapID
-            )
-            realmTransaction.insert(realmMapID)
-        }
-    }
-
-    suspend fun getTransferredMapID(): UUID? {
-        val realm = Realm.getInstance(config)
-        var id: UUID? = null
-        realm.executeTransactionAwait(Dispatchers.IO) { realmTransaction ->
-            id = realmTransaction
-                .where(TransferredGameMapIDRealm::class.java)
-                .findFirst()
-                ?.mapId
-        }
-        return id
     }
 
     suspend fun clearDB() {

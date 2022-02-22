@@ -7,6 +7,7 @@ sealed class GameMapStatus{
     object Added : GameMapStatus()
     object BlocksAdded : GameMapStatus()
     object Deleted : GameMapStatus()
+    object Cleared : GameMapStatus()
     data class MapRetrieved(val map: GameMap?) : GameMapStatus()
     data class MapsRetrieved(val maps: List<GameMap>) : GameMapStatus()
 }

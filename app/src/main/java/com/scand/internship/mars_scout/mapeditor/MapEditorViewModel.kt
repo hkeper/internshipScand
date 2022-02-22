@@ -16,11 +16,8 @@ import kotlin.random.Random
 
 class MapEditorViewModel @Inject constructor(
     private val mapsRepository: GameMapRepository
-//    private val state: SavedStateHandle
 ) : ViewModel() {
 
-//    @AssistedFactory
-//    interface Factory : ViewModelAssistedFactory<MapEditorViewModel>
 
     private val _gameMapStatus = MutableLiveData<GameMapStatus>()
     val gameMapStatus: LiveData<GameMapStatus>
@@ -42,19 +39,16 @@ class MapEditorViewModel @Inject constructor(
         get() = _isBlockChosen
 
     init{
-        mapsRepository.editedMapID?.let { it ->
-            getEditedMapByID(it)
-//            (_gameMapStatus.value as GameMapStatus.MapRetrieved).map?.let { gmap -> _gameMap.value = gmap }
-        }
         _typeChosenMapBlock.value = null
         _isBlockChosen.value = false
-        val s = _gameMapStatus.value
     }
 
-    private fun getEditedMapByID(id: UUID) {
-        viewModelScope.launch {
-            mapsRepository.getMap(id).collect {
-                _gameMapStatus.value = it
+    fun getEditedMapByID() {
+        mapsRepository.editedMapID?.let { id ->
+            viewModelScope.launch {
+                mapsRepository.getMap(id).collect {
+                    _gameMapStatus.value = it
+                }
             }
         }
     }

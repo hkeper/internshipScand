@@ -9,9 +9,9 @@ interface GameMapRepository {
 
     var editedMapID: UUID?
 
-    suspend fun addMap(gameMap: GameMap)
+    fun addMap(gameMap: GameMap): Flow<GameMapStatus>
 
-    suspend fun getMap(id: UUID): Flow<GameMapStatus>
+    fun getMap(id: UUID): Flow<GameMapStatus>
 
     fun getMaps(): Flow<GameMapStatus>
 
@@ -19,10 +19,6 @@ interface GameMapRepository {
 
     fun deleteMap(id: UUID): Flow<GameMapStatus>
 
-    suspend fun insertTransferredMapID(id: UUID)
-
-    suspend fun getTransferredMapID(): UUID?
-
-    suspend fun clearDB()
+    fun clearDB(): Flow<GameMapStatus>
 
 }

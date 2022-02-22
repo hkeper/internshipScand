@@ -16,15 +16,13 @@ class GameMapRepositoryImpl @Inject constructor(
 
     override var editedMapID: UUID? = null
 
-    override suspend fun addMap(gameMap: GameMap) {
+    override fun addMap(gameMap: GameMap): Flow<GameMapStatus> = flow {
+        emit(GameMapStatus.Loading)
         databaseOperations.insertMap(gameMap)
-    }
+        emit(GameMapStatus.Added)
+    }.flowOn(Dispatchers.IO)
 
-//    override suspend fun getMap(id: UUID): GameMap? {
-//        return databaseOperations.retrieveMap(id)
-//    }
-
-    override suspend fun getMap(id: UUID): Flow<GameMapStatus> = flow {
+    override fun getMap(id: UUID): Flow<GameMapStatus> = flow {
         emit(GameMapStatus.Loading)
         val gameMap = databaseOperations.retrieveMap(id)
         emit(GameMapStatus.MapRetrieved(gameMap))
@@ -51,19 +49,11 @@ class GameMapRepositoryImpl @Inject constructor(
         emit(GameMapStatus.Deleted)
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun insertTransferredMapID(id: UUID) {
-
-        databaseOperations.insertTransferredMapID(id)
-
-    }
-
-    override suspend fun getTransferredMapID(): UUID? {
-        return databaseOperations.getTransferredMapID()
-    }
-
-    override suspend fun clearDB() {
+    override fun clearDB(): Flow<GameMapStatus> = flow {
+        emit(GameMapStatus.Loading)
         databaseOperations.clearDB()
-    }
+        emit(GameMapStatus.Cleared)
+    }.flowOn(Dispatchers.IO)
 
 }
 

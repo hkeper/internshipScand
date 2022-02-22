@@ -1,6 +1,7 @@
 package com.scand.internship.mars_scout.mapeditor
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -31,8 +32,8 @@ class MapEditorFragment : Fragment(){
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: MapEditorViewModel by viewModels { viewModelFactory }
 
+    private val viewModel: MapEditorViewModel by viewModels { viewModelFactory }
     private var listUIMapBlocks: MutableList<MutableList<ImageView>> = mutableListOf()
     private var listChooseMapBlockTypes: MutableList<ImageView> = mutableListOf()
     private lateinit var gameUIMap: GameMap
@@ -48,8 +49,13 @@ class MapEditorFragment : Fragment(){
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        binding = MapEditorFragmentBinding.inflate(layoutInflater, container, false)
+        return binding.root
+    }
 
-        binding = MapEditorFragmentBinding.inflate(inflater)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         binding.viewModel = viewModel
 
         getImageViewMapBlocks()
@@ -68,24 +74,29 @@ class MapEditorFragment : Fragment(){
 
         setIDAndImagesForMapBlocks(gameUIMap)
         setTouchOnMapView()
+        viewModel.getEditedMapByID()
 
         viewModel.gameMapStatus.observe(viewLifecycleOwner) { status ->
             binding.progress.isVisible = false
             when (status) {
                 GameMapStatus.Loading -> binding.progress.isVisible = true
-                is GameMapStatus.MapRetrieved -> status.map?.let { viewModel.saveMap(it) }
+                is GameMapStatus.MapRetrieved -> status.map?.let {
+                    viewModel.saveMap(status.map)
+                }
+                else -> {TODO()}
             }
         }
 
         binding.generateMap.setOnClickListener {
             // Doesn't work resources.getDimension(R.dimen.default_map_size_x).toInt()
             viewModel.generateMap(Size(16,16))
-            setIDAndImagesForMapBlocks(gameUIMap)
+//            setIDAndImagesForMapBlocks(gameUIMap)
         }
 
         binding.clearMap.setOnClickListener {
             // Doesn't work resources.getDimension(R.dimen.default_map_size_x).toInt()
-            clearMapBlocks()
+//            clearMapBlocks()
+            viewModel.clearMap()
         }
 
         binding.saveMap.setOnClickListener {
@@ -106,8 +117,8 @@ class MapEditorFragment : Fragment(){
             choseBlockType(it, BlockType.HILL)
         }
 
-        return binding.root
     }
+
 
     private fun setIDAndImagesForMapBlocks(map: GameMap) {
 
@@ -175,11 +186,12 @@ class MapEditorFragment : Fragment(){
                 R.drawable.pit,
                 null
             )
-            else -> ResourcesCompat.getDrawable(
+            BlockType.GROUND -> ResourcesCompat.getDrawable(
                 resources,
                 R.drawable.ground,
                 null
             )
+            else -> null
         }
     }
 

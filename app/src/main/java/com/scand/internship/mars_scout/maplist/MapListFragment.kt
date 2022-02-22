@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.scand.internship.mars_scout.R
 import com.scand.internship.mars_scout.databinding.MapListFragmentBinding
-import com.scand.internship.mars_scout.models.GameMap
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -25,12 +24,7 @@ class MapListFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-//    private val viewModel: MapListViewModel by lazy {
-//        ViewModelProvider(this)[MapListViewModel::class.java]
-//    }
-
     private val viewModel: MapListViewModel by viewModels { viewModelFactory }
-
     private lateinit var binding: MapListFragmentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
