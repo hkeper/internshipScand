@@ -1,7 +1,6 @@
 package com.scand.internship.mars_scout.mapeditor
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -72,18 +71,23 @@ class MapEditorFragment : Fragment(){
             }
         }
 
-        setIDAndImagesForMapBlocks(gameUIMap)
         setTouchOnMapView()
         viewModel.getEditedMapByID()
 
         viewModel.gameMapStatus.observe(viewLifecycleOwner) { status ->
-            binding.progress.isVisible = false
+            binding.progress.isVisible = true
+            binding.map.isVisible = false
             when (status) {
                 GameMapStatus.Loading -> binding.progress.isVisible = true
                 is GameMapStatus.MapRetrieved -> status.map?.let {
                     viewModel.saveMap(status.map)
+                    binding.progress.isVisible = false
+                    binding.map.isVisible = true
                 }
-                else -> {TODO()}
+                else -> {
+                    binding.progress.isVisible = false
+                    binding.map.isVisible = true
+                }
             }
         }
 
@@ -95,8 +99,8 @@ class MapEditorFragment : Fragment(){
 
         binding.clearMap.setOnClickListener {
             // Doesn't work resources.getDimension(R.dimen.default_map_size_x).toInt()
-//            clearMapBlocks()
             viewModel.clearMap()
+            clearMapBlocks()
         }
 
         binding.saveMap.setOnClickListener {
@@ -119,7 +123,6 @@ class MapEditorFragment : Fragment(){
 
     }
 
-
     private fun setIDAndImagesForMapBlocks(map: GameMap) {
 
         val mapBlocks = map.blocks
@@ -133,13 +136,15 @@ class MapEditorFragment : Fragment(){
                     if(b.coordinates != null) {
                         val bX = b.coordinates[0]
                         val bY = b.coordinates[1]
-                        listUIMapBlocks[bX][bY].id = b.id
-                        listUIMapBlocks[bX][bY].contentDescription = b.type.toString()
+                        listUIMapBlocks[bY][bX].id = b.id
+                        listUIMapBlocks[bY][bX].contentDescription = b.type.toString()
                         val img: Drawable? = setImageAccordingToType(b.type)
-                        listUIMapBlocks[bX][bY].setImageDrawable(img)
+                        listUIMapBlocks[bY][bX].setImageDrawable(img)
                     }
                 }
             }
+        }else{
+            clearMapBlocks()
         }
     }
 
@@ -166,7 +171,6 @@ class MapEditorFragment : Fragment(){
                 listUIMapBlocks.add(lineBlocksList)
             }
         }
-
     }
 
     private fun setImageAccordingToType(type: BlockType?): Drawable?{
@@ -292,7 +296,6 @@ class MapEditorFragment : Fragment(){
 
             }
         }
-        viewModel.clearMap()
     }
 
     private fun saveMap(){

@@ -9,6 +9,8 @@ interface GameMapRepository {
 
     var editedMapID: UUID?
 
+    fun getEditedMapIDFromList(): UUID?
+
     fun addMap(gameMap: GameMap): Flow<GameMapStatus>
 
     fun getMap(id: UUID): Flow<GameMapStatus>

@@ -18,15 +18,11 @@ class MapEditorViewModel @Inject constructor(
     private val mapsRepository: GameMapRepository
 ) : ViewModel() {
 
-
-    private val _gameMapStatus = MutableLiveData<GameMapStatus>()
-    val gameMapStatus: LiveData<GameMapStatus>
+    private val _gameMapStatus = MutableLiveData<GameMapStatus?>()
+    val gameMapStatus: LiveData<GameMapStatus?>
         get() {
             return _gameMapStatus
         }
-
-    private val _mapGenerating = MutableLiveData(false)
-    val mapGenerating: LiveData<Boolean> = _mapGenerating
 
     private val _gameMap = MutableLiveData<GameMap>()
     val gameMap: LiveData<GameMap> = _gameMap
@@ -39,12 +35,13 @@ class MapEditorViewModel @Inject constructor(
         get() = _isBlockChosen
 
     init{
+        _gameMapStatus.value = null
         _typeChosenMapBlock.value = null
         _isBlockChosen.value = false
     }
 
     fun getEditedMapByID() {
-        mapsRepository.editedMapID?.let { id ->
+        mapsRepository.getEditedMapIDFromList()?.let { id ->
             viewModelScope.launch {
                 mapsRepository.getMap(id).collect {
                     _gameMapStatus.value = it
@@ -73,12 +70,6 @@ class MapEditorViewModel @Inject constructor(
                 blocks.add(blocksLine)
             }
             _gameMap.value = GameMap(id, id.toString(), mapSize, blocks)
-        }
-    }
-
-    fun addMap(name: String){
-        viewModelScope.launch {
-
         }
     }
 

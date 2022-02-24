@@ -135,7 +135,6 @@ class GameMapDatabaseOperations @Inject constructor(private val config: RealmCon
 
             for (y in 0 until gameMapY) {
                 val blocksLine: MutableList<MapBlock> = mutableListOf()
-                //gameBlocks.add(blocksLine)
                 for (x in 0 until mapSize.width) {
                     if (i < realmBlocks.size && realmBlocks[i] != null) {
                         blocksLine.add(MapBlock(

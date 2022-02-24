@@ -16,6 +16,12 @@ class GameMapRepositoryImpl @Inject constructor(
 
     override var editedMapID: UUID? = null
 
+    override fun getEditedMapIDFromList(): UUID?{
+        val temp = editedMapID
+        editedMapID = null
+        return temp
+    }
+
     override fun addMap(gameMap: GameMap): Flow<GameMapStatus> = flow {
         emit(GameMapStatus.Loading)
         databaseOperations.insertMap(gameMap)
