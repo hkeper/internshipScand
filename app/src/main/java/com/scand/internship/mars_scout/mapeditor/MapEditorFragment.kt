@@ -1,14 +1,14 @@
 package com.scand.internship.mars_scout.mapeditor
 
 import android.annotation.SuppressLint
+import android.app.ActionBar
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Size
+import android.util.TypedValue
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.content.res.ResourcesCompat
@@ -16,7 +16,6 @@ import com.scand.internship.mars_scout.R
 import com.scand.internship.mars_scout.databinding.MapEditorFragmentBinding
 import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.MapBlock
-import android.view.MotionEvent
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -57,12 +56,12 @@ class MapEditorFragment : Fragment(){
 
         binding.viewModel = viewModel
 
-        getImageViewMapBlocks()
-        getChooseMapBlockTypes()
+        generateUIGameMap(GameMap.DEFAULT_SIZE)
 
-        val id = UUID.randomUUID()
-        gameUIMap = viewModel.gameMap.value ?:
-                GameMap(id, id.toString(), Size(listUIMapBlocks[0].size, listUIMapBlocks.size), null)
+//        val id = UUID.randomUUID()
+//        gameUIMap = viewModel.gameMap.value
+//            ?:
+//                GameMap(id, id.toString(), Size(listUIMapBlocks[0].size, listUIMapBlocks.size), null)
 
         viewModel.gameMap.observe(viewLifecycleOwner){
             it?.let {
@@ -71,6 +70,8 @@ class MapEditorFragment : Fragment(){
             }
         }
 
+        getImageViewMapBlocks()
+        getChooseMapBlockTypes()
         setTouchOnMapView()
         viewModel.getEditedMapByID()
 
@@ -93,8 +94,7 @@ class MapEditorFragment : Fragment(){
 
         binding.generateMap.setOnClickListener {
             // Doesn't work resources.getDimension(R.dimen.default_map_size_x).toInt()
-            viewModel.generateMap(Size(16,16))
-//            setIDAndImagesForMapBlocks(gameUIMap)
+            viewModel.generateMap(GameMap.DEFAULT_SIZE)
         }
 
         binding.clearMap.setOnClickListener {
@@ -119,6 +119,32 @@ class MapEditorFragment : Fragment(){
         }
         binding.hillBlockImg.setOnClickListener {
             choseBlockType(it, BlockType.HILL)
+        }
+
+    }
+
+    private fun generateUIGameMap(size: Size) {
+        val mapView = binding.map
+        val lineNum = size.height
+        val blocksNum = size.width
+
+        for (y in 0 until lineNum) {
+            val linearLayout = LinearLayout(requireContext())
+            linearLayout.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20f, resources.displayMetrics).toInt())
+            linearLayout.orientation = LinearLayout.HORIZONTAL
+            linearLayout.gravity = Gravity.CENTER_HORIZONTAL
+
+            for (x in 0 until blocksNum) {
+                val imageView = ImageView(requireContext())
+                imageView.layoutParams = LinearLayout.LayoutParams(
+                    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20f, resources.displayMetrics).toInt(),
+                    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20f, resources.displayMetrics).toInt()
+                )
+                imageView.setBackgroundResource(R.drawable.border)
+                linearLayout.addView(imageView)
+            }
+            mapView.addView(linearLayout)
         }
 
     }

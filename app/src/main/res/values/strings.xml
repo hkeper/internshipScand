@@ -21,4 +21,5 @@
     <string name="maps_name">%s</string>
     <string name="map_id_label">Map ID:</string>
     <string name="size_label">Size:</string>
+    <string name="block_image">Block image</string>
 </resources>

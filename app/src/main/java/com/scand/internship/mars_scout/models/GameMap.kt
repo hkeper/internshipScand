@@ -5,6 +5,8 @@ import android.util.Size
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
+val DEFAULT_SIZE = Size(16,16)
+
 @Parcelize
 data class GameMap(
     val id: UUID = UUID.randomUUID(),
@@ -14,5 +16,9 @@ data class GameMap(
 ) : Parcelable {
     constructor(name: String) :
             this(UUID.randomUUID(), name, Size(16, 16), mutableListOf())
+
+    companion object{
+        val DEFAULT_SIZE = Size(16,16)
+    }
 }
 
