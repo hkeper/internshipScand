@@ -1,7 +1,6 @@
 package com.scand.internship.mars_scout.mapeditor
 
 import android.annotation.SuppressLint
-import android.app.ActionBar
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -11,6 +10,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import com.scand.internship.mars_scout.R
 import com.scand.internship.mars_scout.databinding.MapEditorFragmentBinding
@@ -25,6 +25,7 @@ import com.scand.internship.mars_scout.repository.GameMapStatus
 import dagger.android.support.AndroidSupportInjection
 import java.util.*
 import javax.inject.Inject
+import kotlin.random.Random
 
 class MapEditorFragment : Fragment(){
 
@@ -57,11 +58,8 @@ class MapEditorFragment : Fragment(){
         binding.viewModel = viewModel
 
         generateUIGameMap(GameMap.DEFAULT_SIZE)
-
-//        val id = UUID.randomUUID()
-//        gameUIMap = viewModel.gameMap.value
-//            ?:
-//                GameMap(id, id.toString(), Size(listUIMapBlocks[0].size, listUIMapBlocks.size), null)
+        getImageViewMapBlocks()
+        getChooseMapBlockTypes()
 
         viewModel.gameMap.observe(viewLifecycleOwner){
             it?.let {
@@ -70,8 +68,6 @@ class MapEditorFragment : Fragment(){
             }
         }
 
-        getImageViewMapBlocks()
-        getChooseMapBlockTypes()
         setTouchOnMapView()
         viewModel.getEditedMapByID()
 
@@ -81,7 +77,12 @@ class MapEditorFragment : Fragment(){
             when (status) {
                 GameMapStatus.Loading -> binding.progress.isVisible = true
                 is GameMapStatus.MapRetrieved -> status.map?.let {
-                    viewModel.saveMap(status.map)
+                    viewModel.putUIMapToModelMap(status.map)
+                    binding.progress.isVisible = false
+                    binding.map.isVisible = true
+                }
+                GameMapStatus.Added -> { Toast.makeText(context, "Map ${gameUIMap.name} saved",
+                    Toast.LENGTH_SHORT).show()
                     binding.progress.isVisible = false
                     binding.map.isVisible = true
                 }
@@ -104,8 +105,14 @@ class MapEditorFragment : Fragment(){
         }
 
         binding.saveMap.setOnClickListener {
-            dialog.show(requireActivity().supportFragmentManager, "Save Map dialog")
-            saveMap()
+            var t = gameUIMap
+            var r = viewModel.gameMap.value
+            putUIMapToViewModelMap()
+            t = gameUIMap
+            r = viewModel.gameMap.value
+            dialog.show(childFragmentManager, "Save Map dialog")
+            t = gameUIMap
+            r = viewModel.gameMap.value
         }
 
         binding.groundBlockImg.setOnClickListener {
@@ -146,7 +153,6 @@ class MapEditorFragment : Fragment(){
             }
             mapView.addView(linearLayout)
         }
-
     }
 
     private fun setIDAndImagesForMapBlocks(map: GameMap) {
@@ -302,7 +308,7 @@ class MapEditorFragment : Fragment(){
             for (x in 0 until listUIMapBlocks[y].size) {
 
                 if (isInside(listUIMapBlocks[y][x], e)) {
-                    listUIMapBlocks[y][x].id = ("" + x + y).toInt()
+                    listUIMapBlocks[y][x].id = Random.nextInt()
                     listUIMapBlocks[y][x].contentDescription = type.toString()
                     return listUIMapBlocks[y][x]
                 }
@@ -324,7 +330,7 @@ class MapEditorFragment : Fragment(){
         }
     }
 
-    private fun saveMap(){
+    private fun putUIMapToViewModelMap(){
 
         val blocks : MutableList<MutableList<MapBlock>> = mutableListOf()
 
@@ -345,13 +351,13 @@ class MapEditorFragment : Fragment(){
                     )
                 } else {
                     blocksLine.add(
-                        MapBlock(("" + x + y).toInt(), null, mutableListOf(x,y))
+                        MapBlock(Random.nextInt(), null, mutableListOf(x,y))
                     )
                 }
             }
             blocks.add(blocksLine)
         }
-        viewModel.saveMap(GameMap(gameUIMap.id, gameUIMap.name, gameUIMap.size, blocks))
+        viewModel.putUIMapToModelMap(GameMap(gameUIMap.id, gameUIMap.name, gameUIMap.size, blocks))
     }
 
 }

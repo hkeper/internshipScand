@@ -9,6 +9,7 @@ import com.scand.internship.mars_scout.maplist.MapListViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import javax.inject.Singleton
 
 @Module
 abstract class ViewModelsModule {

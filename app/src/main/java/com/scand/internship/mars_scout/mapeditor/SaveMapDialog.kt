@@ -14,13 +14,11 @@ import javax.inject.Inject
 
 class SaveMapDialog: DialogFragment() {
 
-//    private val viewModel: MapEditorViewModel by lazy {
-//        ViewModelProvider(this)[MapEditorViewModel::class.java]
-//    }
+//    @Inject
+//    lateinit var viewModelFactory: ViewModelProvider.Factory
+//    private val viewModel: MapEditorViewModel by viewModels { viewModelFactory }
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: MapEditorViewModel by viewModels { viewModelFactory }
+    private val viewModel: MapEditorViewModel by viewModels({requireParentFragment()})
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
@@ -47,6 +45,7 @@ class SaveMapDialog: DialogFragment() {
 
                         if(!mapName.text.isNullOrEmpty()){
                             viewModel.setMapName(mapName.text.toString())
+                            viewModel.saveUIMapToModelMap()
                             dismiss()
                         }else{
                             Toast.makeText(context, "Please enter Map name",

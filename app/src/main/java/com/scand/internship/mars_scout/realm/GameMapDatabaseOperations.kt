@@ -106,8 +106,15 @@ class GameMapDatabaseOperations @Inject constructor(private val config: RealmCon
             for (y in 0 until gameBlocks.size) {
 
                 for (x in 0 until gameBlocks[y].size) {
-                    val type = BlockTypeRealm()
-                    type.enumField = gameBlocks[y][x].type!!
+                    var type: BlockTypeRealm? = null
+//                    if(gameBlocks[y][x].type!=null) {
+//                        type.enumField = gameBlocks[y][x].type!!
+//                    }
+                    gameBlocks[y][x].type?.let {
+                        type = BlockTypeRealm()
+                        type!!.enumField = it
+                    }
+
                     val blockRealm = MapBlockRealm(
                         id = gameBlocks[y][x].id,
                         type = type,

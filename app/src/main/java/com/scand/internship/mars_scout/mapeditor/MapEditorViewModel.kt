@@ -35,6 +35,9 @@ class MapEditorViewModel @Inject constructor(
         get() = _isBlockChosen
 
     init{
+        val id = UUID.randomUUID()
+        _gameMap.value = GameMap(
+            id, id.toString(), GameMap.DEFAULT_SIZE, null)
         _gameMapStatus.value = null
         _typeChosenMapBlock.value = null
         _isBlockChosen.value = false
@@ -65,7 +68,7 @@ class MapEditorViewModel @Inject constructor(
                         2 -> BlockType.PIT
                         else -> BlockType.SAND
                     }
-                    blocksLine.add(MapBlock(("" + x + y).toInt(), type, mutableListOf(x,y)))
+                    blocksLine.add(MapBlock(Random.nextInt(), type, mutableListOf(x,y)))
                 }
                 blocks.add(blocksLine)
             }
@@ -89,13 +92,23 @@ class MapEditorViewModel @Inject constructor(
             _gameMap.value?.size, mutableListOf())
     }
 
-    fun saveMap(map: GameMap){
+    fun putUIMapToModelMap(map: GameMap){
         _gameMap.value = map
     }
 
     fun setMapName(name: String){
         _gameMap.value = GameMap(_gameMap.value?.id ?: UUID.randomUUID(), name,
             _gameMap.value?.size, _gameMap.value?.blocks ?: mutableListOf())
+    }
+
+    fun saveUIMapToModelMap(){
+        _gameMap.value?.let { map ->
+            viewModelScope.launch {
+                mapsRepository.addMap(map).collect {
+                    _gameMapStatus.value = it
+                }
+            }
+        }
     }
 
 }
