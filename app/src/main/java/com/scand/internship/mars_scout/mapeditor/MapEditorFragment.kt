@@ -77,7 +77,7 @@ class MapEditorFragment : Fragment(){
             when (status) {
                 GameMapStatus.Loading -> binding.progress.isVisible = true
                 is GameMapStatus.MapRetrieved -> status.map?.let {
-                    viewModel.putUIMapToModelMap(status.map)
+                    viewModel.putUIMapToModelMap(it)
                     binding.progress.isVisible = false
                     binding.map.isVisible = true
                 }
@@ -105,14 +105,12 @@ class MapEditorFragment : Fragment(){
         }
 
         binding.saveMap.setOnClickListener {
-            var t = gameUIMap
-            var r = viewModel.gameMap.value
             putUIMapToViewModelMap()
-            t = gameUIMap
-            r = viewModel.gameMap.value
-            dialog.show(childFragmentManager, "Save Map dialog")
-            t = gameUIMap
-            r = viewModel.gameMap.value
+            if (viewModel.isEditMode.value == true){
+                viewModel.saveUIMapToModelMap()
+            }else{
+                dialog.show(childFragmentManager, "Save Map dialog")
+            }
         }
 
         binding.groundBlockImg.setOnClickListener {

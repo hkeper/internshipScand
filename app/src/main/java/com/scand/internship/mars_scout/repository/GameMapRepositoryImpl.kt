@@ -37,7 +37,7 @@ class GameMapRepositoryImpl @Inject constructor(
     override fun getMaps(): Flow<GameMapStatus> = flow {
         emit(GameMapStatus.Loading)
         val maps = databaseOperations.retrieveMaps()
-        emit(GameMapStatus.MapsRetrieved(maps))
+        emit(GameMapStatus.MapsRetrieved(maps as MutableList<GameMap>))
     }.flowOn(Dispatchers.IO)
 
     override fun updateMapBlocks(

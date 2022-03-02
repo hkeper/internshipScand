@@ -9,5 +9,5 @@ sealed class GameMapStatus{
     object Deleted : GameMapStatus()
     object Cleared : GameMapStatus()
     data class MapRetrieved(val map: GameMap?) : GameMapStatus()
-    data class MapsRetrieved(val maps: List<GameMap>) : GameMapStatus()
+    data class MapsRetrieved(val maps: MutableList<GameMap>) : GameMapStatus()
 }

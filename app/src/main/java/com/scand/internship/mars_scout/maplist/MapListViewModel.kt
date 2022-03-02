@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
+import kotlin.random.Random
 
 class MapListViewModel @Inject constructor(
     private val mapsRepository: GameMapRepository
@@ -24,8 +25,8 @@ class MapListViewModel @Inject constructor(
 
     private val testMap1 = GameMap("test1")
     private val testMap2 = GameMap(UUID.randomUUID(),"test2", Size(16,16), mutableListOf(
-        mutableListOf(MapBlock(0, BlockType.GROUND, mutableListOf(0,0)),
-            MapBlock(1, BlockType.SAND, mutableListOf(5,3))),
+        mutableListOf(MapBlock(Random.nextInt(), BlockType.GROUND, mutableListOf(0,0)),
+            MapBlock(Random.nextInt(), BlockType.SAND, mutableListOf(5,3))),
     ))
 
     private val _dataLoading = MutableLiveData(false)
@@ -35,9 +36,10 @@ class MapListViewModel @Inject constructor(
     val maps: LiveData<MutableList<GameMap>> = _maps
 
     init{
-        clearDB()
+//        clearDB()
         setDemoData(testMap1)
         setDemoData(testMap2)
+        getMapsListFromDB()
         _maps.value = mutableListOf(testMap1, testMap2)
         _dataLoading.value = false
     }
@@ -56,6 +58,18 @@ class MapListViewModel @Inject constructor(
                 _gameMapStatus.value = it
             }
         }
+    }
+
+    fun getMapsListFromDB(){
+        viewModelScope.launch {
+            mapsRepository.getMaps().collect {
+                _gameMapStatus.value = it
+            }
+        }
+    }
+
+    fun putMapsToViewModelList(DBmaps: MutableList<GameMap>){
+        _maps.value = DBmaps
     }
 
     fun setLoadingToFalse(){

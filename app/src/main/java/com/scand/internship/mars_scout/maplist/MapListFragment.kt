@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.scand.internship.mars_scout.R
 import com.scand.internship.mars_scout.databinding.MapListFragmentBinding
+import com.scand.internship.mars_scout.repository.GameMapStatus
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -42,6 +45,23 @@ class MapListFragment : Fragment() {
         adapter = MapListAdapter()
         recyclerView.adapter = adapter
         val swipeLayout = binding.mapListRefresh
+
+        viewModel.gameMapStatus.observe(viewLifecycleOwner) { status ->
+            binding.progress.isVisible = true
+            binding.mapsRecycler.isVisible = false
+            when (status) {
+                GameMapStatus.Loading -> binding.progress.isVisible = true
+                is GameMapStatus.MapsRetrieved -> {
+                    viewModel.putMapsToViewModelList(status.maps)
+                    binding.progress.isVisible = false
+                    binding.mapsRecycler.isVisible = true
+                }
+                else -> {
+                    binding.progress.isVisible = false
+                    binding.mapsRecycler.isVisible = true
+                }
+            }
+        }
 
         binding.createMap.setOnClickListener {
             this.findNavController().navigate(

@@ -44,19 +44,30 @@
             android:id="@+id/map_list_header"
             android:layout_width="0dp"
             android:layout_height="?actionBarSize"
+            android:layout_marginTop="@dimen/padding_medium"
             android:background="@color/teal_700"
             android:gravity="center_vertical"
-            android:layout_marginTop="@dimen/padding_medium"
             android:paddingStart="@dimen/default_padding"
             android:paddingEnd="@dimen/default_padding"
             android:singleLine="true"
-            android:textSize="@dimen/text_size_medium"
             android:text="@string/created_maps"
             android:textColor="@color/white"
+            android:textSize="@dimen/text_size_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/synchronize_maps"
+            tools:ignore="TextContrastCheck"
             tools:text="@tools:sample/lorem[31]" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/map_list_header" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/map_list_refresh"
