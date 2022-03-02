@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -48,17 +47,17 @@ class MapListFragment : Fragment() {
 
         viewModel.gameMapStatus.observe(viewLifecycleOwner) { status ->
             binding.progress.isVisible = true
-            binding.mapsRecycler.isVisible = false
+            binding.mapListRefresh.isVisible = false
             when (status) {
                 GameMapStatus.Loading -> binding.progress.isVisible = true
                 is GameMapStatus.MapsRetrieved -> {
                     viewModel.putMapsToViewModelList(status.maps)
                     binding.progress.isVisible = false
-                    binding.mapsRecycler.isVisible = true
+                    binding.mapListRefresh.isVisible = true
                 }
                 else -> {
                     binding.progress.isVisible = false
-                    binding.mapsRecycler.isVisible = true
+                    binding.mapListRefresh.isVisible = true
                 }
             }
         }
@@ -66,6 +65,10 @@ class MapListFragment : Fragment() {
         binding.createMap.setOnClickListener {
             this.findNavController().navigate(
                 MapListFragmentDirections.actionMapListFragmentToMapEditorFragment())
+        }
+
+        binding.synchronizeMaps.setOnClickListener {
+            viewModel.getMapsListFromDB()
         }
 
         viewModel.maps.observe(viewLifecycleOwner, {
@@ -104,7 +107,8 @@ class MapListFragment : Fragment() {
             android.R.color.holo_red_light,
             object : SwipeHelper.UnderlayButtonClickListener {
                 override fun onClick() {
-                    viewModel.removeMapAtPosition(position)
+                    viewModel.maps.value?.get(position)
+                        ?.let { viewModel.removeMapAtPosition(position, it.id) }
                     adapter.notifyItemRemoved(position)
                 }
             })
@@ -119,7 +123,8 @@ class MapListFragment : Fragment() {
             object : SwipeHelper.UnderlayButtonClickListener {
                 override fun onClick() {
                     if(!viewModel.maps.value.isNullOrEmpty()){
-                        viewModel.setEditedMapID(viewModel.maps.value!![position].id)
+                        viewModel.maps.value?.get(position)
+                            ?.let { viewModel.setEditedMapID(it.id)}
                         findNavController().navigate(MapListFragmentDirections.actionMapListFragmentToMapEditorFragment())
                     } else {
                         findNavController().navigate(MapListFragmentDirections.actionMapListFragmentToMapEditorFragment())

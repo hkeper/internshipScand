@@ -37,8 +37,9 @@ class MapListViewModel @Inject constructor(
 
     init{
 //        clearDB()
-        setDemoData(testMap1)
-        setDemoData(testMap2)
+        _gameMapStatus.value = GameMapStatus.Loading
+//        setDemoData(testMap1)
+//        setDemoData(testMap2)
         getMapsListFromDB()
         _maps.value = mutableListOf(testMap1, testMap2)
         _dataLoading.value = false
@@ -76,7 +77,12 @@ class MapListViewModel @Inject constructor(
         _dataLoading.value = false
     }
 
-    fun removeMapAtPosition(position: Int){
+    fun removeMapAtPosition(position: Int, mapId: UUID){
+        viewModelScope.launch {
+            mapsRepository.deleteMap(mapId) .collect {
+                _gameMapStatus.value = it
+            }
+        }
         _maps.value?.removeAt(position)
     }
 
