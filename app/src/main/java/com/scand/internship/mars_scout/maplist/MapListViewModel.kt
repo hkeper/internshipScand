@@ -74,6 +74,7 @@ class MapListViewModel @Inject constructor(
     }
 
     fun setLoadingToFalse(){
+        getMapsListFromDB()
         _dataLoading.value = false
     }
 

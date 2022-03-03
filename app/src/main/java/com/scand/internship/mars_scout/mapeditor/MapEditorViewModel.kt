@@ -77,7 +77,13 @@ class MapEditorViewModel @Inject constructor(
                 }
                 blocks.add(blocksLine)
             }
-            _gameMap.value = GameMap(id, id.toString(), mapSize, blocks)
+            if(_isEditMode.value == true) {
+                _gameMap.value = GameMap(_gameMap.value?.id ?: id,
+                    _gameMap.value?.name ?: id.toString(),
+                    _gameMap.value?.size, blocks)
+            }else{
+                _gameMap.value = GameMap(id, id.toString(), mapSize, blocks)
+            }
         }
     }
 
