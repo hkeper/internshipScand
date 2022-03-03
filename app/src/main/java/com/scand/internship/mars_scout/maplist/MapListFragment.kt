@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -45,6 +46,8 @@ class MapListFragment : Fragment() {
         recyclerView.adapter = adapter
         val swipeLayout = binding.mapListRefresh
 
+        viewModel.getMapsListFromDB()
+
         viewModel.gameMapStatus.observe(viewLifecycleOwner) { status ->
             binding.progress.isVisible = true
             binding.mapListRefresh.isVisible = false
@@ -72,7 +75,12 @@ class MapListFragment : Fragment() {
         }
 
         viewModel.maps.observe(viewLifecycleOwner, {
-            it?.let {
+            if(it.isNullOrEmpty()){
+                binding.mapListRefresh.isVisible = false
+                binding.messageEmptyMapList.isVisible = true
+            }else {
+                binding.mapListRefresh.isVisible = true
+                binding.messageEmptyMapList.isVisible = false
                 adapter.submitList(it)
             }
         })

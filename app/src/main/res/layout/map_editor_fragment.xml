@@ -61,16 +61,36 @@
             app:layout_constraintTop_toBottomOf="@+id/generate_map" />
 
         <LinearLayout
-            android:id="@+id/map"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/lower_guideline"
+            app:layout_constraintBottom_toBottomOf="@+id/lower_guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/generate_map" />
+            app:layout_constraintTop_toBottomOf="@+id/generate_map" >
 
+            <HorizontalScrollView
+                android:id="@+id/scroll_one"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/padding_medium" >
+
+                <ScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true" >
+
+                    <LinearLayout
+                        android:id="@+id/map"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical" />
+
+                </ScrollView>
+            </HorizontalScrollView>
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/lower_guideline"

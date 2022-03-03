@@ -23,12 +23,6 @@ class MapListViewModel @Inject constructor(
             return _gameMapStatus
         }
 
-    private val testMap1 = GameMap("test1")
-    private val testMap2 = GameMap(UUID.randomUUID(),"test2", Size(16,16), mutableListOf(
-        mutableListOf(MapBlock(Random.nextInt(), BlockType.GROUND, mutableListOf(0,0)),
-            MapBlock(Random.nextInt(), BlockType.SAND, mutableListOf(5,3))),
-    ))
-
     private val _dataLoading = MutableLiveData(false)
     val dataLoading: LiveData<Boolean> = _dataLoading
 
@@ -38,19 +32,8 @@ class MapListViewModel @Inject constructor(
     init{
 //        clearDB()
         _gameMapStatus.value = GameMapStatus.Loading
-//        setDemoData(testMap1)
-//        setDemoData(testMap2)
         getMapsListFromDB()
-        _maps.value = mutableListOf(testMap1, testMap2)
         _dataLoading.value = false
-    }
-
-    private fun setDemoData(map: GameMap){
-        viewModelScope.launch {
-            mapsRepository.addMap(map).collect{
-                _gameMapStatus.value = it
-            }
-        }
     }
 
     private fun clearDB(){
