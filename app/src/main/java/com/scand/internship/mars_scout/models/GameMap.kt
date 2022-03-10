@@ -5,8 +5,6 @@ import android.util.Size
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
-val DEFAULT_SIZE = Size(16,16)
-
 @Parcelize
 data class GameMap(
     val id: UUID = UUID.randomUUID(),
@@ -21,4 +19,16 @@ data class GameMap(
         val DEFAULT_SIZE = Size(16,16)
     }
 }
+
+data class MapResponse(val id: String = "",
+                       val name: String = "",
+                       val size: String = "",)
+
+fun MapResponse.isValid() = id.isNotBlank()
+        && name.isNotBlank()
+        && size.isNotBlank()
+
+fun MapResponse.mapToMap() = GameMap(
+    UUID.fromString(id), name, Size.parseSize(size)
+)
 

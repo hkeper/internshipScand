@@ -12,6 +12,7 @@ buildscript {
         version_fragment = '1.4.0'
         version_realm = '10.10.1'
         version_dagger = '2.40.5'
+        version_google_services = '4.3.10'
     }
 
     repositories {
@@ -24,6 +25,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-serialization:$version_kotlin"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$version_navigation"
         classpath "io.realm:realm-gradle-plugin:$version_realm"
+        classpath "com.google.gms:google-services:$version_google_services"
     }
 }
 

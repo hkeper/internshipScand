@@ -89,7 +89,6 @@
 
                 </ScrollView>
             </HorizontalScrollView>
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
         </LinearLayout>
 
         <androidx.constraintlayout.widget.Guideline

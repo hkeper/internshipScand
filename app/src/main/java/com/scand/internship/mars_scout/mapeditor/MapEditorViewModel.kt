@@ -2,6 +2,7 @@ package com.scand.internship.mars_scout.mapeditor
 
 import android.util.Size
 import androidx.lifecycle.*
+import com.scand.internship.mars_scout.firebase.FirebaseDatabaseInterface
 import com.scand.internship.mars_scout.models.GameMap
 import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.MapBlock
@@ -15,7 +16,8 @@ import kotlin.random.Random
 
 
 class MapEditorViewModel @Inject constructor(
-    private val mapsRepository: GameMapRepository
+    private val mapsRepository: GameMapRepository,
+    private val firebaseDB: FirebaseDatabaseInterface
 ) : ViewModel() {
 
     private val _gameMapStatus = MutableLiveData<GameMapStatus?>()
@@ -119,6 +121,8 @@ class MapEditorViewModel @Inject constructor(
                     _gameMapStatus.value = it
                 }
             }
+            firebaseDB.addMap(map)
+
         }
     }
 
