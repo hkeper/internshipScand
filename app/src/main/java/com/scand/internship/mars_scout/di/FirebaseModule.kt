@@ -10,5 +10,6 @@ class FirebaseModule {
 
     @Provides
     @Singleton
-    fun firebaseDatabase(): FirebaseDatabase = FirebaseDatabase.getInstance()
+    fun firebaseDatabase(): FirebaseDatabase = FirebaseDatabase.getInstance("https://mars-scout-3e47a-default-rtdb.firebaseio.com")
+
 }

@@ -122,7 +122,6 @@ class MapEditorViewModel @Inject constructor(
                 }
             }
             firebaseDB.addMap(map)
-
         }
     }
 

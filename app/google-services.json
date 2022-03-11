@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "784228609958",
-    "firebase_url": "https://mars-scout-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "mars-scout",
-    "storage_bucket": "mars-scout.appspot.com"
+    "project_number": "406747413812",
+    "firebase_url": "https://mars-scout-3e47a-default-rtdb.firebaseio.com",
+    "project_id": "mars-scout-3e47a",
+    "storage_bucket": "mars-scout-3e47a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:784228609958:android:e96ee4b43c90043927e967",
+        "mobilesdk_app_id": "1:406747413812:android:d6d603d5eb2a955672f961",
         "android_client_info": {
           "package_name": "com.scand.internship.mars_scout"
         }
       },
       "oauth_client": [
         {
-          "client_id": "784228609958-1hs0r91llam8o1mll9e5u2hu4qf8hag9.apps.googleusercontent.com",
+          "client_id": "406747413812-m0updu63tlltev7kfppd38e9tm0rgc28.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAB4SUVzRzHWE6zQ6GUBkhxYWCXF943cww"
+          "current_key": "AIzaSyB9z9HuSQE8Y2Dk8BfxrWYqW_fn2qiVSdY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "784228609958-1hs0r91llam8o1mll9e5u2hu4qf8hag9.apps.googleusercontent.com",
+              "client_id": "406747413812-m0updu63tlltev7kfppd38e9tm0rgc28.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
