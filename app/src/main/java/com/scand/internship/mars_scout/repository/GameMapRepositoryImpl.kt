@@ -1,5 +1,6 @@
 package com.scand.internship.mars_scout.repository
 
+import com.scand.internship.mars_scout.firebase.FirebaseDatabaseInterface
 import com.scand.internship.mars_scout.models.GameMap
 import com.scand.internship.mars_scout.models.MapBlock
 import com.scand.internship.mars_scout.realm.GameMapDatabaseOperations
@@ -11,7 +12,8 @@ import java.util.*
 import javax.inject.Inject
 
 class GameMapRepositoryImpl @Inject constructor(
-    private val databaseOperations: GameMapDatabaseOperations
+    private val databaseOperations: GameMapDatabaseOperations,
+    private val firebaseDB: FirebaseDatabaseInterface
 ): GameMapRepository {
 
     override var editedMapID: UUID? = null
@@ -25,6 +27,7 @@ class GameMapRepositoryImpl @Inject constructor(
     override fun addMap(gameMap: GameMap): Flow<GameMapStatus> = flow {
         emit(GameMapStatus.Loading)
         databaseOperations.insertMap(gameMap)
+        firebaseDB.addMap(gameMap)
         emit(GameMapStatus.Added)
     }.flowOn(Dispatchers.IO)
 
@@ -36,8 +39,19 @@ class GameMapRepositoryImpl @Inject constructor(
 
     override fun getMaps(): Flow<GameMapStatus> = flow {
         emit(GameMapStatus.Loading)
-        val maps = databaseOperations.retrieveMaps()
-        emit(GameMapStatus.MapsRetrieved(maps as MutableList<GameMap>))
+        val mapsDB = databaseOperations.retrieveMaps().toMutableList()
+        var mapsNet: List<GameMap> = listOf()
+        firebaseDB.getMapsList(){
+            mapsNet = it
+        }
+        for (DBItem in mapsDB){
+            for (netItem in mapsNet) {
+                if (DBItem.id != netItem.id) {
+                    mapsDB.add(netItem)
+                }
+            }
+        }
+        emit(GameMapStatus.MapsRetrieved(mapsDB))
     }.flowOn(Dispatchers.IO)
 
     override fun updateMapBlocks(
@@ -46,20 +60,28 @@ class GameMapRepositoryImpl @Inject constructor(
     ): Flow<GameMapStatus> = flow {
         emit(GameMapStatus.Loading)
         databaseOperations.updateMapBlocks(id, blocks)
+        val gameMap = databaseOperations.retrieveMap(id)
+        if (gameMap != null) {
+            firebaseDB.addMap(gameMap)
+        }
         emit(GameMapStatus.BlocksAdded)
     }.flowOn(Dispatchers.IO)
 
     override fun deleteMap(id: UUID): Flow<GameMapStatus> = flow {
         emit(GameMapStatus.Loading)
         databaseOperations.removeMap(id)
+        firebaseDB.deleteMap(id)
         emit(GameMapStatus.Deleted)
     }.flowOn(Dispatchers.IO)
 
     override fun clearDB(): Flow<GameMapStatus> = flow {
         emit(GameMapStatus.Loading)
         databaseOperations.clearDB()
+        firebaseDB.clearDB()
         emit(GameMapStatus.Cleared)
     }.flowOn(Dispatchers.IO)
+
+
 
 }
 

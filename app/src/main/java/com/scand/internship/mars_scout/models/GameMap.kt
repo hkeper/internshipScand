@@ -22,44 +22,37 @@ data class GameMap constructor(
 
 data class MapResponse(val id: String = "",
                        val name: String = "",
-                       val size: Size? = null,
-                       val blocks: MutableList<MutableList<MapBlockDB>>? = null)
+                       val size: Map<String, Int>? = null,)
+
+fun MapResponse.mapResponseToMapUI(): GameMap {
+    var sizeMap: Size? = null
+
+    if(!size.isNullOrEmpty()) {
+        val width = size["width"]
+        val height = size["height"]
+
+        if (width != null && height != null) {
+            sizeMap = Size(width, height)
+        }
+    }
+
+    return GameMap(UUID.fromString(id), name, sizeMap, null )
+}
 
 fun MapResponse.isValid() = id.isNotBlank()
         && name.isNotBlank()
 
-fun MapResponse.mapToUIMap() = GameMap(
-    UUID.fromString(id), name, size, blocks?.let { mapDBBlocksToUI(it) }
-)
+data class MapDB(val id: String = "",
+                 val name: String = "",
+                 val size: Map<String, Int>? = null,
+                 val blocks: MutableList<MutableList<MapBlock>>? = null,)
 
-fun GameMap.mapToResponseMap() = MapResponse(
-        id.toString(), name, size, blocks?.let { mapUIBlocksToDB(it) }
-    )
+fun GameMap.mapToMapDB(): MapDB {
+    var sizeResponse: Map<String, Int>? = null
 
-private fun mapUIBlocksToDB(blocks: MutableList<MutableList<MapBlock>>): MutableList<MutableList<MapBlockDB>>{
-
-    val mappedBlocks: MutableList<MutableList<MapBlockDB>> = mutableListOf()
-
-    for (y in 0 until blocks.size) {
-        val blocksLine = mutableListOf<MapBlockDB>()
-        for (x in 0 until blocks[y].size) {
-            blocksLine.add(blocks[y][x].mapToDBBlock())
-        }
-        mappedBlocks.add(blocksLine)
+    if (size != null) {
+        sizeResponse = mapOf("width" to size.width, "height" to size.height)
     }
-    return mappedBlocks
+    return MapDB(id.toString(), name, sizeResponse, blocks)
 }
 
-private fun mapDBBlocksToUI(blocks: MutableList<MutableList<MapBlockDB>>): MutableList<MutableList<MapBlock>>{
-
-    val mappedBlocks: MutableList<MutableList<MapBlock>> = mutableListOf()
-
-    for (y in 0 until blocks.size) {
-        val blocksLine = mutableListOf<MapBlock>()
-        for (x in 0 until blocks[y].size) {
-            blocksLine.add(blocks[y][x].mapToUIBlock())
-        }
-        mappedBlocks.add(blocksLine)
-    }
-    return mappedBlocks
-}

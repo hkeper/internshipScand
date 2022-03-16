@@ -11,18 +11,16 @@ data class MapBlock(
     val coordinates: MutableList<Int>? = null,
 ) : Parcelable
 
-data class MapBlockDB(
+data class MapBlockResponse(
     val id: Int,
     val type: String? = null,
-    val coordinates: MutableList<Int>? = null,
+    val coordinates: ArrayList<Int>? = null,
 )
+{
+    constructor() : this(Random.nextInt())
+}
 
-fun MapBlockDB.mapToUIBlock() = MapBlock(
-    id, type?.let { BlockType.valueOf(it) }, coordinates
+fun MapBlockResponse.mapToUIBlock() = MapBlock(
+    id, type?.let { BlockType.valueOf(it) }, coordinates?.toMutableList()
 )
-
-fun MapBlock.mapToDBBlock() = MapBlockDB(
-        id, type?.name, coordinates
-    )
-
 

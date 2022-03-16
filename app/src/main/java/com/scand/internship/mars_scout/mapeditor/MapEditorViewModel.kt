@@ -16,8 +16,7 @@ import kotlin.random.Random
 
 
 class MapEditorViewModel @Inject constructor(
-    private val mapsRepository: GameMapRepository,
-    private val firebaseDB: FirebaseDatabaseInterface
+    private val mapsRepository: GameMapRepository
 ) : ViewModel() {
 
     private val _gameMapStatus = MutableLiveData<GameMapStatus?>()
@@ -121,7 +120,6 @@ class MapEditorViewModel @Inject constructor(
                     _gameMapStatus.value = it
                 }
             }
-            firebaseDB.addMap(map)
         }
     }
 

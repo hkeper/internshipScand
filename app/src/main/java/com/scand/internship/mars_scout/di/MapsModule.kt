@@ -1,5 +1,6 @@
 package com.scand.internship.mars_scout.di
 
+import com.scand.internship.mars_scout.firebase.FirebaseDatabaseManager
 import com.scand.internship.mars_scout.realm.GameMapDatabaseOperations
 import com.scand.internship.mars_scout.repository.GameMapRepository
 import com.scand.internship.mars_scout.repository.GameMapRepositoryImpl
@@ -23,7 +24,7 @@ class MapsModule {
 
     @Singleton
     @Provides
-    fun providesMapsRepository(databaseOperations: GameMapDatabaseOperations): GameMapRepository =
-        GameMapRepositoryImpl(databaseOperations)
+    fun providesMapsRepository(databaseOperations: GameMapDatabaseOperations, firebase: FirebaseDatabaseManager): GameMapRepository =
+        GameMapRepositoryImpl(databaseOperations, firebase)
 
 }
