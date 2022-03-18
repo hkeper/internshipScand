@@ -37,19 +37,32 @@ class GameMapRepositoryImpl @Inject constructor(
         emit(GameMapStatus.MapRetrieved(gameMap))
     }.flowOn(Dispatchers.IO)
 
+
+    // Make sure that all maps from local db appears on the screen and in the firebase realtime
     override fun getMaps(): Flow<GameMapStatus> = flow {
         emit(GameMapStatus.Loading)
-        val mapsDB = databaseOperations.retrieveMaps().toMutableList()
-        var mapsNet: List<GameMap> = listOf()
+        var mapsNet: MutableList<GameMap> = mutableListOf()
         firebaseDB.getMapsList(){
-            mapsNet = it
+            mapsNet = it.toMutableList()
+        }
+        var mapsDB = databaseOperations.retrieveMaps().toMutableList()
+
+        if(mapsDB.isNullOrEmpty()){
+            mapsDB.addAll(mapsNet)
+        }
+        if(mapsNet.isNullOrEmpty()){
+            mapsNet.addAll(mapsDB)
         }
         for (DBItem in mapsDB){
             for (netItem in mapsNet) {
                 if (DBItem.id != netItem.id) {
-                    mapsDB.add(netItem)
+                    databaseOperations.insertMap(netItem)
                 }
             }
+        }
+        mapsDB = databaseOperations.retrieveMaps().toMutableList()
+        for (DBItem in mapsDB){
+            firebaseDB.addMap(DBItem)
         }
         emit(GameMapStatus.MapsRetrieved(mapsDB))
     }.flowOn(Dispatchers.IO)

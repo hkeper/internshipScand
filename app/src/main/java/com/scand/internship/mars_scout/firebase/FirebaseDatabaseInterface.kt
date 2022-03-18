@@ -11,7 +11,7 @@ interface FirebaseDatabaseInterface {
 
     fun deleteMap(id: UUID)
 
-    fun getMapsList(onResult: (List<GameMap>) -> Unit)
+    suspend fun getMapsList(onResult: (List<GameMap>) -> Unit)
 
     fun clearDB()
 

@@ -15,8 +15,7 @@ import javax.inject.Inject
 import kotlin.random.Random
 
 class MapListViewModel @Inject constructor(
-    private val mapsRepository: GameMapRepository,
-    private val firebaseDB: FirebaseDatabaseInterface
+    private val mapsRepository: GameMapRepository
 ) : ViewModel() {
 
     private val _gameMapStatus = MutableLiveData<GameMapStatus>()
@@ -57,15 +56,6 @@ class MapListViewModel @Inject constructor(
 
     fun putMapsToViewModelList(DBmaps: MutableList<GameMap>){
         _maps.value = DBmaps
-
-        firebaseDB.getMap(UUID.fromString("f3f534c9-a28d-4f51-88a5-b684abe2716b")){ map ->
-            _maps.value?.add(map)
-            viewModelScope.launch {
-                mapsRepository.addMap(map).collect {
-                    _gameMapStatus.value = it
-                }
-            }
-        }
     }
 
     fun setLoadingToFalse(){

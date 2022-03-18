@@ -43,11 +43,13 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
                             blocksUI.add(blockLineUI)
                         }
 
-                    val mapUI = map?.mapResponseToMapUI()
+                    if (map != null) {
+                        if (map.isValid()) {
+                            val mapUI = map.mapResponseToMapUI()
 
-                    map?.run {
-                        if (mapUI != null) {
-                            onResult(GameMap(mapUI.id, mapUI.name, mapUI.size, blocksUI))
+                            map.run {
+                                onResult(GameMap(mapUI.id, mapUI.name, mapUI.size, blocksUI))
+                            }
                         }
                     }
                 }
@@ -62,7 +64,7 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
             .removeValue()
     }
 
-    override fun getMapsList(onResult: (List<GameMap>) -> Unit) {
+    override suspend fun getMapsList(onResult: (List<GameMap>) -> Unit) {
         val list = mutableListOf<GameMap>()
 
          database.reference

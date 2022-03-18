@@ -2,7 +2,6 @@ package com.scand.internship.mars_scout.mapeditor
 
 import android.util.Size
 import androidx.lifecycle.*
-import com.scand.internship.mars_scout.firebase.FirebaseDatabaseInterface
 import com.scand.internship.mars_scout.models.GameMap
 import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.MapBlock

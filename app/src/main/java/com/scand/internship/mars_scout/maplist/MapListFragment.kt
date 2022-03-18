@@ -77,6 +77,7 @@ class MapListFragment : Fragment() {
             if(it.isNullOrEmpty()){
                 binding.mapListRefresh.isVisible = false
                 binding.messageEmptyMapList.isVisible = true
+                adapter.submitList(it)
             }else {
                 binding.mapListRefresh.isVisible = true
                 binding.messageEmptyMapList.isVisible = false
