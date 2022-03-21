@@ -80,7 +80,7 @@ abstract class SwipeHelper (
         isCurrentlyActive: Boolean
     ) {
         val position = viewHolder.adapterPosition
-        var maxDX = dX
+        var maxDX: Float
         val itemView = viewHolder.itemView
         val isCanceled = dX == 0f && !isCurrentlyActive
 

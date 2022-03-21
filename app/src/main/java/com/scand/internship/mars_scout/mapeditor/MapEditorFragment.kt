@@ -23,7 +23,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.scand.internship.mars_scout.models.GameMap
 import com.scand.internship.mars_scout.repository.GameMapStatus
 import dagger.android.support.AndroidSupportInjection
-import java.util.*
 import javax.inject.Inject
 import kotlin.random.Random
 
@@ -65,6 +64,7 @@ class MapEditorFragment : Fragment(){
             it?.let {
                 gameUIMap = it
                 setIDAndImagesForMapBlocks(gameUIMap)
+                setStartPoint()
             }
         }
 
@@ -169,7 +169,7 @@ class MapEditorFragment : Fragment(){
                         listUIMapBlocks[bY][bX].id = b.id
                         listUIMapBlocks[bY][bX].contentDescription = b.type.toString()
                         val img: Drawable? = setImageAccordingToType(b.type)
-                        listUIMapBlocks[bY][bX].setImageDrawable(img)
+                        listUIMapBlocks[bY][bX].background = img
                     }
                 }
             }
@@ -356,6 +356,16 @@ class MapEditorFragment : Fragment(){
             blocks.add(blocksLine)
         }
         viewModel.putUIMapToModelMap(GameMap(gameUIMap.id, gameUIMap.name, gameUIMap.size, blocks))
+    }
+
+    private fun setStartPoint(){
+        var start = 0
+        gameUIMap.size?.let{
+            start = gameUIMap.size!!.height / 2
+        }
+        listUIMapBlocks[start][0].setImageResource(R.drawable.start)
+        listUIMapBlocks[start][gameUIMap.size?.width!!-1].setImageResource(R.drawable.finish)
+
     }
 
 }

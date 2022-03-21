@@ -13,10 +13,13 @@
         <entry key="..\:/Android/internship/Mars_Scout/app/src/main/res/layout/map_editor_fragment1.xml" value="0.2346014492753623" />
         <entry key="..\:/Android/internship/Mars_Scout/app/src/main/res/layout/map_list_fragment.xml" value="0.23278985507246377" />
         <entry key="..\:/Android/internship/Mars_Scout/app/src/main/res/layout/viewholder_map_list.xml" value="0.536" />
+        <entry key="..\:/work/Android/Internship/internshipScand/app/src/main/res/layout/map_editor_fragment.xml" value="0.14855072463768115" />
+        <entry key="..\:/work/Android/Internship/internshipScand/app/src/main/res/layout/map_list_fragment.xml" value="0.14855072463768115" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
