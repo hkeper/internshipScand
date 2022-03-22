@@ -170,6 +170,7 @@ class MapEditorFragment : Fragment(){
                         listUIMapBlocks[bY][bX].contentDescription = b.type.toString()
                         val img: Drawable? = setImageAccordingToType(b.type)
                         listUIMapBlocks[bY][bX].background = img
+//                        listUIMapBlocks[bY][bX].setImageDrawable(img)
                     }
                 }
             }
