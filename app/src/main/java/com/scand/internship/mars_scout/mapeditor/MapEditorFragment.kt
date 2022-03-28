@@ -22,6 +22,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.scand.internship.mars_scout.models.GameMap
 import com.scand.internship.mars_scout.repository.GameMapStatus
+import com.scand.internship.mars_scout.utils.find_path.findPath
+import com.scand.internship.mars_scout.utils.find_path.setStartPointUtil
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 import kotlin.random.Random
@@ -111,6 +113,10 @@ class MapEditorFragment : Fragment(){
             }else{
                 dialog.show(childFragmentManager, "Save Map dialog")
             }
+        }
+
+        binding.findWay.setOnClickListener {
+            findPath(gameUIMap)
         }
 
         binding.groundBlockImg.setOnClickListener {
@@ -270,14 +276,22 @@ class MapEditorFragment : Fragment(){
                 return@setOnTouchListener when (event?.action) {
                     MotionEvent.ACTION_DOWN -> {
                         getImageViewMapBlockThatInsideMap(event, viewModel.typeChosenMapBlock.value).
-                        setImageDrawable(
-                            setImageAccordingToType(viewModel.typeChosenMapBlock.value))
+                            background = setImageAccordingToType(viewModel.typeChosenMapBlock.value)
                         true
                     }
                     MotionEvent.ACTION_MOVE -> {
                         getImageViewMapBlockThatInsideMap(event, viewModel.typeChosenMapBlock.value).
-                        setImageDrawable(
-                            setImageAccordingToType(viewModel.typeChosenMapBlock.value))
+                            background = setImageAccordingToType(viewModel.typeChosenMapBlock.value)
+                        true
+                    }
+                    MotionEvent.ACTION_UP -> {
+                        getImageViewMapBlockThatInsideMap(event, viewModel.typeChosenMapBlock.value).
+                            background = setImageAccordingToType(viewModel.typeChosenMapBlock.value)
+                        true
+                    }
+                    MotionEvent.ACTION_CANCEL -> {
+                        getImageViewMapBlockThatInsideMap(event, viewModel.typeChosenMapBlock.value).
+                            background = setImageAccordingToType(viewModel.typeChosenMapBlock.value)
                         true
                     }
                     else -> false
@@ -290,7 +304,6 @@ class MapEditorFragment : Fragment(){
     // V shall be the subclass i.e. the subView declared in onCreate function
     // This functions confirms the dimensions of the view (subView in out program)
     private fun isInside(v: View, e: MotionEvent): Boolean {
-
         val viewCoordinates = IntArray(2)
         v.getLocationOnScreen(viewCoordinates)
         val x = e.rawX
@@ -322,7 +335,8 @@ class MapEditorFragment : Fragment(){
 
             for (x in 0 until listUIMapBlocks[y].size) {
 
-                listUIMapBlocks[y][x].setImageDrawable(null)
+//                listUIMapBlocks[y][x].setImageDrawable(null)
+                listUIMapBlocks[y][x].setBackgroundResource(R.drawable.border)
                 listUIMapBlocks[y][x].contentDescription = ""
 
             }
@@ -360,13 +374,17 @@ class MapEditorFragment : Fragment(){
     }
 
     private fun setStartPoint(){
-        var start = 0
-        gameUIMap.size?.let{
-            start = gameUIMap.size!!.height / 2
-        }
-        listUIMapBlocks[start][0].setImageResource(R.drawable.start)
-        listUIMapBlocks[start][gameUIMap.size?.width!!-1].setImageResource(R.drawable.finish)
+        val start = setStartPointUtil(gameUIMap)
+        val img: Drawable? = ResourcesCompat.getDrawable(
+            resources,
+            R.drawable.ground,
+            null
+        )
 
+        listUIMapBlocks[0][start].background = img
+        listUIMapBlocks[0][start].setImageResource(R.drawable.start)
+        listUIMapBlocks[gameUIMap.size?.height!!-1][start].background = img
+        listUIMapBlocks[gameUIMap.size?.height!!-1][start].setImageResource(R.drawable.finish)
     }
 
 }

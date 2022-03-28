@@ -23,4 +23,6 @@
     <string name="size_label">Size:</string>
     <string name="block_image">Block image</string>
     <string name="no_maps_found">No maps found.</string>
+    <string name="find_way">Find Way</string>
+    <string name="new_map">New Map</string>
 </resources>

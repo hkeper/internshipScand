@@ -50,6 +50,30 @@
             app:layout_constraintStart_toEndOf="@+id/save_map"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:id="@+id/find_way"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_medium"
+            android:backgroundTint="?colorSecondaryVariant"
+            android:text="@string/find_way"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/new_map"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/generate_map" />
+
+        <Button
+            android:id="@+id/new_map"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_medium"
+            android:backgroundTint="?colorSecondaryVariant"
+            android:text="@string/new_map"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/find_way"
+            app:layout_constraintTop_toBottomOf="@+id/generate_map" />
+
         <ProgressBar
             android:id="@+id/progress"
             android:layout_width="wrap_content"
@@ -58,27 +82,30 @@
             app:layout_constraintBottom_toTopOf="@+id/lower_guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/generate_map" />
+            app:layout_constraintTop_toBottomOf="@+id/find_way" />
 
         <LinearLayout
+            android:id="@+id/map_container"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="@+id/lower_guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/generate_map" >
+            app:layout_constraintTop_toBottomOf="@+id/find_way">
 
             <HorizontalScrollView
-                android:id="@+id/scroll_one"
+                android:id="@+id/scroll_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="@dimen/padding_medium" >
+                android:padding="@dimen/padding_medium"
+                tools:ignore="UselessParent">
 
                 <ScrollView
+                    android:id="@+id/scroll_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:fillViewport="true" >
+                    android:fillViewport="true">
 
                     <LinearLayout
                         android:id="@+id/map"
@@ -128,6 +155,7 @@
                 android:layout_width="@dimen/block_choose_size"
                 android:layout_height="@dimen/block_choose_size"
                 android:background="@color/white"
+                android:contentDescription="@string/block_image"
                 android:padding="@dimen/padding_smallest"
                 android:src="@drawable/ground"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -135,8 +163,7 @@
                 app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/choose_block_text"
-                app:layout_constraintVertical_bias="0.21"
-                android:contentDescription="@string/block_image" />
+                app:layout_constraintVertical_bias="0.21" />
 
             <TextView
                 android:id="@+id/ground_block_desc"
@@ -155,14 +182,14 @@
                 android:layout_width="@dimen/block_choose_size"
                 android:layout_height="@dimen/block_choose_size"
                 android:background="@color/white"
+                android:contentDescription="@string/block_image"
                 android:padding="@dimen/padding_smallest"
                 android:src="@drawable/sand"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ground_block_img"
                 app:layout_constraintTop_toBottomOf="@+id/choose_block_text"
-                app:layout_constraintVertical_bias="0.21"
-                android:contentDescription="@string/block_image" />
+                app:layout_constraintVertical_bias="0.21" />
 
             <TextView
                 android:id="@+id/sand_block_desc"
@@ -179,14 +206,14 @@
                 android:layout_width="@dimen/block_choose_size"
                 android:layout_height="@dimen/block_choose_size"
                 android:background="@color/white"
+                android:contentDescription="@string/block_image"
                 android:padding="@dimen/padding_smallest"
                 android:src="@drawable/pit"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ground_block_img"
-                android:contentDescription="@string/block_image" />
+                app:layout_constraintTop_toBottomOf="@+id/ground_block_img" />
 
             <TextView
                 android:id="@+id/pit_block_desc"
@@ -205,13 +232,13 @@
                 android:layout_width="@dimen/block_choose_size"
                 android:layout_height="@dimen/block_choose_size"
                 android:background="@color/white"
+                android:contentDescription="@string/block_image"
                 android:padding="@dimen/padding_smallest"
                 android:src="@drawable/hill"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/pit_block_img"
-                app:layout_constraintTop_toBottomOf="@+id/sand_block_img"
-                android:contentDescription="@string/block_image" />
+                app:layout_constraintTop_toBottomOf="@+id/sand_block_img" />
 
             <TextView
                 android:id="@+id/hill_block_desc"
