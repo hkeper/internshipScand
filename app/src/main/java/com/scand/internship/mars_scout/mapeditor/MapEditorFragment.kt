@@ -17,7 +17,7 @@ import com.scand.internship.mars_scout.databinding.MapEditorFragmentBinding
 import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.MapBlock
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
+import androidx.core.view.*
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.scand.internship.mars_scout.models.GameMap
@@ -57,6 +57,7 @@ class MapEditorFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         binding.viewModel = viewModel
+        viewModel.gameMap.value?.let {gameUIMap = it }
 
         generateUIGameMap(GameMap.DEFAULT_SIZE)
         getImageViewMapBlocks()
@@ -176,7 +177,6 @@ class MapEditorFragment : Fragment(){
                         listUIMapBlocks[bY][bX].contentDescription = b.type.toString()
                         val img: Drawable? = setImageAccordingToType(b.type)
                         listUIMapBlocks[bY][bX].background = img
-//                        listUIMapBlocks[bY][bX].setImageDrawable(img)
                     }
                 }
             }
@@ -232,7 +232,11 @@ class MapEditorFragment : Fragment(){
                 R.drawable.ground,
                 null
             )
-            else -> null
+            else -> ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.border,
+                null
+            )
         }
     }
 
@@ -240,13 +244,10 @@ class MapEditorFragment : Fragment(){
         val chooseBlock = binding.chooseBlockSection
 
         for (i in 0 until chooseBlock.childCount) {
-
             val subView: View = chooseBlock.getChildAt(i)
 
             if (subView is ImageView) {
-
                 listChooseMapBlockTypes.add(subView)
-
             }
         }
     }
@@ -268,7 +269,6 @@ class MapEditorFragment : Fragment(){
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setTouchOnMapView(){
-
         val mapView = binding.map
 
         mapView.setOnTouchListener { v, event ->
@@ -277,11 +277,13 @@ class MapEditorFragment : Fragment(){
                     MotionEvent.ACTION_DOWN -> {
                         getImageViewMapBlockThatInsideMap(event, viewModel.typeChosenMapBlock.value).
                             background = setImageAccordingToType(viewModel.typeChosenMapBlock.value)
+                        putUIMapToViewModelMap()
                         true
                     }
                     MotionEvent.ACTION_MOVE -> {
                         getImageViewMapBlockThatInsideMap(event, viewModel.typeChosenMapBlock.value).
                             background = setImageAccordingToType(viewModel.typeChosenMapBlock.value)
+                        putUIMapToViewModelMap()
                         true
                     }
                     MotionEvent.ACTION_UP -> {
@@ -322,6 +324,9 @@ class MapEditorFragment : Fragment(){
                 if (isInside(listUIMapBlocks[y][x], e)) {
                     listUIMapBlocks[y][x].id = Random.nextInt()
                     listUIMapBlocks[y][x].contentDescription = type.toString()
+
+                    listUIMapBlocks[y][x].background = setImageAccordingToType(type)
+
                     return listUIMapBlocks[y][x]
                 }
             }
@@ -334,21 +339,16 @@ class MapEditorFragment : Fragment(){
         for (y in 0 until listUIMapBlocks.size) {
 
             for (x in 0 until listUIMapBlocks[y].size) {
-
-//                listUIMapBlocks[y][x].setImageDrawable(null)
                 listUIMapBlocks[y][x].setBackgroundResource(R.drawable.border)
                 listUIMapBlocks[y][x].contentDescription = ""
-
             }
         }
     }
 
     private fun putUIMapToViewModelMap(){
-
         val blocks : MutableList<MutableList<MapBlock>> = mutableListOf()
 
         for (y in 0 until listUIMapBlocks.size) {
-
             val blocksLine = mutableListOf<MapBlock>()
 
             for (x in 0 until listUIMapBlocks[y].size) {
@@ -363,6 +363,7 @@ class MapEditorFragment : Fragment(){
                         )
                     )
                 } else {
+                    listUIMapBlocks[y][x].setBackgroundResource(R.drawable.border)
                     blocksLine.add(
                         MapBlock(Random.nextInt(), null, mutableListOf(x,y))
                     )
@@ -380,11 +381,16 @@ class MapEditorFragment : Fragment(){
             R.drawable.ground,
             null
         )
+        val lastLine = gameUIMap.size?.height?.minus(1) ?: 0
 
+        if(!gameUIMap.blocks.isNullOrEmpty()) {
+            gameUIMap.blocks?.get(0)?.get(start)?.type = BlockType.GROUND
+            gameUIMap.blocks?.get(lastLine)?.get(start)?.type = BlockType.GROUND
+        }
         listUIMapBlocks[0][start].background = img
         listUIMapBlocks[0][start].setImageResource(R.drawable.start)
-        listUIMapBlocks[gameUIMap.size?.height!!-1][start].background = img
-        listUIMapBlocks[gameUIMap.size?.height!!-1][start].setImageResource(R.drawable.finish)
+        listUIMapBlocks[lastLine][start].background = img
+        listUIMapBlocks[lastLine][start].setImageResource(R.drawable.finish)
     }
 
 }

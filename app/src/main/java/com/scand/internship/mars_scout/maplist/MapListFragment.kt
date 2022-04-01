@@ -73,17 +73,17 @@ class MapListFragment : Fragment() {
             viewModel.getMapsListFromDB()
         }
 
-        viewModel.maps.observe(viewLifecycleOwner, {
-            if(it.isNullOrEmpty()){
+        viewModel.maps.observe(viewLifecycleOwner) {
+            if (it.isNullOrEmpty()) {
                 binding.mapListRefresh.isVisible = false
                 binding.messageEmptyMapList.isVisible = true
                 adapter.submitList(it)
-            }else {
+            } else {
                 binding.mapListRefresh.isVisible = true
                 binding.messageEmptyMapList.isVisible = false
                 adapter.submitList(it)
             }
-        })
+        }
 
         swipeLayout.setOnRefreshListener {
             viewModel.setLoadingToFalse()

@@ -7,7 +7,7 @@ import kotlin.random.Random
 @Parcelize
 data class MapBlock(
     val id: Int = Random.nextInt(),
-    val type: BlockType? = null,
+    var type: BlockType? = null,
     val coordinates: MutableList<Int>? = null,
 ) : Parcelable
 
