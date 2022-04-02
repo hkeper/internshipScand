@@ -5,15 +5,15 @@ import com.scand.internship.mars_scout.models.GameMap
 
 
 fun findPath(map: GameMap):  MutableList<Int>{
-    val d: MutableList<Int> = mutableListOf() //min path
+    val d: MutableList<Int> = mutableListOf() //paths to every block
     val v: MutableList<Int> = mutableListOf() //visited blocks
     val blocksWeightList: MutableList<MutableList<Int>> = mutableListOf() //list of connections
-    val begin_index = setStartPointUtil(map)
-    var end = setEndPointUtil(map) - 1 // индекс конечной вершины - 1
-    var temp = 0; var minindex = 0; var min = 0
-    val pointsWeight = setPointsWeight(map)
-    val path: MutableList<Int> = mutableListOf()
-    val ver: MutableList<Int> = mutableListOf()  // массив посещенных вершин
+    val start = setStartPointUtil(map) //start block
+    var end = setEndPointUtil(map) - 1 // finish block - 1
+    var temp: Int; var minindex: Int; var min: Int
+    val pointsWeight = setPointsWeight(map) //all points with there weight
+    val path: MutableList<Int> = mutableListOf() //ids of blocks with shortest path
+    val shortestPathPoints: MutableList<Int> = mutableListOf()  //list of points within shortest path
 
     if(map.size != null) {
         val mapWidth = map.size.width
@@ -55,23 +55,20 @@ fun findPath(map: GameMap):  MutableList<Int>{
             d.add(10000)
             v.add(1)
         }
-        d[begin_index] = 0
+        d[start] = 0
 
         do {
             minindex = 10000
             min = 10000
 
             for (i in 0 until size)
-            { // Если вершину ещё не обошли и вес меньше min
+            {
                 if ((v[i] == 1) && (d[i]<min))
-                { // Переприсваиваем значения
+                {
                     min = d[i]
                     minindex = i
                 }
             }
-            // Добавляем найденный минимальный вес
-            // к текущему весу вершины
-            // и сравниваем с текущим минимальным весом вершины
             if (minindex != 10000)
             {
                 for (i in 0 until size)
@@ -90,28 +87,28 @@ fun findPath(map: GameMap):  MutableList<Int>{
 
         } while (minindex < 10000)
 
-        ver.add(end + 1)  // начальный элемент - конечная вершина
-        var k = 1 // индекс предыдущей вершины
-        var weight = d[end]; // вес конечной вершины
+        shortestPathPoints.add(end + 1)
+        var k = 1
+        var weight = d[end]
 
-        while (end != begin_index) // пока не дошли до начальной вершины
+        while (end != start)
         {
-            for (i in 0 until size) // просматриваем все вершины
-                if (blocksWeightList[i][end] != 0)   // если связь есть
+            for (i in 0 until size)
+                if (blocksWeightList[i][end] != 0)
                 {
-                    temp = weight - blocksWeightList[i][end]; // определяем вес пути из предыдущей вершины
-                    if (temp == d[i]) // если вес совпал с рассчитанным
-                    {                 // значит из этой вершины и был переход
-                        weight = temp // сохраняем новый вес
-                        end = i       // сохраняем предыдущую вершину
-                        ver.add(i + 1) // и записываем ее в массив
+                    temp = weight - blocksWeightList[i][end]
+                    if (temp == d[i])
+                    {
+                        weight = temp
+                        end = i
+                        shortestPathPoints.add(i + 1)
                         k++
                     }
                 }
         }
 
         for ( i in k - 1 downTo 0){
-            pointsWeight[ver[i]]?.let {
+            pointsWeight[shortestPathPoints[i]]?.let {
                 path.add( it[1] )
             }
         }
