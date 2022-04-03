@@ -1,10 +1,7 @@
 package com.scand.internship.mars_scout.models
 
-import android.graphics.drawable.Drawable
 import android.os.Parcelable
 import android.util.Size
-import androidx.core.content.res.ResourcesCompat
-import com.scand.internship.mars_scout.R
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
@@ -19,7 +16,7 @@ data class GameMap constructor(
             this(UUID.randomUUID(), name, DEFAULT_SIZE, mutableListOf())
 
     companion object{
-        val DEFAULT_SIZE = Size(3,3)
+        val DEFAULT_SIZE = Size(16,16)
     }
 }
 

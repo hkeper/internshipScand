@@ -12,10 +12,10 @@ fun findPath(map: GameMap):  MutableList<Int>{
     var end = setEndPointUtil(map) - 1 // finish block - 1
     var temp: Int; var minindex: Int; var min: Int
     val pointsWeight = setPointsWeight(map) //all points with there weight
-    val path: MutableList<Int> = mutableListOf() //ids of blocks with shortest path
+    var path: MutableList<Int> = mutableListOf() //ids of blocks with shortest path
     val shortestPathPoints: MutableList<Int> = mutableListOf()  //list of points within shortest path
 
-    if(map.size != null) {
+    if(map.size != null && !pointsWeight.isNullOrEmpty()) {
         val mapWidth = map.size.width
         val mapHeight = map.size.height
         val size = mapWidth * mapHeight
@@ -107,10 +107,16 @@ fun findPath(map: GameMap):  MutableList<Int>{
                 }
         }
 
+        var sum = 0 // sum of blocks weight, must be < 1000
+
         for ( i in k - 1 downTo 0){
             pointsWeight[shortestPathPoints[i]]?.let {
+                sum += it[0]
                 path.add( it[1] )
             }
+        }
+        if (sum >= 1000){
+            path = mutableListOf()
         }
     }
     return path
@@ -139,7 +145,7 @@ fun getBlockWeightAccordingToType(type: BlockType?): Int{
     return when (type) {
         BlockType.SAND -> 3
         BlockType.HILL -> 2
-        BlockType.PIT -> 100
+        BlockType.PIT -> 1000
         BlockType.GROUND -> 1
         else -> 0
     }

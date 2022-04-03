@@ -20,11 +20,15 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.*
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.scand.internship.mars_scout.models.GameMap
 import com.scand.internship.mars_scout.repository.GameMapStatus
 import com.scand.internship.mars_scout.utils.find_path.findPath
 import com.scand.internship.mars_scout.utils.find_path.setStartPointUtil
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 import kotlin.random.Random
 
@@ -32,7 +36,6 @@ class MapEditorFragment : Fragment(){
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
     private val viewModel: MapEditorViewModel by viewModels { viewModelFactory }
     private var listUIMapBlocks: MutableList<MutableList<ImageView>> = mutableListOf()
     private var listChooseMapBlockTypes: MutableList<ImageView> = mutableListOf()
@@ -57,7 +60,7 @@ class MapEditorFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         binding.viewModel = viewModel
-        viewModel.gameMap.value?.let {gameUIMap = it }
+        viewModel.gameMap.value?.let { gameUIMap = it }
 
         generateUIGameMap(GameMap.DEFAULT_SIZE)
         getImageViewMapBlocks()
@@ -117,7 +120,24 @@ class MapEditorFragment : Fragment(){
         }
 
         binding.findWay.setOnClickListener {
-            findPath(gameUIMap)
+            if(!isMapCompletelyFilled(gameUIMap)){
+                Toast.makeText(
+                    context, "Please fill all map blocks and try again!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                val path = findPath(gameUIMap)
+                if (path.isNullOrEmpty()) {
+                    Toast.makeText(
+                        context, "Please fill all map blocks correctly(path without Pit must exists) and try again!",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        animateMarsScoutPath(path)
+                    }
+                }
+            }
         }
 
         binding.groundBlockImg.setOnClickListener {
@@ -133,6 +153,61 @@ class MapEditorFragment : Fragment(){
             choseBlockType(it, BlockType.HILL)
         }
 
+    }
+
+    private suspend fun animateMarsScoutPath(path: MutableList<Int>) {
+
+        if(!listUIMapBlocks.isNullOrEmpty()) {
+            for(p in 0 until path.size) {
+
+                for (y in 0 until listUIMapBlocks.size) {
+
+                    for (x in 0 until listUIMapBlocks[y].size) {
+                        val b = listUIMapBlocks[y][x]
+                        if(b.id == path[p]) {
+                            val temp = b.tag
+                            b.setImageResource(R.drawable.rover_logo)
+                            delay(500)
+                            if (temp != null) {
+                                b.setImageResource(temp as Int)
+                            } else b.setImageResource(0)
+                            b.alpha = 0.5F
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun isMapCompletelyFilled(map: GameMap): Boolean {
+        var mapFilled = true
+
+        val mapBlocks = map.blocks
+
+        if(!mapBlocks.isNullOrEmpty() && map.size != null) {
+
+            if (mapBlocks.size != map.size.height){
+                return false
+            }
+
+            for (y in 0 until mapBlocks.size) {
+
+                if (mapBlocks[y].size != map.size.width){
+                    return false
+                }
+
+                for (x in 0 until mapBlocks[y].size) {
+                    val b = mapBlocks[y][x]
+                    if(b.type == null){
+                        return false
+                    }
+                }
+            }
+        }else{
+            mapFilled = false
+        }
+
+        return mapFilled
     }
 
     private fun generateUIGameMap(size: Size) {
@@ -173,6 +248,7 @@ class MapEditorFragment : Fragment(){
                     if(b.coordinates != null) {
                         val bX = b.coordinates[0]
                         val bY = b.coordinates[1]
+                        listUIMapBlocks[bY][bX].alpha = 1F
                         listUIMapBlocks[bY][bX].id = b.id
                         listUIMapBlocks[bY][bX].contentDescription = b.type.toString()
                         val img: Drawable? = setImageAccordingToType(b.type)
@@ -276,24 +352,24 @@ class MapEditorFragment : Fragment(){
                 return@setOnTouchListener when (event?.action) {
                     MotionEvent.ACTION_DOWN -> {
                         getImageViewMapBlockThatInsideMap(event, viewModel.typeChosenMapBlock.value).
-                            background = setImageAccordingToType(viewModel.typeChosenMapBlock.value)
+                        background = setImageAccordingToType(viewModel.typeChosenMapBlock.value)
                         putUIMapToViewModelMap()
                         true
                     }
                     MotionEvent.ACTION_MOVE -> {
                         getImageViewMapBlockThatInsideMap(event, viewModel.typeChosenMapBlock.value).
-                            background = setImageAccordingToType(viewModel.typeChosenMapBlock.value)
+                        background = setImageAccordingToType(viewModel.typeChosenMapBlock.value)
                         putUIMapToViewModelMap()
                         true
                     }
                     MotionEvent.ACTION_UP -> {
                         getImageViewMapBlockThatInsideMap(event, viewModel.typeChosenMapBlock.value).
-                            background = setImageAccordingToType(viewModel.typeChosenMapBlock.value)
+                        background = setImageAccordingToType(viewModel.typeChosenMapBlock.value)
                         true
                     }
                     MotionEvent.ACTION_CANCEL -> {
                         getImageViewMapBlockThatInsideMap(event, viewModel.typeChosenMapBlock.value).
-                            background = setImageAccordingToType(viewModel.typeChosenMapBlock.value)
+                        background = setImageAccordingToType(viewModel.typeChosenMapBlock.value)
                         true
                     }
                     else -> false
@@ -341,6 +417,7 @@ class MapEditorFragment : Fragment(){
             for (x in 0 until listUIMapBlocks[y].size) {
                 listUIMapBlocks[y][x].setBackgroundResource(R.drawable.border)
                 listUIMapBlocks[y][x].contentDescription = ""
+                listUIMapBlocks[y][x].alpha = 1F
             }
         }
     }
@@ -389,8 +466,10 @@ class MapEditorFragment : Fragment(){
         }
         listUIMapBlocks[0][start].background = img
         listUIMapBlocks[0][start].setImageResource(R.drawable.start)
+        listUIMapBlocks[0][start].tag = R.drawable.start
         listUIMapBlocks[lastLine][start].background = img
         listUIMapBlocks[lastLine][start].setImageResource(R.drawable.finish)
+        listUIMapBlocks[lastLine][start].tag = R.drawable.finish
     }
 
 }
