@@ -2,6 +2,7 @@ package com.scand.internship.mars_scout.firebase
 
 import com.google.firebase.database.*
 import com.scand.internship.mars_scout.models.*
+import kotlinx.coroutines.delay
 import java.util.*
 import javax.inject.Inject
 
@@ -31,17 +32,17 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
                     val map = snapshot.getValue(MapResponse::class.java)
                     val blocksUI: MutableList<MutableList<MapBlock>> = mutableListOf()
 
-                        for (blocksLine in snapshot.child(KEY_BLOCKS).children){
-                            val blockLineUI = mutableListOf<MapBlock>()
-                            for(block in blocksLine.children){
-                                val blockResponse = block.getValue(MapBlockResponse::class.java)
-                                    ?.mapToUIBlock()
-                                if (blockResponse != null) {
-                                    blockLineUI.add(blockResponse)
-                                }
+                    for (blocksLine in snapshot.child(KEY_BLOCKS).children){
+                        val blockLineUI = mutableListOf<MapBlock>()
+                        for(block in blocksLine.children){
+                            val blockResponse = block.getValue(MapBlockResponse::class.java)
+                                ?.mapToUIBlock()
+                            if (blockResponse != null) {
+                                blockLineUI.add(blockResponse)
                             }
-                            blocksUI.add(blockLineUI)
                         }
+                        blocksUI.add(blockLineUI)
+                    }
 
                     if (map != null) {
                         if (map.isValid()) {
@@ -67,7 +68,7 @@ class FirebaseDatabaseManager @Inject constructor(private val database: Firebase
     override suspend fun getMapsList(onResult: (List<GameMap>) -> Unit) {
         val list = mutableListOf<GameMap>()
 
-         database.reference
+        database.reference
             .child(KEY_MAP)
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) = onResult(list.toList())

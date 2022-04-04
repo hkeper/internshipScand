@@ -51,7 +51,6 @@ class MapListViewModel @Inject constructor(
                 _gameMapStatus.value = it
             }
         }
-
     }
 
     fun putMapsToViewModelList(DBmaps: MutableList<GameMap>){
