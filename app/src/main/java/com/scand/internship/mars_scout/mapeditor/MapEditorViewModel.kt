@@ -122,5 +122,9 @@ class MapEditorViewModel @Inject constructor(
         }
     }
 
+    fun setEditMode(value: Boolean){
+        _isEditMode.value = value
+    }
+
 }
 

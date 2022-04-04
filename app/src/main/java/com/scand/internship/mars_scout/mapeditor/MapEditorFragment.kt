@@ -28,7 +28,6 @@ import com.scand.internship.mars_scout.utils.find_path.setStartPointUtil
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 import kotlin.random.Random
 
@@ -76,7 +75,6 @@ class MapEditorFragment : Fragment(){
 
         setTouchOnMapView()
         viewModel.getEditedMapByID()
-
         viewModel.gameMapStatus.observe(viewLifecycleOwner) { status ->
             binding.progress.isVisible = true
             binding.map.isVisible = false
@@ -119,6 +117,13 @@ class MapEditorFragment : Fragment(){
             }
         }
 
+        binding.newMap.setOnClickListener {
+            // Doesn't work resources.getDimension(R.dimen.default_map_size_x).toInt()
+            viewModel.clearMap()
+            clearMapBlocks()
+            viewModel.setEditMode(false)
+        }
+
         binding.findWay.setOnClickListener {
             if(!isMapCompletelyFilled(gameUIMap)){
                 Toast.makeText(
@@ -134,7 +139,9 @@ class MapEditorFragment : Fragment(){
                     ).show()
                 } else {
                     viewLifecycleOwner.lifecycleScope.launch {
+                        disableViews()
                         animateMarsScoutPath(path)
+                        enableViews()
                     }
                 }
             }
@@ -176,6 +183,35 @@ class MapEditorFragment : Fragment(){
                     }
                 }
             }
+        }
+    }
+
+    private fun disableViews() {
+        val mainView = binding.container
+        val chooseBlocks = binding.chooseBlockSection
+
+        for(v in 0 until mainView.childCount){
+            val subView: View = mainView.getChildAt(v)
+            subView.isEnabled = false
+        }
+        for(v in 0 until chooseBlocks.childCount){
+            val subView: View = chooseBlocks.getChildAt(v)
+            subView.isEnabled = false
+        }
+
+    }
+
+    private fun enableViews() {
+        val mainView = binding.container
+        val chooseBlocks = binding.chooseBlockSection
+
+        for(v in 0 until mainView.childCount){
+            val subView: View = mainView.getChildAt(v)
+            subView.isEnabled = true
+        }
+        for(v in 0 until chooseBlocks.childCount){
+            val subView: View = chooseBlocks.getChildAt(v)
+            subView.isEnabled = true
         }
     }
 

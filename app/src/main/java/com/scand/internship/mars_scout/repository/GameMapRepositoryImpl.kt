@@ -94,7 +94,5 @@ class GameMapRepositoryImpl @Inject constructor(
         emit(GameMapStatus.Cleared)
     }.flowOn(Dispatchers.IO)
 
-
-
 }
 
