@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.scand.internship.mars_scout.databinding.LaunchFragmentBinding
-import com.scand.internship.mars_scout.models.GameMap
 
 class LaunchFragment : Fragment() {
 

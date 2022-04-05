@@ -46,7 +46,6 @@ class GameMapRepositoryImpl @Inject constructor(
         }
         var mapsDB = databaseOperations.retrieveMaps().toMutableList()
 
-        kotlinx.coroutines.delay(1000)
         if(mapsDB.isNullOrEmpty()){
             mapsDB.addAll(mapsNet)
         }
@@ -60,7 +59,6 @@ class GameMapRepositoryImpl @Inject constructor(
                 }
             }
         }
-        kotlinx.coroutines.delay(1000)
         mapsDB = databaseOperations.retrieveMaps().toMutableList()
         for (DBItem in mapsDB){
             firebaseDB.addMap(DBItem)

@@ -31,7 +31,7 @@ class MapListViewModel @Inject constructor(
     val maps: LiveData<MutableList<GameMap>> = _maps
 
     init{
-//        clearDB()
+        clearDB()
         _gameMapStatus.value = GameMapStatus.Loading
         getMapsListFromDB()
         _dataLoading.value = false

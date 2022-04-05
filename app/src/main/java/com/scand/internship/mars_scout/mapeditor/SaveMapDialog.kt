@@ -1,5 +1,6 @@
 package com.scand.internship.mars_scout.mapeditor
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
@@ -7,16 +8,11 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.scand.internship.mars_scout.R
 import dagger.android.support.AndroidSupportInjection
-import javax.inject.Inject
+
 
 class SaveMapDialog: DialogFragment() {
-
-//    @Inject
-//    lateinit var viewModelFactory: ViewModelProvider.Factory
-//    private val viewModel: MapEditorViewModel by viewModels { viewModelFactory }
 
     private val viewModel: MapEditorViewModel by viewModels({requireParentFragment()})
 
@@ -25,6 +21,7 @@ class SaveMapDialog: DialogFragment() {
         super.onCreate(savedInstanceState)
     }
 
+    @SuppressLint("InflateParams")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             // Use the Builder class for convenient dialog construction

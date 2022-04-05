@@ -9,11 +9,11 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.scand.internship.mars_scout.models.GameMap
 import java.util.*
 import kotlin.math.abs
 import kotlin.math.max
 
+@SuppressLint("ClickableViewAccessibility")
 abstract class SwipeHelper (
     private val recyclerView: RecyclerView
 ) : ItemTouchHelper.SimpleCallback(
@@ -80,7 +80,7 @@ abstract class SwipeHelper (
         isCurrentlyActive: Boolean
     ) {
         val position = viewHolder.adapterPosition
-        var maxDX: Float
+        val maxDX: Float
         val itemView = viewHolder.itemView
         val isCanceled = dX == 0f && !isCurrentlyActive
 

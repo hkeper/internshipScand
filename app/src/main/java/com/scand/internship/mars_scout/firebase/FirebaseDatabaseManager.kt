@@ -2,10 +2,8 @@ package com.scand.internship.mars_scout.firebase
 
 import com.google.firebase.database.*
 import com.scand.internship.mars_scout.models.*
-import kotlinx.coroutines.delay
 import java.util.*
 import javax.inject.Inject
-
 
 class FirebaseDatabaseManager @Inject constructor(private val database: FirebaseDatabase) : FirebaseDatabaseInterface {
 
