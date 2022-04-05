@@ -1,18 +1,14 @@
 package com.scand.internship.mars_scout.maplist
 
-import android.util.Size
 import androidx.lifecycle.*
-import com.scand.internship.mars_scout.firebase.FirebaseDatabaseInterface
-import com.scand.internship.mars_scout.models.BlockType
 import com.scand.internship.mars_scout.models.GameMap
-import com.scand.internship.mars_scout.models.MapBlock
 import com.scand.internship.mars_scout.repository.GameMapRepository
 import com.scand.internship.mars_scout.repository.GameMapStatus
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
-import kotlin.random.Random
+
 
 class MapListViewModel @Inject constructor(
     private val mapsRepository: GameMapRepository
@@ -31,7 +27,6 @@ class MapListViewModel @Inject constructor(
     val maps: LiveData<MutableList<GameMap>> = _maps
 
     init{
-        clearDB()
         _gameMapStatus.value = GameMapStatus.Loading
         getMapsListFromDB()
         _dataLoading.value = false
